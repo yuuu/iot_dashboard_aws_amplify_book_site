@@ -1,5 +1,8 @@
 import React from "react";
+import BarGraph from "../BarGraph";
 import Card from "../Card";
+import DeviceStatus from "../DeviceStatus";
+import devices from "../../data/devices";
 
 const AcquisitionOverviewCard: React.FC = () => {
   return (
@@ -30,6 +33,9 @@ const AcquisitionOverviewCard: React.FC = () => {
                 デバイス名
               </th>
               <th className="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                ステータス
+              </th>
+              <th className="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
                 温度
               </th>
               <th className="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
@@ -41,91 +47,32 @@ const AcquisitionOverviewCard: React.FC = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {[
-              {
-                deviceName: "デバイスA",
-                temperature: 30,
-                humid: 40,
-                pressure: 1000,
-                key: "device-a",
-              },
-              {
-                deviceName: "デバイスB",
-                temperature: 10,
-                humid: 89,
-                pressure: 950,
-                key: "device-b",
-              },
-              {
-                deviceName: "デバイスC",
-                temperature: 23,
-                humid: 67,
-                pressure: 1013,
-                key: "device-c",
-              },
-              {
-                deviceName: "デバイスD",
-                temperature: 19,
-                humid: 39,
-                pressure: 1003,
-                key: "device-d",
-              },
-            ].map(({ deviceName, temperature, humid, pressure, key }) => (
-              <tr key={key} className="text-gray-500">
-                <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                  {deviceName}
-                </th>
-                <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <div className="mr-2 text-xs font-medium w-full md:w-1/3">
-                      {temperature}℃
-                    </div>
-                    <div className="relative w-full hidden md:block">
-                      <div className="w-full bg-gray-200 rounded-sm h-2">
-                        <div
-                          className="bg-sky-800 h-2 rounded-sm"
-                          style={{ width: `${(temperature / 50) * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <div className="mr-2 text-xs font-medium w-full md:w-1/3">
-                      {humid}%
-                    </div>
-                    <div className="relative w-full hidden md:block">
-                      <div className="w-full bg-gray-200 rounded-sm h-2">
-                        <div
-                          className="bg-sky-800 h-2 rounded-sm"
-                          style={{ width: `${humid}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <div className="mr-2 text-xs font-medium w-full md:w-1/3">
-                      {pressure}hPa
-                    </div>
-                    <div className="relative w-full hidden md:block">
-                      <div className="w-full bg-gray-200 rounded-sm h-2">
-                        <div
-                          className="bg-sky-800 h-2 rounded-sm"
-                          style={{
-                            width: `${
-                              ((pressure - 870) / (1100 - 870)) * 100
-                            }%`,
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
+            {devices.map(
+              ({ deviceName, temperature, humid, pressure, status, key }) => (
+                <tr key={key} className="text-gray-500">
+                  <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+                    {deviceName}
+                  </th>
+                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <DeviceStatus status={status} />
+                  </td>
+                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <BarGraph value={temperature} unit="℃" max={50} min={-10} />
+                  </td>
+                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <BarGraph value={humid} unit="%" max={100} min={0} />
+                  </td>
+                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <BarGraph
+                      value={pressure}
+                      unit="hPa"
+                      max={1100}
+                      min={870}
+                    />
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>
