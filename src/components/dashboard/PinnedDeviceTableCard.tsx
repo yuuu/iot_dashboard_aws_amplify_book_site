@@ -3,6 +3,7 @@ import BarGraph from "../BarGraph";
 import Card from "../Card";
 import DeviceStatus from "../DeviceStatus";
 import devices from "../../data/devices";
+import Link from "next/link";
 
 const AcquisitionOverviewCard: React.FC = () => {
   return (
@@ -17,12 +18,11 @@ const AcquisitionOverviewCard: React.FC = () => {
           </span>
         </div>
         <div className="flex-shrink-0">
-          <a
-            href="#"
-            className="text-sm font-medium text-sky-800 hover:bg-gray-100 rounded-lg p-2"
-          >
-            すべて見る
-          </a>
+          <Link href="/devices">
+            <a className="text-sm font-medium text-sky-800 hover:bg-gray-100 rounded-lg p-2">
+              すべて見る
+            </a>
+          </Link>
         </div>
       </div>
       <div className="block w-full overflow-x-auto">

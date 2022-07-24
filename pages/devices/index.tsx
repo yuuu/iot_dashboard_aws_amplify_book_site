@@ -12,14 +12,14 @@ const DeviceList: NextPage = () => {
           <div className="mb-4">
             <Breadcrumbs pages={[{ name: "Devices", link: "/devices" }]} />
             <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
-              All devices
+              デバイス
             </h1>
           </div>
           <div className="sm:flex">
             <div className="hidden sm:flex items-center sm:divide-x sm:divide-gray-100 mb-3 sm:mb-0">
               <form className="lg:pr-3" action="#" method="GET">
                 <label htmlFor="devices-search" className="sr-only">
-                  Search
+                  検索
                 </label>
                 <div className="mt-1 relative lg:w-64 xl:w-96">
                   <input
@@ -27,7 +27,7 @@ const DeviceList: NextPage = () => {
                     name="email"
                     id="devices-search"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-800 focus:border-sky-800 block w-full p-2.5"
-                    placeholder="Search for devices"
+                    placeholder="デバイス名"
                   />
                 </div>
               </form>
@@ -36,7 +36,7 @@ const DeviceList: NextPage = () => {
               <button
                 type="button"
                 data-modal-toggle="add-device-modal"
-                className="w-1/2 text-white bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:ring-sky-600 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto"
+                className="w-full text-white bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:ring-sky-600 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto"
               >
                 <svg
                   className="-ml-1 mr-2 h-6 w-6"
@@ -50,7 +50,7 @@ const DeviceList: NextPage = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Add device
+                追加
               </button>
             </div>
           </div>
@@ -60,7 +60,7 @@ const DeviceList: NextPage = () => {
         <div className="overflow-x-auto">
           <div className="align-middle inline-block min-w-full">
             <div className="shadow overflow-hidden">
-              <table className="table-fixed min-w-full divide-y divide-gray-200">
+              <table className="table-auto items-center w-full bg-transparent border-collapse">
                 <thead className="bg-gray-100">
                   <tr>
                     <th
@@ -77,19 +77,19 @@ const DeviceList: NextPage = () => {
                     </th>
                     <th
                       scope="col"
-                      className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+                      className="hidden md:table-cell w-1/6 p-4 text-left text-xs font-medium text-gray-500 uppercase"
                     >
                       温度
                     </th>
                     <th
                       scope="col"
-                      className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+                      className="hidden md:table-cell w-1/6 p-4 text-left text-xs font-medium text-gray-500 uppercase"
                     >
                       湿度
                     </th>
                     <th
                       scope="col"
-                      className="p-4 text-left text-xs font-medium text-gray-500 uppercase"
+                      className="hidden md:table-cell w-1/6 p-4 text-left text-xs font-medium text-gray-500 uppercase"
                     >
                       気圧
                     </th>
@@ -115,7 +115,7 @@ const DeviceList: NextPage = () => {
                         <td className="px-4 align-middle text-xs whitespace-nowrap p-4">
                           <DeviceStatus status={status} />
                         </td>
-                        <td className="px-4 align-middle text-xs whitespace-nowrap p-4">
+                        <td className="hidden md:table-cell px-4 align-middle text-xs whitespace-nowrap p-4">
                           <BarGraph
                             value={temperature}
                             unit="℃"
@@ -123,10 +123,10 @@ const DeviceList: NextPage = () => {
                             min={-10}
                           />
                         </td>
-                        <td className="px-4 align-middle text-xs whitespace-nowrap p-4">
+                        <td className="hidden md:table-cell px-4 align-middle text-xs whitespace-nowrap p-4">
                           <BarGraph value={humid} unit="%" max={100} min={0} />
                         </td>
-                        <td className="px-4 align-middle text-xs whitespace-nowrap p-4">
+                        <td className="hidden md:table-cell px-4 align-middle text-xs whitespace-nowrap p-4">
                           <BarGraph
                             value={pressure}
                             unit="hPa"
@@ -142,18 +142,20 @@ const DeviceList: NextPage = () => {
                           >
                             <svg
                               className="mr-2 h-5 w-5"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg"
+                              width="64"
+                              height="64"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="#ffffff"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             >
-                              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
-                              <path
-                                fillRule="evenodd"
-                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                clipRule="evenodd"
-                              ></path>
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                              <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
                             </svg>
-                            Show
+                            <span className="hidden md:inline">詳細</span>
                           </button>
                           <button
                             type="button"
@@ -173,7 +175,7 @@ const DeviceList: NextPage = () => {
                                 clipRule="evenodd"
                               ></path>
                             </svg>
-                            Edit
+                            <span className="hidden md:inline">編集</span>
                           </button>
                           <button
                             type="button"
@@ -192,7 +194,7 @@ const DeviceList: NextPage = () => {
                                 clipRule="evenodd"
                               ></path>
                             </svg>
-                            Delete
+                            <span className="hidden md:inline">削除</span>
                           </button>
                         </td>
                       </tr>

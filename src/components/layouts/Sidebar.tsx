@@ -33,13 +33,13 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
                   {
                     text: "Dashboard",
                     key: "dashboard",
-                    link: "https://demo.themesberg.com/windster/",
+                    link: "/",
                     icon: <DashboardIcon />,
                   },
                   {
                     text: "Devices",
                     key: "devices",
-                    link: "https://demo.themesberg.com/windster-pro/kanban/",
+                    link: "/devices",
                     icon: <KanbanIcon />,
                   },
                 ].map(({ text, key, link, icon }) => (
@@ -53,7 +53,7 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
                   {
                     text: "Help",
                     key: "help",
-                    link: "https://github.com/themesberg/windster-tailwind-css-dashboard/issues",
+                    link: "/help",
                     icon: <HelpIcon />,
                   },
                 ].map(({ text, key, link, icon }) => (
