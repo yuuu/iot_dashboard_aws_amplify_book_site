@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { NextPage } from "next";
+import Link from "next/link";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import DeviceStatus from "../../src/components/DeviceStatus";
 import BarGraph from "../../src/components/BarGraph";
@@ -12,7 +13,7 @@ import DeleteIcon from "../../src/components/icons/DeleteIcon";
 import NewIcon from "../../src/components/icons/NewIcon";
 import DeleteDeviceModal from "../../src/components/DeleteDeviceModal";
 
-const DeviceList: NextPage = () => {
+const DeviceIndex: NextPage = () => {
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -137,14 +138,12 @@ const DeviceList: NextPage = () => {
                           />
                         </td>
                         <td className="p-4 whitespace-nowrap space-x-2 text-right">
-                          <button
-                            type="button"
-                            data-modal-toggle="device-modal"
-                            className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-sky-600 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"
-                          >
-                            <ShowIcon />
-                            <span className="hidden md:inline">詳細</span>
-                          </button>
+                          <Link href="/devices/1">
+                            <a className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-sky-600 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                              <ShowIcon />
+                              <span className="hidden md:inline">詳細</span>
+                            </a>
+                          </Link>
                           <button
                             type="button"
                             data-modal-toggle="device-modal"
@@ -264,4 +263,4 @@ const DeviceList: NextPage = () => {
   );
 };
 
-export default DeviceList;
+export default DeviceIndex;
