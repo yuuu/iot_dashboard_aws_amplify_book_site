@@ -1,5 +1,5 @@
 import React from "react";
-import BarGraph from "../BarGraph";
+import BarGraphWithValue from "../BarGraphWithValue";
 import Card from "../Card";
 import DeviceStatus from "../DeviceStatus";
 import devices from "../../data/devices";
@@ -48,8 +48,8 @@ const AcquisitionOverviewCard: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-gray-100">
             {devices.map(
-              ({ deviceName, temperature, humid, pressure, status, key }) => (
-                <tr key={key} className="text-gray-500">
+              ({ id, deviceName, temperature, humid, pressure, status }) => (
+                <tr key={id} className="text-gray-500">
                   <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
                     {deviceName}
                   </th>
@@ -57,13 +57,23 @@ const AcquisitionOverviewCard: React.FC = () => {
                     <DeviceStatus status={status} />
                   </td>
                   <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <BarGraph value={temperature} unit="℃" max={50} min={-10} />
+                    <BarGraphWithValue
+                      value={temperature}
+                      unit="℃"
+                      max={50}
+                      min={-10}
+                    />
                   </td>
                   <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <BarGraph value={humid} unit="%" max={100} min={0} />
+                    <BarGraphWithValue
+                      value={humid}
+                      unit="%"
+                      max={100}
+                      min={0}
+                    />
                   </td>
                   <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <BarGraph
+                    <BarGraphWithValue
                       value={pressure}
                       unit="hPa"
                       max={1100}

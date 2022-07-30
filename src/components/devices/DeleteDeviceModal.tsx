@@ -1,7 +1,7 @@
 import React from "react";
 import ReactModal from "react-modal";
-import CloseModalIcon from "./icons/CloseModalIcon";
-import DangerIcon from "./icons/DangerIcon";
+import CloseModalIcon from "../icons/CloseModalIcon";
+import DangerIcon from "../icons/DangerIcon";
 
 type Props = {
   show: boolean;

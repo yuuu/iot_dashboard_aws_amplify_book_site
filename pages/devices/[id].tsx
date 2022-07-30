@@ -12,8 +12,9 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
-import dayjs from "dayjs";
+import BarGraph from "../../src/components/devices/BarGraph";
+import useLineChart from "../../src/hooks/useLineChart";
+import deviceValues from "../../src/data/deviceValues";
 
 ChartJS.register(
   CategoryScale,
@@ -26,88 +27,7 @@ ChartJS.register(
 );
 
 const DeviceShow: NextPage = () => {
-  const options = {
-    responsive: true,
-    interaction: {
-      mode: "index" as const,
-      intersect: false,
-    },
-    stacked: false,
-    scales: {
-      y: {
-        title: {
-          text: "温度",
-          display: true,
-        },
-        type: "linear" as const,
-        display: true,
-        position: "left" as const,
-      },
-      y1: {
-        title: {
-          text: "湿度",
-          display: true,
-        },
-        type: "linear" as const,
-        display: true,
-        position: "left" as const,
-        grid: {
-          drawOnChartArea: false,
-        },
-      },
-      y2: {
-        title: {
-          text: "気圧",
-          display: true,
-        },
-        type: "linear" as const,
-        display: true,
-        position: "right" as const,
-        grid: {
-          drawOnChartArea: false,
-        },
-      },
-    },
-  };
-
-  const labels = [...Array(5).keys()]
-    .map((n) => dayjs().subtract(n, "minute"))
-    .map((n) => n.format("MM/DD hh:mm"))
-    .reverse();
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "温度",
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: "#075985",
-        backgroundColor: "#075985",
-        yAxisID: "y",
-      },
-      {
-        label: "湿度",
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: "#FACC15",
-        backgroundColor: "#FACC15",
-        yAxisID: "y1",
-      },
-      {
-        label: "気圧",
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
-        borderColor: "#DB2777",
-        backgroundColor: "#DB2777",
-        yAxisID: "y2",
-      },
-    ],
-  };
-
+  const { options, data } = useLineChart(deviceValues);
   return (
     <>
       <div className="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
@@ -115,7 +35,7 @@ const DeviceShow: NextPage = () => {
           <div className="mb-4">
             <Breadcrumbs
               pages={[
-                { name: "Devices", link: "/devices" },
+                { name: "デバイス", link: "/devices" },
                 { name: "デバイス1", link: "/devices/1" },
               ]}
             />
@@ -129,39 +49,26 @@ const DeviceShow: NextPage = () => {
         <div className="overflow-x-auto">
           <div className="align-middle inline-block min-w-full">
             <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-              <Card className="sm:p-6 xl:p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">温度</h3>
-                <div className="flex">
+              {[
+                { name: "温度", value: 28.3, unit: "℃", max: 50, min: -10 },
+                { name: "湿度", value: 56, unit: "%", max: 100, min: 0 },
+                { name: "気圧", value: 1013, unit: "hPa", max: 1100, min: 870 },
+              ].map(({ name, value, unit, max, min }) => (
+                <Card key={name} className="sm:p-6 xl:p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    {name}
+                  </h3>
                   <div className="flex space-x-4 items-center">
-                    <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                      28.3
-                    </span>
-                    <div className="text-xl font-bold">℃</div>
+                    <div className="flex space-x-4 items-center">
+                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
+                        {value}
+                      </span>
+                      <div className="text-xl font-bold">{unit}</div>
+                    </div>
+                    <BarGraph value={value} max={max} min={min} />
                   </div>
-                </div>
-              </Card>
-              <Card className="sm:p-6 xl:p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">湿度</h3>
-                <div className="flex">
-                  <div className="flex space-x-4 items-center">
-                    <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                      56
-                    </span>
-                    <div className="text-xl font-bold">%</div>
-                  </div>
-                </div>
-              </Card>
-              <Card className="sm:p-6 xl:p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">気圧</h3>
-                <div className="flex">
-                  <div className="flex space-x-4 items-center">
-                    <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                      1013
-                    </span>
-                    <div className="text-xl font-bold">hPa</div>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              ))}
             </div>
             <div className="mt-4 w-full grid gap-4">
               <Card className="sm:p-6 xl:p-8">

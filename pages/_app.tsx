@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 import Head from "next/head";
 import { useState } from "react";
 import type { AppProps } from "next/app";

@@ -31,13 +31,13 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
               <ul className="space-y-2 py-4">
                 {[
                   {
-                    text: "Dashboard",
+                    text: "ダッシュボード",
                     key: "dashboard",
                     link: "/",
                     icon: <DashboardIcon />,
                   },
                   {
-                    text: "Devices",
+                    text: "デバイス",
                     key: "devices",
                     link: "/devices",
                     icon: <KanbanIcon />,
@@ -51,7 +51,7 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
               <div className="space-y-2 py-4">
                 {[
                   {
-                    text: "Help",
+                    text: "ヘルプ",
                     key: "help",
                     link: "/help",
                     icon: <HelpIcon />,

@@ -1,14 +1,14 @@
 import React from "react";
 import ReactModal from "react-modal";
-import DeviceForm from "../components/DeviceForm";
-import CloseModalIcon from "./icons/CloseModalIcon";
+import DeviceForm from "./DeviceForm";
+import CloseModalIcon from "../icons/CloseModalIcon";
 
 type Props = {
   show: boolean;
   onClose: () => void;
 };
 
-const NewDeviceModal: React.FC<Props> = ({ show, onClose }) => {
+const EditDeviceModal: React.FC<Props> = ({ show, onClose }) => {
   const modalStyle = {
     overlay: {
       zIndex: 40,
@@ -27,7 +27,7 @@ const NewDeviceModal: React.FC<Props> = ({ show, onClose }) => {
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
       <div className="flex items-start justify-between p-5 border-b rounded-t">
-        <h3 className="text-xl font-semibold">デバイス新規登録</h3>
+        <h3 className="text-xl font-semibold">デバイス編集</h3>
         <button
           type="button"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -51,4 +51,4 @@ const NewDeviceModal: React.FC<Props> = ({ show, onClose }) => {
   );
 };
 
-export default NewDeviceModal;
+export default EditDeviceModal;

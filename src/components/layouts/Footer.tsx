@@ -7,10 +7,8 @@ const Footer: React.FC = () => {
     <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
       <ul className="flex items-center flex-wrap mb-6 md:mb-0">
         {[
-          { text: "Terms and conditions", key: "teamAndConditions", link: "#" },
-          { text: "Privacy Policy", key: "privacyPolicy", link: "#" },
-          { text: "Licensing", key: "licensing", link: "#" },
-          { text: "Contact", key: "contact", link: "#" },
+          { text: "ライセンス", key: "licensing", link: "#" },
+          { text: "お問い合わせ", key: "contact", link: "#" },
         ].map(({ text, key, link }) => (
           <li key={key}>
             <a

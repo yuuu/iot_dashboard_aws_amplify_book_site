@@ -7,9 +7,9 @@ type Props = {
   unit: string;
 };
 
-const BarGraph: React.FC<Props> = ({ value, min, max, unit }) => {
+const BarGraphWithValue: React.FC<Props> = ({ value, min, max, unit }) => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center w-full">
       <div className="mr-2 text-xs font-medium w-full md:w-1/3">
         {value}
         {unit}
@@ -26,4 +26,4 @@ const BarGraph: React.FC<Props> = ({ value, min, max, unit }) => {
   );
 };
 
-export default BarGraph;
+export default BarGraphWithValue;
