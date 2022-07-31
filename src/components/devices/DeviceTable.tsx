@@ -56,7 +56,7 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
           <tr key={device.id} className="hover:bg-gray-100">
             <td className="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0">
               <div className="text-base font-semibold text-gray-900">
-                {device.deviceName}
+                {device.name}
               </div>
             </td>
             <td className="px-4 align-middle text-xs whitespace-nowrap p-4">

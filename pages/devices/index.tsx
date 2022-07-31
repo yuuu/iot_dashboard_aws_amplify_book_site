@@ -152,7 +152,11 @@ const DeviceIndex: NextPage = () => {
         </div>
       </div>
 
-      <EditDeviceModal show={!!editModal} onClose={() => setEditModal(null)} />
+      <EditDeviceModal
+        show={!!editModal}
+        device={editModal}
+        onClose={() => setEditModal(null)}
+      />
       <NewDeviceModal show={newModal} onClose={() => setNewModal(false)} />
       <DeleteDeviceModal
         show={!!deleteModal}

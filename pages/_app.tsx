@@ -11,7 +11,7 @@ import Footer from "../src/components/layouts/Footer";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [sidebarClosed, setSidebarClosed] = useState(true);
-  const onSidebarToggle = () => setSidebarClosed(!sidebarClosed);
+  const onSidebarToggle = (closed: boolean) => setSidebarClosed(closed);
 
   return (
     <>

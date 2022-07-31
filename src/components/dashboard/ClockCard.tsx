@@ -4,7 +4,14 @@ import Card from "../Card";
 const ClockCard: React.FC = () => {
   const [currentDate, setCurrentDate] = useState("");
 
-  useEffect(() => setCurrentDate(new Date().toLocaleString()), []);
+  useEffect(() => {
+    setCurrentDate(new Date().toLocaleString());
+    const id = setInterval(
+      () => setCurrentDate(new Date().toLocaleString()),
+      1000
+    );
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <Card>

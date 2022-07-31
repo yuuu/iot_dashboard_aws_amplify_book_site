@@ -2,13 +2,15 @@ import React from "react";
 import ReactModal from "react-modal";
 import DeviceForm from "./DeviceForm";
 import CloseModalIcon from "../icons/CloseModalIcon";
+import { Device } from "../../types/device";
 
 type Props = {
   show: boolean;
+  device: Device | null;
   onClose: () => void;
 };
 
-const EditDeviceModal: React.FC<Props> = ({ show, onClose }) => {
+const EditDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
   const modalStyle = {
     overlay: {
       zIndex: 40,
@@ -37,15 +39,7 @@ const EditDeviceModal: React.FC<Props> = ({ show, onClose }) => {
         </button>
       </div>
       <div className="p-6 space-y-6">
-        <DeviceForm />
-        <div className="items-center py-6 border-t border-gray-200 rounded-b">
-          <button
-            className="text-white bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:ring-sky-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-            type="submit"
-          >
-            保存
-          </button>
-        </div>
+        {device && <DeviceForm device={device} onClose={onClose} />}
       </div>
     </ReactModal>
   );

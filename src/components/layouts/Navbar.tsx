@@ -7,7 +7,7 @@ import { Menu, MenuItem } from "@szhsin/react-menu";
 
 type Props = {
   sidebarClosed: boolean;
-  onSidebarToggle: () => void;
+  onSidebarToggle: (closed: boolean) => void;
 };
 
 const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
@@ -18,7 +18,7 @@ const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
           <div className="flex items-center justify-start">
             <SidebarToggleButton
               closed={sidebarClosed}
-              onClick={onSidebarToggle}
+              onClick={() => onSidebarToggle(!sidebarClosed)}
             />
             <BlandLogo />
           </div>

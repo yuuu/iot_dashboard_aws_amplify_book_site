@@ -48,10 +48,10 @@ const AcquisitionOverviewCard: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-gray-100">
             {devices.map(
-              ({ id, deviceName, temperature, humid, pressure, status }) => (
+              ({ id, name, temperature, humid, pressure, status }) => (
                 <tr key={id} className="text-gray-500">
                   <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                    {deviceName}
+                    {name}
                   </th>
                   <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                     <DeviceStatus status={status} />
