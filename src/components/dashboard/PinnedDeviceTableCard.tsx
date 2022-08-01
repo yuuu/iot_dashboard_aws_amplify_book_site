@@ -50,8 +50,10 @@ const AcquisitionOverviewCard: React.FC = () => {
             {devices.map(
               ({ id, name, temperature, humid, pressure, status }) => (
                 <tr key={id} className="text-gray-500">
-                  <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                    {name}
+                  <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left text-sky-800">
+                    <Link href={`/devices/${id}`}>
+                      <a>{name}</a>
+                    </Link>
                   </th>
                   <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                     <DeviceStatus status={status} />

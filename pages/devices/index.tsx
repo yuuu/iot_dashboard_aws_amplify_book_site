@@ -13,9 +13,15 @@ const DeviceIndex: NextPage = () => {
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState<Device | null>(null);
   const [deleteModal, setDeleteModal] = useState<Device | null>(null);
+  const [filteredDevices, setFilteredDevices] = useState<Device[]>(devices);
 
   const onEdit = (device: Device) => setEditModal(device);
   const onDestroy = (device: Device) => setDeleteModal(device);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilteredDevices(
+      devices.filter((device) => device.name.match(e.target.value))
+    );
+  };
 
   return (
     <>
@@ -40,6 +46,7 @@ const DeviceIndex: NextPage = () => {
                     id="devices-search"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-800 focus:border-sky-800 block w-full p-2.5"
                     placeholder="デバイス名"
+                    onChange={onChange}
                   />
                 </div>
               </form>
@@ -63,7 +70,7 @@ const DeviceIndex: NextPage = () => {
           <div className="align-middle inline-block min-w-full">
             <div className="shadow overflow-hidden">
               <DeviceTable
-                devices={devices}
+                devices={filteredDevices}
                 onEdit={onEdit}
                 onDestroy={onDestroy}
               />

@@ -55,8 +55,10 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
         {devices.map((device) => (
           <tr key={device.id} className="hover:bg-gray-100">
             <td className="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0">
-              <div className="text-base font-semibold text-gray-900">
-                {device.name}
+              <div className="text-sm text-sky-800">
+                <Link href={`/devices/${device.id}`}>
+                  <a>{device.name}</a>
+                </Link>
               </div>
             </td>
             <td className="px-4 align-middle text-xs whitespace-nowrap p-4">
@@ -87,12 +89,6 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
               />
             </td>
             <td className="p-4 whitespace-nowrap space-x-2 text-right">
-              <Link href={`/devices/${device.id}`}>
-                <a className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-sky-600 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                  <ShowIcon />
-                  <span className="hidden md:inline">詳細</span>
-                </a>
-              </Link>
               <button
                 type="button"
                 data-modal-toggle="device-modal"
