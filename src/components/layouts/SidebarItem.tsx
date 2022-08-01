@@ -4,13 +4,14 @@ type Props = {
   text: string;
   link: string;
   icon: JSX.Element;
+  onClick: (link: string) => void;
 };
 
-const SidebarItem: React.FC<Props> = ({ text, link, icon }) => {
+const SidebarItem: React.FC<Props> = ({ text, link, icon, onClick }) => {
   return (
     <a
-      href={link}
       className="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+      onClick={() => onClick(link)}
     >
       <>
         {icon}

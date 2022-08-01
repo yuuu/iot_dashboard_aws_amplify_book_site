@@ -1,22 +1,22 @@
 import React from "react";
-import ComponentsIcon from "../icons/ComponentsIcon";
 import DashboardIcon from "../icons/DashboardIcon";
-import DocumentationIcon from "../icons/DocumentationIcon";
 import HelpIcon from "../icons/HelpIcon";
-import InboxIcon from "../icons/InboxIcon";
 import KanbanIcon from "../icons/KanbanIcon";
-import ProductsIcon from "../icons/ProductsIcon";
-import SignInIcon from "../icons/SignInIcon";
-import SignUpIcon from "../icons/SignUpIcon";
-import UsersIcon from "../icons/UsersIcon";
 import SidebarItem from "./SidebarItem";
+import { useRouter } from "next/router";
 
 type Props = {
   closed: boolean;
-  onClick: () => void;
+  onClick: (closed: boolean) => void;
 };
 
 const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
+  const router = useRouter();
+  const onItemClick = (link: string) => {
+    onClick(true);
+    router.push(link);
+  };
+
   return (
     <>
       <aside
@@ -31,33 +31,44 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
               <ul className="space-y-2 py-4">
                 {[
                   {
-                    text: "Dashboard",
+                    text: "ダッシュボード",
                     key: "dashboard",
-                    link: "https://demo.themesberg.com/windster/",
+                    link: "/",
                     icon: <DashboardIcon />,
                   },
                   {
-                    text: "Devices",
+                    text: "デバイス",
                     key: "devices",
-                    link: "https://demo.themesberg.com/windster-pro/kanban/",
+                    link: "/devices",
                     icon: <KanbanIcon />,
                   },
                 ].map(({ text, key, link, icon }) => (
                   <li key={key}>
-                    <SidebarItem text={text} link={link} icon={icon} />
+                    <SidebarItem
+                      text={text}
+                      link={link}
+                      icon={icon}
+                      onClick={onItemClick}
+                    />
                   </li>
                 ))}
               </ul>
               <div className="space-y-2 py-4">
                 {[
                   {
-                    text: "Help",
+                    text: "ヘルプ",
                     key: "help",
-                    link: "https://github.com/themesberg/windster-tailwind-css-dashboard/issues",
+                    link: "/help",
                     icon: <HelpIcon />,
                   },
                 ].map(({ text, key, link, icon }) => (
-                  <SidebarItem key={key} text={text} link={link} icon={icon} />
+                  <SidebarItem
+                    key={key}
+                    text={text}
+                    link={link}
+                    icon={icon}
+                    onClick={onItemClick}
+                  />
                 ))}
               </div>
             </div>
@@ -68,7 +79,7 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
         className={`bg-gray-900 opacity-50 fixed inset-0 z-10 ${
           closed && "hidden"
         }`}
-        onClick={onClick}
+        onClick={() => onClick(true)}
       ></div>
     </>
   );

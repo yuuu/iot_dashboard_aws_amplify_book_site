@@ -3,10 +3,11 @@ import SidebarToggleButton from "./SidebarToggleButton";
 import BlandLogo from "./BlandLogo";
 import GitHubButton from "react-github-btn";
 import MyPageIcon from "../icons/MyPageIcon";
+import { Menu, MenuItem } from "@szhsin/react-menu";
 
 type Props = {
   sidebarClosed: boolean;
-  onSidebarToggle: () => void;
+  onSidebarToggle: (closed: boolean) => void;
 };
 
 const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
@@ -17,7 +18,7 @@ const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
           <div className="flex items-center justify-start">
             <SidebarToggleButton
               closed={sidebarClosed}
-              onClick={onSidebarToggle}
+              onClick={() => onSidebarToggle(!sidebarClosed)}
             />
             <BlandLogo />
           </div>
@@ -35,12 +36,16 @@ const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
                 </GitHubButton>
               </div>
             </div>
-            <a
-              href="https://demo.themesberg.com/windster/pricing/"
-              className="ml-5 font-medium rounded-lg text-sm py-2.5 mr-3"
+            <Menu
+              menuButton={
+                <a className="ml-5 font-medium rounded-lg text-sm py-2.5 mr-3">
+                  <MyPageIcon />
+                </a>
+              }
+              transition
             >
-              <MyPageIcon />
-            </a>
+              <MenuItem onClick={(e) => e}>ログアウト</MenuItem>
+            </Menu>
           </div>
         </div>
       </div>
