@@ -11,10 +11,8 @@ type Props = {
 };
 
 const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
-  const router = useRouter();
   const onItemClick = (link: string) => {
     onClick(true);
-    router.push(link);
   };
 
   return (

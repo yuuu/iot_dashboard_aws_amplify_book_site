@@ -8,9 +8,14 @@ import { Menu, MenuItem } from "@szhsin/react-menu";
 type Props = {
   sidebarClosed: boolean;
   onSidebarToggle: (closed: boolean) => void;
+  onSignOut: () => void;
 };
 
-const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
+const Navbar: React.FC<Props> = ({
+  sidebarClosed,
+  onSidebarToggle,
+  onSignOut,
+}) => {
   return (
     <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -44,7 +49,7 @@ const Navbar: React.FC<Props> = ({ sidebarClosed, onSidebarToggle }) => {
               }
               transition
             >
-              <MenuItem onClick={(e) => e}>ログアウト</MenuItem>
+              <MenuItem onClick={onSignOut}>ログアウト</MenuItem>
             </Menu>
           </div>
         </div>
