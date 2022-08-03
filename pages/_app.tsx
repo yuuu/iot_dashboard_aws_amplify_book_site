@@ -12,7 +12,6 @@ import Footer from "../src/components/layouts/Footer";
 import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-
 import awsconfig from "../src/aws-exports";
 
 Amplify.configure(awsconfig);

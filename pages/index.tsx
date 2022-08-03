@@ -5,8 +5,18 @@ import HumidChartCard from "../src/components/dashboard/HumidChartCard";
 import AtmosphericPressureChartCard from "../src/components/dashboard/AtmosphericPressureChartCard";
 import ClockCard from "../src/components/dashboard/ClockCard";
 import DeviceCountCard from "../src/components/dashboard/DeviceCountCard";
+import { API } from "aws-amplify";
+import * as queries from "../src/graphql/queries";
+import { useEffect } from "react";
 
 const Dashboard: NextPage = () => {
+  useEffect(() => {
+    (async () => {
+      const allTodos = await API.graphql({ query: queries.listDevices });
+      console.log(allTodos);
+    })();
+  });
+
   return (
     <>
       <div className="mb-4 w-full grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
