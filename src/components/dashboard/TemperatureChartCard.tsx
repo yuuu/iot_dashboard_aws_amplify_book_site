@@ -2,15 +2,35 @@ import React from "react";
 import Card from "../Card";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import { Device } from "../../API";
+import ReactLoading from "react-loading";
+
+type Props = {
+  devices?: (Device | null)[];
+};
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const TemperatureChartCard: React.FC = () => {
+const TemperatureChartCard: React.FC<Props> = ({ devices }) => {
+  if (!devices)
+    return (
+      <Card>
+        <ReactLoading type="bars" color="#6b7280" height="50px" width="50px" />
+      </Card>
+    );
+
+  const comfortable = devices.filter((device) => {
+    if (!device?.temperature) return false;
+    return 15 <= device.temperature && device.temperature <= 30;
+  }).length;
+
   const data = {
     labels: ["快適", "不快"],
     datasets: [
       {
-        data: [22, 8],
+        data: comfortable
+          ? [comfortable, devices.length - comfortable]
+          : [0, 0],
         backgroundColor: ["#075985", "#F43F5E"],
       },
     ],

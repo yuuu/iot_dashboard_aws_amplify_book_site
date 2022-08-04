@@ -6,15 +6,17 @@ import AtmosphericPressureChartCard from "../src/components/dashboard/Atmospheri
 import ClockCard from "../src/components/dashboard/ClockCard";
 import DeviceCountCard from "../src/components/dashboard/DeviceCountCard";
 import { API } from "aws-amplify";
+import { GraphQLResult } from "@aws-amplify/api";
 import * as queries from "../src/graphql/queries";
-import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { ListDevicesQuery } from "../src/API";
 
 const Dashboard: NextPage = () => {
-  useEffect(() => {
-    (async () => {
-      const allTodos = await API.graphql({ query: queries.listDevices });
-      console.log(allTodos);
-    })();
+  const { data } = useQuery(["todos"], async () => {
+    const { data } = (await API.graphql({
+      query: queries.listDevices,
+    })) as GraphQLResult<ListDevicesQuery>;
+    return data?.listDevices?.items;
   });
 
   return (
@@ -22,9 +24,12 @@ const Dashboard: NextPage = () => {
       <div className="mb-4 w-full grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
         <div className="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-1 gap-4 col-span-1 xl:col-span-3 2xl:col-span-1">
           <ClockCard />
-          <DeviceCountCard className="xl:col-span-2 2xl:col-span-1" />
+          <DeviceCountCard
+            className="xl:col-span-2 2xl:col-span-1"
+            devices={data}
+          />
         </div>
-        <TemperatureChartCard />
+        <TemperatureChartCard devices={data} />
         <HumidChartCard />
         <AtmosphericPressureChartCard />
       </div>

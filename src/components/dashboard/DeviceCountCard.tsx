@@ -1,11 +1,21 @@
 import React from "react";
+import ReactLoading from "react-loading";
+import { Device } from "../../API";
 import Card from "../Card";
 
 type Props = {
   className: string;
+  devices?: (Device | null)[];
 };
 
-const DeviceCountCard: React.FC<Props> = ({ className }) => {
+const DeviceCountCard: React.FC<Props> = ({ className, devices }) => {
+  if (!devices)
+    return (
+      <Card className={className}>
+        <ReactLoading type="bars" color="#6b7280" height="50px" width="50px" />
+      </Card>
+    );
+
   return (
     <Card className={className}>
       <h3 className="text-xl font-bold text-gray-900 mb-4 2xl:mb-8">
@@ -19,7 +29,7 @@ const DeviceCountCard: React.FC<Props> = ({ className }) => {
           <div className="flex">
             <div className="flex space-x-4 items-center">
               <span className="text-2xl sm:text-4xl leading-none font-bold text-gray-900">
-                30
+                {devices.length}
               </span>
               <div className="text-xl font-bold">台</div>
             </div>
@@ -32,7 +42,7 @@ const DeviceCountCard: React.FC<Props> = ({ className }) => {
           <div className="flex">
             <div className="flex space-x-4 items-center">
               <span className="text-2xl sm:text-4xl leading-none font-bold text-gray-900">
-                30
+                {devices.filter((device) => device?.status === "online").length}
               </span>
               <div className="text-xl font-bold">台</div>
             </div>
@@ -45,7 +55,10 @@ const DeviceCountCard: React.FC<Props> = ({ className }) => {
           <div className="flex">
             <div className="flex space-x-4 items-center">
               <span className="text-2xl sm:text-4xl leading-none font-bold text-gray-900">
-                30
+                {
+                  devices.filter((device) => device?.status === "offline")
+                    .length
+                }
               </span>
               <div className="text-xl font-bold">台</div>
             </div>

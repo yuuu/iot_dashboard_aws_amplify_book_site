@@ -13,24 +13,18 @@ import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "../src/aws-exports";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ReactLoading from "react-loading";
 
 Amplify.configure(awsconfig);
-
-const formFields = {
-  confirmVerifyUser: {
-    confirmation_code: {
-      labelHidden: false,
-      label: "New Label",
-      placeholder: "Enter your Confirmation Code:",
-      isRequired: false,
-    },
-  },
-};
+const queryClient = new QueryClient();
 
 const App = (props: AppProps) => {
   return (
     <Authenticator.Provider>
-      <MyApp {...props} />
+      <QueryClientProvider client={queryClient}>
+        <MyApp {...props} />
+      </QueryClientProvider>
     </Authenticator.Provider>
   );
 };
@@ -48,7 +42,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <title>Enviiewer | Monitoring the environment with IoT</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {authStatus === "configuring" && "Loading..."}
+      {authStatus === "configuring" && (
+        <div className="h-screen w-screen flex justify-center items-center">
+          <ReactLoading type="bars" color="#6b7280" height="5%" width="5%" />
+        </div>
+      )}
       {authStatus !== "authenticated" ? (
         <div className="h-screen w-screen flex justify-center items-center">
           <Authenticator hideSignUp={true} />
