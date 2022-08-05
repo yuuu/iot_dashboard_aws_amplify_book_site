@@ -56,7 +56,7 @@ const Sidebar: React.FC<Props> = ({ closed, onClick }) => {
                   {
                     text: "ヘルプ",
                     key: "help",
-                    link: "/help",
+                    link: "#",
                     icon: <HelpIcon />,
                   },
                 ].map(({ text, key, link, icon }) => (

@@ -2,10 +2,22 @@ import React from "react";
 import BarGraphWithValue from "../BarGraphWithValue";
 import Card from "../Card";
 import DeviceStatus from "../DeviceStatus";
-import devices from "../../data/devices";
 import Link from "next/link";
+import { Device } from "../../API";
+import ReactLoading from "react-loading";
 
-const AcquisitionOverviewCard: React.FC = () => {
+type Props = {
+  devices?: (Device | null)[];
+};
+
+const AcquisitionOverviewCard: React.FC<Props> = ({ devices }) => {
+  if (!devices)
+    return (
+      <Card>
+        <ReactLoading type="bars" color="#6b7280" height="50px" width="50px" />
+      </Card>
+    );
+
   return (
     <Card>
       <div className="mb-4 flex items-center justify-between">
@@ -47,8 +59,9 @@ const AcquisitionOverviewCard: React.FC = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {devices.map(
-              ({ id, name, temperature, humid, pressure, status }) => (
+            {devices
+              ?.flatMap((i) => (i === null ? [] : [i]))
+              .map(({ id, name, temperature, humid, pressure, status }) => (
                 <tr key={id} className="text-gray-500">
                   <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left text-sky-800">
                     <Link href={`/devices/${id}`}>
@@ -83,8 +96,7 @@ const AcquisitionOverviewCard: React.FC = () => {
                     />
                   </td>
                 </tr>
-              )
-            )}
+              ))}
           </tbody>
         </table>
       </div>

@@ -2,15 +2,35 @@ import React from "react";
 import Card from "../Card";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import ReactLoading from "react-loading";
+import { Device } from "../../API";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const AtmosphericPressureChartCard: React.FC = () => {
+type Props = {
+  devices?: (Device | null)[];
+};
+
+const AtmosphericPressureChartCard: React.FC<Props> = ({ devices }) => {
+  if (!devices)
+    return (
+      <Card>
+        <ReactLoading type="bars" color="#6b7280" height="50px" width="50px" />
+      </Card>
+    );
+
+  const comfortable = devices.filter((device) => {
+    if (!device?.pressure) return false;
+    return 1008 <= device.pressure && device.pressure <= 1018;
+  }).length;
+
   const data = {
     labels: ["快適", "不快"],
     datasets: [
       {
-        data: [20, 10],
+        data: comfortable
+          ? [comfortable, devices.length - comfortable]
+          : [0, 0],
         backgroundColor: ["#075985", "#F43F5E"],
       },
     ],

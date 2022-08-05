@@ -5,11 +5,11 @@ import { Doughnut } from "react-chartjs-2";
 import { Device } from "../../API";
 import ReactLoading from "react-loading";
 
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 type Props = {
   devices?: (Device | null)[];
 };
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 const TemperatureChartCard: React.FC<Props> = ({ devices }) => {
   if (!devices)

@@ -12,7 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ListDevicesQuery } from "../src/API";
 
 const Dashboard: NextPage = () => {
-  const { data } = useQuery(["todos"], async () => {
+  const { data: devices } = useQuery(["devices"], async () => {
     const { data } = (await API.graphql({
       query: queries.listDevices,
     })) as GraphQLResult<ListDevicesQuery>;
@@ -26,15 +26,15 @@ const Dashboard: NextPage = () => {
           <ClockCard />
           <DeviceCountCard
             className="xl:col-span-2 2xl:col-span-1"
-            devices={data}
+            devices={devices}
           />
         </div>
-        <TemperatureChartCard devices={data} />
-        <HumidChartCard />
-        <AtmosphericPressureChartCard />
+        <TemperatureChartCard devices={devices} />
+        <HumidChartCard devices={devices} />
+        <AtmosphericPressureChartCard devices={devices} />
       </div>
       <div className="mb-4 w-full grid grid-cols-1 xl:gap-4">
-        <PinnedDeviceTableCard />
+        <PinnedDeviceTableCard devices={devices} />
       </div>
     </>
   );

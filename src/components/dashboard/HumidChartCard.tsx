@@ -2,15 +2,35 @@ import React from "react";
 import Card from "../Card";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import ReactLoading from "react-loading";
+import { Device } from "../../API";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HumidChartCard: React.FC = () => {
+type Props = {
+  devices?: (Device | null)[];
+};
+
+const HumidChartCard: React.FC<Props> = ({ devices }) => {
+  if (!devices)
+    return (
+      <Card>
+        <ReactLoading type="bars" color="#6b7280" height="50px" width="50px" />
+      </Card>
+    );
+
+  const comfortable = devices.filter((device) => {
+    if (!device?.humid) return false;
+    return 40 <= device.humid && device.humid <= 60;
+  }).length;
+
   const data = {
     labels: ["快適", "不快"],
     datasets: [
       {
-        data: [25, 5],
+        data: comfortable
+          ? [comfortable, devices.length - comfortable]
+          : [0, 0],
         backgroundColor: ["#075985", "#F43F5E"],
       },
     ],

@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  status: string;
+  status: string | null | undefined;
 };
 
 const DeviceStatus: React.FC<Props> = ({ status }) => {
