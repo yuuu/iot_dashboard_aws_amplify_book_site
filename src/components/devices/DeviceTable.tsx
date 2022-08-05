@@ -1,14 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import { Device } from "../../types/device";
+import { Device } from "../../API";
 import BarGraphWithValue from "../BarGraphWithValue";
 import DeviceStatus from "../DeviceStatus";
 import DeleteIcon from "../icons/DeleteIcon";
 import EditIcon from "../icons/EditIcon";
-import ShowIcon from "../icons/ShowIcon";
 
 type Props = {
-  devices: Device[];
+  devices: Device[] | undefined;
   onEdit: (device: Device) => void;
   onDestroy: (device: Device) => void;
 };
@@ -52,7 +51,7 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
-        {devices.map((device) => (
+        {devices?.map((device) => (
           <tr key={device.id} className="hover:bg-gray-100">
             <td className="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0">
               <div className="text-sm text-sky-800">

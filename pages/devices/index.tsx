@@ -1,25 +1,37 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
-import devices from "../../src/data/devices";
 import NewDeviceModal from "../../src/components/devices/NewDeviceModal";
 import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
 import NewIcon from "../../src/components/icons/NewIcon";
 import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import DeviceTable from "../../src/components/devices/DeviceTable";
-import { Device } from "../../src/types/device";
+import { API } from "aws-amplify";
+import { GraphQLResult } from "@aws-amplify/api";
+import * as queries from "../../src/graphql/queries";
+import { Device, ListDevicesQuery } from "../../src/API";
+import { useQuery } from "@tanstack/react-query";
 
 const DeviceIndex: NextPage = () => {
+  const { data: devices } = useQuery(["devices"], async () => {
+    const { data } = (await API.graphql({
+      query: queries.listDevices,
+    })) as GraphQLResult<ListDevicesQuery>;
+    return data?.listDevices?.items.flatMap((d) => (d === null ? [] : [d]));
+  });
+
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState<Device | null>(null);
   const [deleteModal, setDeleteModal] = useState<Device | null>(null);
-  const [filteredDevices, setFilteredDevices] = useState<Device[]>(devices);
+  const [filteredDevices, setFilteredDevices] = useState<Device[] | undefined>(
+    devices
+  );
 
   const onEdit = (device: Device) => setEditModal(device);
   const onDestroy = (device: Device) => setDeleteModal(device);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilteredDevices(
-      devices.filter((device) => device.name.match(e.target.value))
+      devices?.filter((device) => device.name.match(e.target.value))
     );
   };
 

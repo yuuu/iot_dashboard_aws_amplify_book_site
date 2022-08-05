@@ -8,7 +8,7 @@ import { Device } from "../../API";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type Props = {
-  devices?: (Device | null)[];
+  devices?: Device[];
 };
 
 const HumidChartCard: React.FC<Props> = ({ devices }) => {

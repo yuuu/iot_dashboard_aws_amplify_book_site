@@ -16,7 +16,7 @@ const Dashboard: NextPage = () => {
     const { data } = (await API.graphql({
       query: queries.listDevices,
     })) as GraphQLResult<ListDevicesQuery>;
-    return data?.listDevices?.items;
+    return data?.listDevices?.items.flatMap((d) => (d === null ? [] : [d]));
   });
 
   return (

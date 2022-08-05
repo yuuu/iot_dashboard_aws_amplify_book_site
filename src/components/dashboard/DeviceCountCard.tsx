@@ -5,7 +5,7 @@ import Card from "../Card";
 
 type Props = {
   className: string;
-  devices?: (Device | null)[];
+  devices?: Device[];
 };
 
 const DeviceCountCard: React.FC<Props> = ({ className, devices }) => {

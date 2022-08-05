@@ -8,7 +8,7 @@ import ReactLoading from "react-loading";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type Props = {
-  devices?: (Device | null)[];
+  devices?: Device[];
 };
 
 const TemperatureChartCard: React.FC<Props> = ({ devices }) => {

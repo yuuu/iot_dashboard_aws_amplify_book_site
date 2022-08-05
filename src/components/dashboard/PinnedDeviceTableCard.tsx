@@ -7,7 +7,7 @@ import { Device } from "../../API";
 import ReactLoading from "react-loading";
 
 type Props = {
-  devices?: (Device | null)[];
+  devices?: Device[];
 };
 
 const AcquisitionOverviewCard: React.FC<Props> = ({ devices }) => {
@@ -60,7 +60,7 @@ const AcquisitionOverviewCard: React.FC<Props> = ({ devices }) => {
           </thead>
           <tbody className="divide-y divide-gray-100">
             {devices
-              ?.flatMap((i) => (i === null ? [] : [i]))
+              .filter((d) => d.pinned === "pinned")
               .map(({ id, name, temperature, humid, pressure, status }) => (
                 <tr key={id} className="text-gray-500">
                   <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left text-sky-800">
