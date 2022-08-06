@@ -6,19 +6,11 @@ import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
 import NewIcon from "../../src/components/icons/NewIcon";
 import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import DeviceTable from "../../src/components/devices/DeviceTable";
-import { API } from "aws-amplify";
-import { GraphQLResult } from "@aws-amplify/api";
-import * as queries from "../../src/graphql/queries";
-import { Device, ListDevicesQuery } from "../../src/API";
-import { useQuery } from "@tanstack/react-query";
+import { Device } from "../../src/API";
+import { useFetchDevices } from "../../src/hooks/useDevices";
 
 const DeviceIndex: NextPage = () => {
-  const { data: devices } = useQuery(["devices"], async () => {
-    const { data } = (await API.graphql({
-      query: queries.listDevices,
-    })) as GraphQLResult<ListDevicesQuery>;
-    return data?.listDevices?.items.flatMap((d) => (d === null ? [] : [d]));
-  });
+  const devices = useFetchDevices();
 
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState<Device | null>(null);
@@ -101,6 +93,7 @@ const DeviceIndex: NextPage = () => {
       <NewDeviceModal show={newModal} onClose={() => setNewModal(false)} />
       <DeleteDeviceModal
         show={!!deleteModal}
+        device={deleteModal}
         onClose={() => setDeleteModal(null)}
       />
     </>

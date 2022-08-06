@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import "@aws-amplify/ui-react/styles.css";
+import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import { useState } from "react";
 import type { AppProps } from "next/app";
@@ -15,6 +16,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "../src/aws-exports";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ReactLoading from "react-loading";
+import { ToastContainer } from "react-toastify";
 
 Amplify.configure(awsconfig);
 const queryClient = new QueryClient();
@@ -73,6 +75,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               <CopyRight />
             </div>
           </div>
+          <ToastContainer />
         </>
       )}
     </>

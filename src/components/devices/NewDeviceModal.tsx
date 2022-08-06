@@ -2,6 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import DeviceForm from "./DeviceForm";
 import CloseModalIcon from "../icons/CloseModalIcon";
+import { useCreateDevice } from "../../hooks/useDevices";
 
 type Props = {
   show: boolean;
@@ -23,6 +24,7 @@ const NewDeviceModal: React.FC<Props> = ({ show, onClose }) => {
       zIndex: 50,
     },
   };
+  const createDevice = useCreateDevice(onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
@@ -37,7 +39,7 @@ const NewDeviceModal: React.FC<Props> = ({ show, onClose }) => {
         </button>
       </div>
       <div className="p-6 space-y-6">
-        <DeviceForm onClose={onClose} />
+        <DeviceForm onSubmit={createDevice} />
       </div>
     </ReactModal>
   );

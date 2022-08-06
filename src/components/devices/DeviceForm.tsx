@@ -1,27 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Device } from "../../API";
-
-type InputDevice = {
-  name: string;
-  pinned: "pinned" | "notPinned";
-};
+import { InputDevice } from "../../types/device";
 
 type Props = {
   device?: Device;
-  onClose: () => void;
+  onSubmit: (data: InputDevice) => void;
 };
 
-const DeviceForm: React.FC<Props> = ({ device, onClose }) => {
+const DeviceForm: React.FC<Props> = ({ device, onSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<InputDevice>({ defaultValues: { name: device?.name } });
-  const onSubmit = (data: InputDevice) => {
-    console.log(data);
-    onClose();
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

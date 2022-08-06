@@ -5,19 +5,10 @@ import HumidChartCard from "../src/components/dashboard/HumidChartCard";
 import AtmosphericPressureChartCard from "../src/components/dashboard/AtmosphericPressureChartCard";
 import ClockCard from "../src/components/dashboard/ClockCard";
 import DeviceCountCard from "../src/components/dashboard/DeviceCountCard";
-import { API } from "aws-amplify";
-import { GraphQLResult } from "@aws-amplify/api";
-import * as queries from "../src/graphql/queries";
-import { useQuery } from "@tanstack/react-query";
-import { ListDevicesQuery } from "../src/API";
+import { useFetchDevices } from "../src/hooks/useDevices";
 
 const Dashboard: NextPage = () => {
-  const { data: devices } = useQuery(["devices"], async () => {
-    const { data } = (await API.graphql({
-      query: queries.listDevices,
-    })) as GraphQLResult<ListDevicesQuery>;
-    return data?.listDevices?.items.flatMap((d) => (d === null ? [] : [d]));
-  });
+  const devices = useFetchDevices();
 
   return (
     <>

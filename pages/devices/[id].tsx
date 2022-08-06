@@ -15,12 +15,8 @@ import { Line } from "react-chartjs-2";
 import BarGraph from "../../src/components/devices/BarGraph";
 import useLineChart from "../../src/hooks/useLineChart";
 import deviceValues from "../../src/data/deviceValues";
-import { API } from "aws-amplify";
-import { GraphQLResult } from "@aws-amplify/api";
-import * as queries from "../../src/graphql/queries";
-import { GetDeviceQuery } from "../../src/API";
-import { useQuery } from "@tanstack/react-query";
 import ReactLoading from "react-loading";
+import { useFetchDevice } from "../../src/hooks/useDevices";
 
 ChartJS.register(
   CategoryScale,
@@ -37,13 +33,7 @@ type Props = {
 };
 
 const DeviceShow: NextPage<Props> = ({ id }) => {
-  const { data: device } = useQuery(["device"], async () => {
-    const { data } = (await API.graphql({
-      query: queries.getDevice,
-      variables: { id },
-    })) as GraphQLResult<GetDeviceQuery>;
-    return data?.getDevice;
-  });
+  const device = useFetchDevice(id);
   const { options, data } = useLineChart(deviceValues);
 
   if (!device) {

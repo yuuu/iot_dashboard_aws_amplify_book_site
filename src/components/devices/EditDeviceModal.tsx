@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import DeviceForm from "./DeviceForm";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import { Device } from "../../API";
+import { useUpdateDevice } from "../../hooks/useDevices";
 
 type Props = {
   show: boolean;
@@ -25,6 +26,7 @@ const EditDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
       zIndex: 50,
     },
   };
+  const updateDevice = useUpdateDevice(device?.id, onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
@@ -39,7 +41,7 @@ const EditDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
         </button>
       </div>
       <div className="p-6 space-y-6">
-        {device && <DeviceForm device={device} onClose={onClose} />}
+        {device && <DeviceForm device={device} onSubmit={updateDevice} />}
       </div>
     </ReactModal>
   );

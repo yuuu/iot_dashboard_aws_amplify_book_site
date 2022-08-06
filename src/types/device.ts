@@ -7,3 +7,8 @@ export type Device = {
   status: "online" | "offline";
   pinned: "pinned" | "notPinned";
 };
+
+export type InputDevice = {
+  name: string;
+  pinned: "pinned" | "notPinned";
+};

@@ -2,13 +2,16 @@ import React from "react";
 import ReactModal from "react-modal";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import DangerIcon from "../icons/DangerIcon";
+import { Device } from "../../API";
+import { useDeleteDevice } from "../../hooks/useDevices";
 
 type Props = {
   show: boolean;
+  device: Device | null;
   onClose: () => void;
 };
 
-const DeleteDeviceModal: React.FC<Props> = ({ show, onClose }) => {
+const DeleteDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
   const modalStyle = {
     overlay: {
       zIndex: 40,
@@ -23,6 +26,7 @@ const DeleteDeviceModal: React.FC<Props> = ({ show, onClose }) => {
       zIndex: 50,
     },
   };
+  const deleteDevice = useDeleteDevice(device?.id, onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
@@ -43,6 +47,7 @@ const DeleteDeviceModal: React.FC<Props> = ({ show, onClose }) => {
         <a
           href="#"
           className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2"
+          onClick={() => deleteDevice()}
         >
           はい
         </a>
