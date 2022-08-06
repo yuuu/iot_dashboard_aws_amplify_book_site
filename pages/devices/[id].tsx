@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSidePropsContext, NextPage } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import Card from "../../src/components/Card";
 import {
@@ -15,6 +15,12 @@ import { Line } from "react-chartjs-2";
 import BarGraph from "../../src/components/devices/BarGraph";
 import useLineChart from "../../src/hooks/useLineChart";
 import deviceValues from "../../src/data/deviceValues";
+import { API } from "aws-amplify";
+import { GraphQLResult } from "@aws-amplify/api";
+import * as queries from "../../src/graphql/queries";
+import { GetDeviceQuery } from "../../src/API";
+import { useQuery } from "@tanstack/react-query";
+import ReactLoading from "react-loading";
 
 ChartJS.register(
   CategoryScale,
@@ -26,8 +32,28 @@ ChartJS.register(
   Legend
 );
 
-const DeviceShow: NextPage = () => {
+type Props = {
+  id: string;
+};
+
+const DeviceShow: NextPage<Props> = ({ id }) => {
+  const { data: device } = useQuery(["device"], async () => {
+    const { data } = (await API.graphql({
+      query: queries.getDevice,
+      variables: { id },
+    })) as GraphQLResult<GetDeviceQuery>;
+    return data?.getDevice;
+  });
   const { options, data } = useLineChart(deviceValues);
+
+  if (!device) {
+    return (
+      <div className="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
+        <ReactLoading type="bars" color="#6b7280" height="5%" width="5%" />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
@@ -36,11 +62,11 @@ const DeviceShow: NextPage = () => {
             <Breadcrumbs
               pages={[
                 { name: "デバイス", link: "/devices" },
-                { name: "デバイス1", link: "/devices/1" },
+                { name: device.name, link: "/devices/1" },
               ]}
             />
             <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
-              デバイス1
+              {device.name}
             </h1>
           </div>
         </div>
@@ -50,9 +76,27 @@ const DeviceShow: NextPage = () => {
           <div className="align-middle inline-block min-w-full">
             <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {[
-                { name: "温度", value: 28.3, unit: "℃", max: 50, min: -10 },
-                { name: "湿度", value: 56, unit: "%", max: 100, min: 0 },
-                { name: "気圧", value: 1013, unit: "hPa", max: 1100, min: 870 },
+                {
+                  name: "温度",
+                  value: device.temperature,
+                  unit: "℃",
+                  max: 50,
+                  min: -10,
+                },
+                {
+                  name: "湿度",
+                  value: device.humid,
+                  unit: "%",
+                  max: 100,
+                  min: 0,
+                },
+                {
+                  name: "気圧",
+                  value: device.pressure,
+                  unit: "hPa",
+                  max: 1100,
+                  min: 870,
+                },
               ].map(({ name, value, unit, max, min }) => (
                 <Card key={name} className="sm:p-6 xl:p-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -85,6 +129,10 @@ const DeviceShow: NextPage = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps = (context: GetServerSidePropsContext) => {
+  return { props: { ...context.query } };
 };
 
 export default DeviceShow;

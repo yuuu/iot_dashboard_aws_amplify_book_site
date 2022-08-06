@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import NewDeviceModal from "../../src/components/devices/NewDeviceModal";
@@ -23,9 +23,11 @@ const DeviceIndex: NextPage = () => {
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState<Device | null>(null);
   const [deleteModal, setDeleteModal] = useState<Device | null>(null);
-  const [filteredDevices, setFilteredDevices] = useState<Device[] | undefined>(
-    devices
-  );
+  const [filteredDevices, setFilteredDevices] = useState<
+    Device[] | undefined
+  >();
+
+  useEffect(() => setFilteredDevices(devices), [devices]);
 
   const onEdit = (device: Device) => setEditModal(device);
   const onDestroy = (device: Device) => setDeleteModal(device);
