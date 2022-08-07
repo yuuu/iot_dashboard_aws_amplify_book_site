@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateDevice = /* GraphQL */ `
-  subscription OnCreateDevice($owner: String) {
-    onCreateDevice(owner: $owner) {
+  subscription OnCreateDevice {
+    onCreateDevice {
       id
       name
       temperature
@@ -14,13 +14,12 @@ export const onCreateDevice = /* GraphQL */ `
       pinned
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateDevice = /* GraphQL */ `
-  subscription OnUpdateDevice($owner: String) {
-    onUpdateDevice(owner: $owner) {
+  subscription OnUpdateDevice {
+    onUpdateDevice {
       id
       name
       temperature
@@ -30,13 +29,12 @@ export const onUpdateDevice = /* GraphQL */ `
       pinned
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteDevice = /* GraphQL */ `
-  subscription OnDeleteDevice($owner: String) {
-    onDeleteDevice(owner: $owner) {
+  subscription OnDeleteDevice {
+    onDeleteDevice {
       id
       name
       temperature
@@ -46,7 +44,45 @@ export const onDeleteDevice = /* GraphQL */ `
       pinned
       createdAt
       updatedAt
-      owner
+    }
+  }
+`;
+export const onCreateMeasurement = /* GraphQL */ `
+  subscription OnCreateMeasurement {
+    onCreateMeasurement {
+      deviceId
+      timestamp
+      temperature
+      humid
+      pressure
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMeasurement = /* GraphQL */ `
+  subscription OnUpdateMeasurement {
+    onUpdateMeasurement {
+      deviceId
+      timestamp
+      temperature
+      humid
+      pressure
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMeasurement = /* GraphQL */ `
+  subscription OnDeleteMeasurement {
+    onDeleteMeasurement {
+      deviceId
+      timestamp
+      temperature
+      humid
+      pressure
+      createdAt
+      updatedAt
     }
   }
 `;

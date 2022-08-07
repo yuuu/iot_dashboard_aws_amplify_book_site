@@ -14,7 +14,6 @@ export const getDevice = /* GraphQL */ `
       pinned
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -35,7 +34,49 @@ export const listDevices = /* GraphQL */ `
         pinned
         createdAt
         updatedAt
-        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getMeasurement = /* GraphQL */ `
+  query GetMeasurement($deviceId: ID!, $timestamp: Int!) {
+    getMeasurement(deviceId: $deviceId, timestamp: $timestamp) {
+      deviceId
+      timestamp
+      temperature
+      humid
+      pressure
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listMeasurements = /* GraphQL */ `
+  query ListMeasurements(
+    $deviceId: ID
+    $timestamp: ModelIntKeyConditionInput
+    $filter: ModelMeasurementFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listMeasurements(
+      deviceId: $deviceId
+      timestamp: $timestamp
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        deviceId
+        timestamp
+        temperature
+        humid
+        pressure
+        createdAt
+        updatedAt
       }
       nextToken
     }

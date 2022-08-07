@@ -4,7 +4,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 type Device
   @model
-  @auth(rules: [ { allow: owner } ])
+  @auth(rules: [ { allow: private } ])
 {
   id: ID!
   name: String!
@@ -13,4 +13,15 @@ type Device
   pressure: Float
   status: String
   pinned: String!
+}
+
+type Measurement
+  @model
+  @auth(rules: [ { allow: private } ])
+{
+  deviceId: ID! @primaryKey(sortKeyFields: ["timestamp"])
+  timestamp: Int!
+  temperature: Float
+  humid: Float
+  pressure: Float
 }

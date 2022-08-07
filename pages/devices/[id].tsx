@@ -24,6 +24,7 @@ import EditButton from "../../src/components/devices/EditButton";
 import DeleteButton from "../../src/components/devices/DeleteButton";
 import { Device } from "../../src/API";
 import { useRouter } from "next/router";
+import { useFetchMeasurements } from "../../src/hooks/useMeasurements";
 
 ChartJS.register(
   CategoryScale,
@@ -41,10 +42,13 @@ type Props = {
 
 const DeviceShow: NextPage<Props> = ({ id }) => {
   const device = useFetchDevice(id);
+  const measurements = useFetchMeasurements(id);
   const [editModal, setEditModal] = useState<Device | null>(null);
   const [deleteModal, setDeleteModal] = useState<Device | null>(null);
   const { options, data } = useLineChart(deviceValues);
   const router = useRouter();
+
+  console.log(measurements);
 
   const onEdit = (device: Device) => setEditModal(device);
   const onDestroy = (device: Device) => setDeleteModal(device);

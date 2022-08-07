@@ -87,7 +87,6 @@ export type Device = {
   pinned: string,
   createdAt: string,
   updatedAt: string,
-  owner?: string | null,
 };
 
 export type UpdateDeviceInput = {
@@ -102,6 +101,47 @@ export type UpdateDeviceInput = {
 
 export type DeleteDeviceInput = {
   id: string,
+};
+
+export type CreateMeasurementInput = {
+  deviceId: string,
+  timestamp: number,
+  temperature?: number | null,
+  humid?: number | null,
+  pressure?: number | null,
+};
+
+export type ModelMeasurementConditionInput = {
+  temperature?: ModelFloatInput | null,
+  humid?: ModelFloatInput | null,
+  pressure?: ModelFloatInput | null,
+  and?: Array< ModelMeasurementConditionInput | null > | null,
+  or?: Array< ModelMeasurementConditionInput | null > | null,
+  not?: ModelMeasurementConditionInput | null,
+};
+
+export type Measurement = {
+  __typename: "Measurement",
+  deviceId: string,
+  timestamp: number,
+  temperature?: number | null,
+  humid?: number | null,
+  pressure?: number | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateMeasurementInput = {
+  deviceId: string,
+  timestamp: number,
+  temperature?: number | null,
+  humid?: number | null,
+  pressure?: number | null,
+};
+
+export type DeleteMeasurementInput = {
+  deviceId: string,
+  timestamp: number,
 };
 
 export type ModelDeviceFilterInput = {
@@ -139,6 +179,50 @@ export type ModelDeviceConnection = {
   nextToken?: string | null,
 };
 
+export type ModelIntKeyConditionInput = {
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+};
+
+export type ModelMeasurementFilterInput = {
+  deviceId?: ModelIDInput | null,
+  timestamp?: ModelIntInput | null,
+  temperature?: ModelFloatInput | null,
+  humid?: ModelFloatInput | null,
+  pressure?: ModelFloatInput | null,
+  and?: Array< ModelMeasurementFilterInput | null > | null,
+  or?: Array< ModelMeasurementFilterInput | null > | null,
+  not?: ModelMeasurementFilterInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
+export type ModelMeasurementConnection = {
+  __typename: "ModelMeasurementConnection",
+  items:  Array<Measurement | null >,
+  nextToken?: string | null,
+};
+
 export type CreateDeviceMutationVariables = {
   input: CreateDeviceInput,
   condition?: ModelDeviceConditionInput | null,
@@ -156,7 +240,6 @@ export type CreateDeviceMutation = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -177,7 +260,6 @@ export type UpdateDeviceMutation = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -198,7 +280,60 @@ export type DeleteDeviceMutation = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
+  } | null,
+};
+
+export type CreateMeasurementMutationVariables = {
+  input: CreateMeasurementInput,
+  condition?: ModelMeasurementConditionInput | null,
+};
+
+export type CreateMeasurementMutation = {
+  createMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateMeasurementMutationVariables = {
+  input: UpdateMeasurementInput,
+  condition?: ModelMeasurementConditionInput | null,
+};
+
+export type UpdateMeasurementMutation = {
+  updateMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteMeasurementMutationVariables = {
+  input: DeleteMeasurementInput,
+  condition?: ModelMeasurementConditionInput | null,
+};
+
+export type DeleteMeasurementMutation = {
+  deleteMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -218,7 +353,6 @@ export type GetDeviceQuery = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
 };
 
@@ -242,14 +376,53 @@ export type ListDevicesQuery = {
       pinned: string,
       createdAt: string,
       updatedAt: string,
-      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
 };
 
-export type OnCreateDeviceSubscriptionVariables = {
-  owner?: string | null,
+export type GetMeasurementQueryVariables = {
+  deviceId: string,
+  timestamp: number,
+};
+
+export type GetMeasurementQuery = {
+  getMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListMeasurementsQueryVariables = {
+  deviceId?: string | null,
+  timestamp?: ModelIntKeyConditionInput | null,
+  filter?: ModelMeasurementFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListMeasurementsQuery = {
+  listMeasurements?:  {
+    __typename: "ModelMeasurementConnection",
+    items:  Array< {
+      __typename: "Measurement",
+      deviceId: string,
+      timestamp: number,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
 export type OnCreateDeviceSubscription = {
@@ -264,12 +437,7 @@ export type OnCreateDeviceSubscription = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
-};
-
-export type OnUpdateDeviceSubscriptionVariables = {
-  owner?: string | null,
 };
 
 export type OnUpdateDeviceSubscription = {
@@ -284,12 +452,7 @@ export type OnUpdateDeviceSubscription = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
   } | null,
-};
-
-export type OnDeleteDeviceSubscriptionVariables = {
-  owner?: string | null,
 };
 
 export type OnDeleteDeviceSubscription = {
@@ -304,6 +467,44 @@ export type OnDeleteDeviceSubscription = {
     pinned: string,
     createdAt: string,
     updatedAt: string,
-    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateMeasurementSubscription = {
+  onCreateMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateMeasurementSubscription = {
+  onUpdateMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteMeasurementSubscription = {
+  onDeleteMeasurement?:  {
+    __typename: "Measurement",
+    deviceId: string,
+    timestamp: number,
+    temperature?: number | null,
+    humid?: number | null,
+    pressure?: number | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };

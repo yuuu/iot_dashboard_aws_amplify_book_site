@@ -7,6 +7,8 @@
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authamplifyiotbackend73c41568"
-    }
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
   }
 }
