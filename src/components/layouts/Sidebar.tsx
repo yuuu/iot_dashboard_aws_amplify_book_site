@@ -3,7 +3,6 @@ import DashboardIcon from "../icons/DashboardIcon";
 import HelpIcon from "../icons/HelpIcon";
 import KanbanIcon from "../icons/KanbanIcon";
 import SidebarItem from "./SidebarItem";
-import { useRouter } from "next/router";
 
 type Props = {
   closed: boolean;

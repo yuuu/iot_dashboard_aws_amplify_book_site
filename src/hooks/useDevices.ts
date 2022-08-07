@@ -76,6 +76,7 @@ export const useUpdateDevice = (
       onSuccess: (data) => {
         toast.success(`${data?.updateDevice?.name}を更新しました`);
         queryClient.invalidateQueries(["devices"]);
+        queryClient.invalidateQueries(["device"]);
         onSuccess();
       },
       onError: () => {

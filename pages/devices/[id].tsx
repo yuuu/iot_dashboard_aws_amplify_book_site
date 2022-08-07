@@ -17,6 +17,13 @@ import useLineChart from "../../src/hooks/useLineChart";
 import deviceValues from "../../src/data/deviceValues";
 import ReactLoading from "react-loading";
 import { useFetchDevice } from "../../src/hooks/useDevices";
+import { useState } from "react";
+import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
+import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
+import EditButton from "../../src/components/devices/EditButton";
+import DeleteButton from "../../src/components/devices/DeleteButton";
+import { Device } from "../../src/API";
+import { useRouter } from "next/router";
 
 ChartJS.register(
   CategoryScale,
@@ -34,7 +41,17 @@ type Props = {
 
 const DeviceShow: NextPage<Props> = ({ id }) => {
   const device = useFetchDevice(id);
+  const [editModal, setEditModal] = useState<Device | null>(null);
+  const [deleteModal, setDeleteModal] = useState<Device | null>(null);
   const { options, data } = useLineChart(deviceValues);
+  const router = useRouter();
+
+  const onEdit = (device: Device) => setEditModal(device);
+  const onDestroy = (device: Device) => setDeleteModal(device);
+  const onDeleted = () => {
+    setDeleteModal(null);
+    router.push("/devices");
+  };
 
   if (!device) {
     return (
@@ -55,9 +72,15 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
                 { name: device.name, link: "/devices/1" },
               ]}
             />
-            <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
-              {device.name}
-            </h1>
+            <div className="flex justify-between">
+              <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
+                {device.name}
+              </h1>
+              <div className="flex space-x-2">
+                <EditButton onClick={() => onEdit(device)} />
+                <DeleteButton onClick={() => onDestroy(device)} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -117,6 +140,16 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
           </div>
         </div>
       </div>
+      <EditDeviceModal
+        show={!!editModal}
+        device={editModal}
+        onClose={() => setEditModal(null)}
+      />
+      <DeleteDeviceModal
+        show={!!deleteModal}
+        device={deleteModal}
+        onClose={onDeleted}
+      />
     </>
   );
 };

@@ -4,7 +4,8 @@ import { Device } from "../../API";
 import BarGraphWithValue from "../BarGraphWithValue";
 import DeviceStatus from "../DeviceStatus";
 import DeleteIcon from "../icons/DeleteIcon";
-import EditIcon from "../icons/EditIcon";
+import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
 
 type Props = {
   devices: Device[] | undefined;
@@ -88,24 +89,8 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
               />
             </td>
             <td className="p-4 whitespace-nowrap space-x-2 text-right">
-              <button
-                type="button"
-                data-modal-toggle="device-modal"
-                className="text-white bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:ring-sky-600 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"
-                onClick={() => onEdit(device)}
-              >
-                <EditIcon />
-                <span className="hidden md:inline">編集</span>
-              </button>
-              <button
-                type="button"
-                data-modal-toggle="delete-device-modal"
-                className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"
-                onClick={() => onDestroy(device)}
-              >
-                <DeleteIcon />
-                <span className="hidden md:inline">削除</span>
-              </button>
+              <EditButton onClick={() => onEdit(device)} />
+              <DeleteButton onClick={() => onDestroy(device)} />
             </td>
           </tr>
         ))}
