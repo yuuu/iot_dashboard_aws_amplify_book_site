@@ -1,4 +1,12 @@
 export type AmplifyDependentResourcesAttributes = {
+  function: {
+    createCertificateIoTCore: {
+      Name: "string";
+      Arn: "string";
+      Region: "string";
+      LambdaExecutionRole: "string";
+    };
+  };
   auth: {
     amplifyiotbackend73c41568: {
       IdentityPoolId: "string";
