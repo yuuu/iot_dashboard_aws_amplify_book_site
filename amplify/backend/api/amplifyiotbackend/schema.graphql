@@ -16,7 +16,7 @@ type Device
 }
 
 type Measurement
-  @model
+  @model(timestamps: null)
   @auth(rules: [ { allow: private } ])
 {
   deviceId: ID! @primaryKey(sortKeyFields: ["timestamp"])

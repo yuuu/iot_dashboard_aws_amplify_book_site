@@ -67,8 +67,6 @@ export const createMeasurement = /* GraphQL */ `
       temperature
       humid
       pressure
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -83,8 +81,6 @@ export const updateMeasurement = /* GraphQL */ `
       temperature
       humid
       pressure
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -99,8 +95,6 @@ export const deleteMeasurement = /* GraphQL */ `
       temperature
       humid
       pressure
-      createdAt
-      updatedAt
     }
   }
 `;

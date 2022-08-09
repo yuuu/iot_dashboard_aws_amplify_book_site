@@ -1,0 +1,128 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "apiamplifyiotbackendGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIIdOutput attribute for api/amplifyiotbackend resource"
+    },
+    "apiamplifyiotbackendGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIEndpointOutput attribute for api/amplifyiotbackend resource"
+    }
+  },
+  "Resources": {
+    "IoTPolicy": {
+      "Type": "AWS::IoT::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "iot:*",
+              "Resource": "*"
+            }
+          ]
+        },
+        "PolicyName": {
+          "Fn::Join": [
+            "-",
+            [
+              "enviiewer",
+              {
+                "Ref": "env"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "TopicRuleDynamoDBv2": {
+      "Type": "AWS::IoT::TopicRule",
+      "Properties": {
+        "RuleName": {
+          "Fn::Join": [
+            "_",
+            [
+              "enviiewer",
+              {
+                "Ref": "env"
+              }
+            ]
+          ]
+        },
+        "TopicRulePayload": {
+          "Sql": "SELECT topic(2) AS deviceId, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/#'",
+          "RuleDisabled": false,
+          "Actions": [
+            {
+              "DynamoDBv2": {
+                "PutItem": {
+                  "TableName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "Measurement",
+                        {
+                          "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+                        },
+                        {
+                          "Ref": "env"
+                        }
+                      ]
+                    ]
+                  }
+                },
+                "RoleArn": {
+                  "Fn::GetAtt": "IAMRole.Arn"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "IAMRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::Join": [
+            "-",
+            [
+              "enviiewer",
+              {
+                "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+              },
+              {
+                "Ref": "env"
+              }
+            ]
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "iot.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+        ]
+      }
+    }
+  },
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"9.1.0\",\"stackType\":\"custom-customCloudformation\",\"metadata\":{}}"
+}

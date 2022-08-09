@@ -127,8 +127,6 @@ export type Measurement = {
   temperature?: number | null,
   humid?: number | null,
   pressure?: number | null,
-  createdAt: string,
-  updatedAt: string,
 };
 
 export type UpdateMeasurementInput = {
@@ -296,8 +294,6 @@ export type CreateMeasurementMutation = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -314,8 +310,6 @@ export type UpdateMeasurementMutation = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -332,8 +326,6 @@ export type DeleteMeasurementMutation = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -394,8 +386,6 @@ export type GetMeasurementQuery = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -418,8 +408,6 @@ export type ListMeasurementsQuery = {
       temperature?: number | null,
       humid?: number | null,
       pressure?: number | null,
-      createdAt: string,
-      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -478,8 +466,6 @@ export type OnCreateMeasurementSubscription = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -491,8 +477,6 @@ export type OnUpdateMeasurementSubscription = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -504,7 +488,5 @@ export type OnDeleteMeasurementSubscription = {
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
