@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "createCertificateIoTCore",
+            "deleteCertificateIoTCore",
             {
               "Fn::Join": [
                 "",
                 [
-                  "createCertificateIoTCore",
+                  "deleteCertificateIoTCore",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "amplifyiotbackendLambdaRole1d2e7929",
+            "amplifyiotbackendLambdaRole6aa15b68",
             {
               "Fn::Join": [
                 "",
                 [
-                  "amplifyiotbackendLambdaRole1d2e7929",
+                  "amplifyiotbackendLambdaRole6aa15b68",
                   "-",
                   {
                     "Ref": "env"
@@ -174,8 +174,9 @@
           "Statement": [
             {
               "Action": [
-                "iot:CreateKeysAndCertificate",
-                "iot:AttachPolicy"
+                "iot:DeleteCertificate",
+                "iot:UpdateCertificate",
+                "iot:DetachPolicy"
               ],
               "Resource": [
                 "*"
