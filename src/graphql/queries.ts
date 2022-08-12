@@ -21,7 +21,6 @@ export const getDevice = /* GraphQL */ `
           certificatePem
           privateKey
           publicKey
-          test
           createdAt
           updatedAt
         }
@@ -67,7 +66,6 @@ export const getCertificate = /* GraphQL */ `
       certificatePem
       privateKey
       publicKey
-      test
       device {
         id
         name
@@ -102,7 +100,6 @@ export const listCertificates = /* GraphQL */ `
         certificatePem
         privateKey
         publicKey
-        test
         device {
           id
           name

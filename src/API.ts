@@ -105,7 +105,6 @@ export type Certificate = {
   certificatePem?: string | null,
   privateKey?: string | null,
   publicKey?: string | null,
-  test?: string | null,
   device: Device,
   createdAt: string,
   updatedAt: string,
@@ -133,7 +132,6 @@ export type CreateCertificateInput = {
   certificatePem?: string | null,
   privateKey?: string | null,
   publicKey?: string | null,
-  test?: string | null,
 };
 
 export type ModelCertificateConditionInput = {
@@ -143,7 +141,6 @@ export type ModelCertificateConditionInput = {
   certificatePem?: ModelStringInput | null,
   privateKey?: ModelStringInput | null,
   publicKey?: ModelStringInput | null,
-  test?: ModelStringInput | null,
   and?: Array< ModelCertificateConditionInput | null > | null,
   or?: Array< ModelCertificateConditionInput | null > | null,
   not?: ModelCertificateConditionInput | null,
@@ -173,7 +170,6 @@ export type UpdateCertificateInput = {
   certificatePem?: string | null,
   privateKey?: string | null,
   publicKey?: string | null,
-  test?: string | null,
 };
 
 export type DeleteCertificateInput = {
@@ -246,7 +242,6 @@ export type ModelCertificateFilterInput = {
   certificatePem?: ModelStringInput | null,
   privateKey?: ModelStringInput | null,
   publicKey?: ModelStringInput | null,
-  test?: ModelStringInput | null,
   and?: Array< ModelCertificateFilterInput | null > | null,
   or?: Array< ModelCertificateFilterInput | null > | null,
   not?: ModelCertificateFilterInput | null,
@@ -322,7 +317,6 @@ export type CreateDeviceMutation = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -359,7 +353,6 @@ export type UpdateDeviceMutation = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -396,7 +389,6 @@ export type DeleteDeviceMutation = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -422,7 +414,6 @@ export type CreateCertificateMutation = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -459,7 +450,6 @@ export type UpdateCertificateMutation = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -496,7 +486,6 @@ export type DeleteCertificateMutation = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -580,7 +569,6 @@ export type CreateCertificateIoTMutation = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -616,7 +604,6 @@ export type DeleteCertificateIoTMutation = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -663,7 +650,6 @@ export type GetDeviceQuery = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -717,7 +703,6 @@ export type GetCertificateQuery = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -757,7 +742,6 @@ export type ListCertificatesQuery = {
       certificatePem?: string | null,
       privateKey?: string | null,
       publicKey?: string | null,
-      test?: string | null,
       device:  {
         __typename: "Device",
         id: string,
@@ -838,7 +822,6 @@ export type OnCreateDeviceSubscription = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -870,7 +853,6 @@ export type OnUpdateDeviceSubscription = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -902,7 +884,6 @@ export type OnDeleteDeviceSubscription = {
         certificatePem?: string | null,
         privateKey?: string | null,
         publicKey?: string | null,
-        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -923,7 +904,6 @@ export type OnCreateCertificateSubscription = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -955,7 +935,6 @@ export type OnUpdateCertificateSubscription = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -987,7 +966,6 @@ export type OnDeleteCertificateSubscription = {
     certificatePem?: string | null,
     privateKey?: string | null,
     publicKey?: string | null,
-    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,

@@ -24,7 +24,6 @@ export const createDevice = /* GraphQL */ `
           certificatePem
           privateKey
           publicKey
-          test
           createdAt
           updatedAt
         }
@@ -57,7 +56,6 @@ export const updateDevice = /* GraphQL */ `
           certificatePem
           privateKey
           publicKey
-          test
           createdAt
           updatedAt
         }
@@ -90,7 +88,6 @@ export const deleteDevice = /* GraphQL */ `
           certificatePem
           privateKey
           publicKey
-          test
           createdAt
           updatedAt
         }
@@ -114,7 +111,6 @@ export const createCertificate = /* GraphQL */ `
       certificatePem
       privateKey
       publicKey
-      test
       device {
         id
         name
@@ -147,7 +143,6 @@ export const updateCertificate = /* GraphQL */ `
       certificatePem
       privateKey
       publicKey
-      test
       device {
         id
         name
@@ -180,7 +175,6 @@ export const deleteCertificate = /* GraphQL */ `
       certificatePem
       privateKey
       publicKey
-      test
       device {
         id
         name
@@ -252,7 +246,6 @@ export const createCertificateIoT = /* GraphQL */ `
       certificatePem
       privateKey
       publicKey
-      test
       device {
         id
         name
@@ -282,7 +275,6 @@ export const deleteCertificateIoT = /* GraphQL */ `
       certificatePem
       privateKey
       publicKey
-      test
       device {
         id
         name

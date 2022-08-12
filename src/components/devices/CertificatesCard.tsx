@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Certificate, Device } from "../../API";
 import { useCreateCertificateIoT } from "../../hooks/useCertificates";
 import Card from "../Card";
+import CreatedCertificateModal from "./CreatedCertificateModal";
 import DeleteButton from "./DeleteButton";
 import DeleteCertificateModal from "./DeleteCertificateModal";
 import NewButton from "./NewButton";
@@ -13,6 +14,8 @@ type Props = {
 
 const CertificatesCard: React.FC<Props> = ({ device, certificates }) => {
   const [deleteModal, setDeleteModal] = useState<Certificate | null>(null);
+  const [createdCertificate, setCreatedCertificate] =
+    useState<Certificate | null>(null);
   const onDestroy = (certificate: Certificate) => setDeleteModal(certificate);
 
   const createCertificateIoT = useCreateCertificateIoT(() => null);
@@ -46,6 +49,11 @@ const CertificatesCard: React.FC<Props> = ({ device, certificates }) => {
         show={!!deleteModal}
         certificate={deleteModal}
         onClose={() => setDeleteModal(null)}
+      />
+      <CreatedCertificateModal
+        show={!!createdCertificate}
+        certificate={createdCertificate}
+        onClose={() => setCreatedCertificate(null)}
       />
     </Card>
   );
