@@ -3,11 +3,11 @@ import type { NextPage } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import NewDeviceModal from "../../src/components/devices/NewDeviceModal";
 import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
-import NewIcon from "../../src/components/icons/NewIcon";
 import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import DeviceTable from "../../src/components/devices/DeviceTable";
 import { Device } from "../../src/API";
 import { useFetchDevices } from "../../src/hooks/useDevices";
+import NewButton from "../../src/components/devices/NewButton";
 
 const DeviceIndex: NextPage = () => {
   const devices = useFetchDevices();
@@ -58,15 +58,7 @@ const DeviceIndex: NextPage = () => {
               </form>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
-              <button
-                type="button"
-                data-modal-toggle="add-device-modal"
-                className="w-full text-white bg-sky-800 hover:bg-sky-900 focus:ring-4 focus:ring-sky-600 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto"
-                onClick={() => setNewModal(true)}
-              >
-                <NewIcon />
-                追加
-              </button>
+              <NewButton onClick={() => setNewModal(true)} />
             </div>
           </div>
         </div>

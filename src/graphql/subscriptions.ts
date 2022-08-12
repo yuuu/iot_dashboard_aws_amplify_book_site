@@ -12,6 +12,17 @@ export const onCreateDevice = /* GraphQL */ `
       pressure
       status
       pinned
+      certificates {
+        items {
+          id
+          deviceID
+          certificateId
+          certificateArn
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -27,6 +38,17 @@ export const onUpdateDevice = /* GraphQL */ `
       pressure
       status
       pinned
+      certificates {
+        items {
+          id
+          deviceID
+          certificateId
+          certificateArn
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -42,6 +64,95 @@ export const onDeleteDevice = /* GraphQL */ `
       pressure
       status
       pinned
+      certificates {
+        items {
+          id
+          deviceID
+          certificateId
+          certificateArn
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateCertificate = /* GraphQL */ `
+  subscription OnCreateCertificate {
+    onCreateCertificate {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      device {
+        id
+        name
+        temperature
+        humid
+        pressure
+        status
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateCertificate = /* GraphQL */ `
+  subscription OnUpdateCertificate {
+    onUpdateCertificate {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      device {
+        id
+        name
+        temperature
+        humid
+        pressure
+        status
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCertificate = /* GraphQL */ `
+  subscription OnDeleteCertificate {
+    onDeleteCertificate {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      device {
+        id
+        name
+        temperature
+        humid
+        pressure
+        status
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

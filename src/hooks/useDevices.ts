@@ -13,18 +13,19 @@ import * as mutations from "../../src/graphql/mutations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { InputDevice } from "../../src/types/device";
 import { toast } from "react-toastify";
+import { Device } from "../../src/API";
 
-export const useFetchDevices = () => {
+export const useFetchDevices = (): Device[] => {
   const { data: devices } = useQuery(["devices"], async () => {
     const { data } = (await API.graphql({
       query: queries.listDevices,
     })) as GraphQLResult<ListDevicesQuery>;
     return data?.listDevices?.items.flatMap((d) => (d === null ? [] : [d]));
   });
-  return devices;
+  return devices as Device[];
 };
 
-export const useFetchDevice = (id: string) => {
+export const useFetchDevice = (id: string): Device => {
   const { data: device } = useQuery(["device"], async () => {
     const { data } = (await API.graphql({
       query: queries.getDevice,
@@ -32,7 +33,7 @@ export const useFetchDevice = (id: string) => {
     })) as GraphQLResult<GetDeviceQuery>;
     return data?.getDevice;
   });
-  return device;
+  return device as Device;
 };
 
 export const useCreateDevice = (onSuccess: () => void) => {

@@ -85,6 +85,24 @@ export type Device = {
   pressure?: number | null,
   status?: string | null,
   pinned: string,
+  certificates?: ModelCertificateConnection | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type ModelCertificateConnection = {
+  __typename: "ModelCertificateConnection",
+  items:  Array<Certificate | null >,
+  nextToken?: string | null,
+};
+
+export type Certificate = {
+  __typename: "Certificate",
+  id: string,
+  deviceID: string,
+  certificateId: string,
+  certificateArn: string,
+  device: Device,
   createdAt: string,
   updatedAt: string,
 };
@@ -100,6 +118,49 @@ export type UpdateDeviceInput = {
 };
 
 export type DeleteDeviceInput = {
+  id: string,
+};
+
+export type CreateCertificateInput = {
+  id?: string | null,
+  deviceID: string,
+  certificateId: string,
+  certificateArn: string,
+};
+
+export type ModelCertificateConditionInput = {
+  deviceID?: ModelIDInput | null,
+  certificateId?: ModelStringInput | null,
+  certificateArn?: ModelStringInput | null,
+  and?: Array< ModelCertificateConditionInput | null > | null,
+  or?: Array< ModelCertificateConditionInput | null > | null,
+  not?: ModelCertificateConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type UpdateCertificateInput = {
+  id: string,
+  deviceID?: string | null,
+  certificateId?: string | null,
+  certificateArn?: string | null,
+};
+
+export type DeleteCertificateInput = {
   id: string,
 };
 
@@ -155,26 +216,20 @@ export type ModelDeviceFilterInput = {
   not?: ModelDeviceFilterInput | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
 export type ModelDeviceConnection = {
   __typename: "ModelDeviceConnection",
   items:  Array<Device | null >,
   nextToken?: string | null,
+};
+
+export type ModelCertificateFilterInput = {
+  id?: ModelIDInput | null,
+  deviceID?: ModelIDInput | null,
+  certificateId?: ModelStringInput | null,
+  certificateArn?: ModelStringInput | null,
+  and?: Array< ModelCertificateFilterInput | null > | null,
+  or?: Array< ModelCertificateFilterInput | null > | null,
+  not?: ModelCertificateFilterInput | null,
 };
 
 export type ModelIntKeyConditionInput = {
@@ -236,6 +291,19 @@ export type CreateDeviceMutation = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -256,6 +324,19 @@ export type UpdateDeviceMutation = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -276,6 +357,118 @@ export type DeleteDeviceMutation = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateCertificateMutationVariables = {
+  input: CreateCertificateInput,
+  condition?: ModelCertificateConditionInput | null,
+};
+
+export type CreateCertificateMutation = {
+  createCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateCertificateMutationVariables = {
+  input: UpdateCertificateInput,
+  condition?: ModelCertificateConditionInput | null,
+};
+
+export type UpdateCertificateMutation = {
+  updateCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteCertificateMutationVariables = {
+  input: DeleteCertificateInput,
+  condition?: ModelCertificateConditionInput | null,
+};
+
+export type DeleteCertificateMutation = {
+  deleteCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -343,6 +536,19 @@ export type GetDeviceQuery = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -366,6 +572,76 @@ export type ListDevicesQuery = {
       pressure?: number | null,
       status?: string | null,
       pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetCertificateQueryVariables = {
+  id: string,
+};
+
+export type GetCertificateQuery = {
+  getCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListCertificatesQueryVariables = {
+  filter?: ModelCertificateFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCertificatesQuery = {
+  listCertificates?:  {
+    __typename: "ModelCertificateConnection",
+    items:  Array< {
+      __typename: "Certificate",
+      id: string,
+      deviceID: string,
+      certificateId: string,
+      certificateArn: string,
+      device:  {
+        __typename: "Device",
+        id: string,
+        name: string,
+        temperature?: number | null,
+        humid?: number | null,
+        pressure?: number | null,
+        status?: string | null,
+        pinned: string,
+        createdAt: string,
+        updatedAt: string,
+      },
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -423,6 +699,19 @@ export type OnCreateDeviceSubscription = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -438,6 +727,19 @@ export type OnUpdateDeviceSubscription = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -453,6 +755,103 @@ export type OnDeleteDeviceSubscription = {
     pressure?: number | null,
     status?: string | null,
     pinned: string,
+    certificates?:  {
+      __typename: "ModelCertificateConnection",
+      items:  Array< {
+        __typename: "Certificate",
+        id: string,
+        deviceID: string,
+        certificateId: string,
+        certificateArn: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateCertificateSubscription = {
+  onCreateCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateCertificateSubscription = {
+  onUpdateCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteCertificateSubscription = {
+  onDeleteCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     createdAt: string,
     updatedAt: string,
   } | null,

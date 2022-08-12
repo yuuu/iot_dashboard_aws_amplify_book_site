@@ -13,6 +13,21 @@ type Device
   pressure: Float
   status: String
   pinned: String!
+  certificates: [Certificate] @hasMany(indexName: "byDevice", fields: ["id"])
+}
+
+type Certificate
+  @model
+  @auth(rules: [
+    { allow: private }
+    { allow: private, provider: iam ,operations:[create, delete] } 
+  ])
+{
+  id: ID!
+  deviceID: ID! @index(name: "byDevice", sortKeyFields: ["certificateId"])
+  certificateId: String!
+  certificateArn: String!
+  device: Device! @belongsTo(fields: ["deviceID"])
 }
 
 type Measurement

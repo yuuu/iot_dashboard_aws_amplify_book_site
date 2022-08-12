@@ -25,6 +25,8 @@ import DeleteButton from "../../src/components/devices/DeleteButton";
 import { Device } from "../../src/API";
 import { useRouter } from "next/router";
 import { useFetchMeasurements } from "../../src/hooks/useMeasurements";
+import NewButton from "../../src/components/devices/NewButton";
+import CertificatesCard from "../../src/components/devices/CertificatesCard";
 
 ChartJS.register(
   CategoryScale,
@@ -76,7 +78,7 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
                 { name: device.name, link: "/devices/1" },
               ]}
             />
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-4">
               <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
                 {device.name}
               </h1>
@@ -140,6 +142,15 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
                   <Line options={options} data={data} />
                 </div>
               </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <div className="overflow-x-auto">
+          <div className="align-middle inline-block min-w-full">
+            <div className="mt-4 w-full grid gap-4">
+              <CertificatesCard certificates={device.certificates?.items} />
             </div>
           </div>
         </div>
