@@ -18,6 +18,10 @@ export const getDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -60,6 +64,10 @@ export const getCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -91,6 +99,10 @@ export const listCertificates = /* GraphQL */ `
         deviceID
         certificateId
         certificateArn
+        certificatePem
+        privateKey
+        publicKey
+        test
         device {
           id
           name
@@ -110,9 +122,9 @@ export const listCertificates = /* GraphQL */ `
   }
 `;
 export const getMeasurement = /* GraphQL */ `
-  query GetMeasurement($deviceId: ID!, $timestamp: Int!) {
-    getMeasurement(deviceId: $deviceId, timestamp: $timestamp) {
-      deviceId
+  query GetMeasurement($deviceID: ID!, $timestamp: Int!) {
+    getMeasurement(deviceID: $deviceID, timestamp: $timestamp) {
+      deviceID
       timestamp
       temperature
       humid
@@ -122,7 +134,7 @@ export const getMeasurement = /* GraphQL */ `
 `;
 export const listMeasurements = /* GraphQL */ `
   query ListMeasurements(
-    $deviceId: ID
+    $deviceID: ID
     $timestamp: ModelIntKeyConditionInput
     $filter: ModelMeasurementFilterInput
     $limit: Int
@@ -130,7 +142,7 @@ export const listMeasurements = /* GraphQL */ `
     $sortDirection: ModelSortDirection
   ) {
     listMeasurements(
-      deviceId: $deviceId
+      deviceID: $deviceID
       timestamp: $timestamp
       filter: $filter
       limit: $limit
@@ -138,7 +150,7 @@ export const listMeasurements = /* GraphQL */ `
       sortDirection: $sortDirection
     ) {
       items {
-        deviceId
+        deviceID
         timestamp
         temperature
         humid

@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import DangerIcon from "../icons/DangerIcon";
 import { Certificate } from "../../API";
-import { useDeleteDevice } from "../../hooks/useDevices";
+import { useDeleteCertificateIoT } from "../../hooks/useCertificates";
 
 type Props = {
   show: boolean;
@@ -30,7 +30,7 @@ const DeleteCertificateModal: React.FC<Props> = ({
       zIndex: 50,
     },
   };
-  const deleteDevice = useDeleteDevice(certificate?.id, onClose);
+  const deleteDevice = useDeleteCertificateIoT(certificate?.id, onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>

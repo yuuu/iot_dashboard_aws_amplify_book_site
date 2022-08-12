@@ -10,7 +10,7 @@ const timestamps = [...Array(5).keys()]
 
 const deviceValues: DeviceValue[] = timestamps.map((timestamp, index) => ({
   id: `1-${index}`,
-  deviceId: "1",
+  deviceID: "1",
   temperature: faker.datatype.number({ min: -1000, max: 1000 }),
   humid: faker.datatype.number({ min: -1000, max: 1000 }),
   pressure: faker.datatype.number({ min: -1000, max: 1000 }),

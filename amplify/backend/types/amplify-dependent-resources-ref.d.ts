@@ -12,6 +12,9 @@ export type AmplifyDependentResourcesAttributes = {
       Region: "string";
       LambdaExecutionRole: "string";
     };
+    amplifyiotbackendcertificateLayer: {
+      Arn: "string";
+    };
   };
   auth: {
     amplifyiotbackend73c41568: {

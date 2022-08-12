@@ -150,7 +150,10 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
         <div className="overflow-x-auto">
           <div className="align-middle inline-block min-w-full">
             <div className="mt-4 w-full grid gap-4">
-              <CertificatesCard certificates={device.certificates?.items} />
+              <CertificatesCard
+                device={device}
+                certificates={device.certificates?.items}
+              />
             </div>
           </div>
         </div>

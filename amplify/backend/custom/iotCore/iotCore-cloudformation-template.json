@@ -55,7 +55,7 @@
           ]
         },
         "TopicRulePayload": {
-          "Sql": "SELECT topic(2) AS deviceId, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/#'",
+          "Sql": "SELECT topic(2) AS deviceID, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/#'",
           "RuleDisabled": false,
           "Actions": [
             {

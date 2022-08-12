@@ -4,14 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { ListMeasurementsQuery } from "../../src/API";
 import * as queries from "../../src/graphql/queries";
 
-export const useFetchMeasurements = (deviceId: string) => {
+export const useFetchMeasurements = (deviceID: string) => {
   const { data: measurements } = useQuery(
-    [`devices/${deviceId}/measurements`],
+    [`devices/${deviceID}/measurements`],
     async () => {
       const { data } = (await API.graphql({
         query: queries.listDevices,
         variables: {
-          deviceId,
+          deviceID,
           sortDirection: "ASC",
         },
       })) as GraphQLResult<ListMeasurementsQuery>;

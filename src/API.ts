@@ -102,6 +102,10 @@ export type Certificate = {
   deviceID: string,
   certificateId: string,
   certificateArn: string,
+  certificatePem?: string | null,
+  privateKey?: string | null,
+  publicKey?: string | null,
+  test?: string | null,
   device: Device,
   createdAt: string,
   updatedAt: string,
@@ -126,12 +130,20 @@ export type CreateCertificateInput = {
   deviceID: string,
   certificateId: string,
   certificateArn: string,
+  certificatePem?: string | null,
+  privateKey?: string | null,
+  publicKey?: string | null,
+  test?: string | null,
 };
 
 export type ModelCertificateConditionInput = {
   deviceID?: ModelIDInput | null,
   certificateId?: ModelStringInput | null,
   certificateArn?: ModelStringInput | null,
+  certificatePem?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  publicKey?: ModelStringInput | null,
+  test?: ModelStringInput | null,
   and?: Array< ModelCertificateConditionInput | null > | null,
   or?: Array< ModelCertificateConditionInput | null > | null,
   not?: ModelCertificateConditionInput | null,
@@ -158,6 +170,10 @@ export type UpdateCertificateInput = {
   deviceID?: string | null,
   certificateId?: string | null,
   certificateArn?: string | null,
+  certificatePem?: string | null,
+  privateKey?: string | null,
+  publicKey?: string | null,
+  test?: string | null,
 };
 
 export type DeleteCertificateInput = {
@@ -165,7 +181,7 @@ export type DeleteCertificateInput = {
 };
 
 export type CreateMeasurementInput = {
-  deviceId: string,
+  deviceID: string,
   timestamp: number,
   temperature?: number | null,
   humid?: number | null,
@@ -183,7 +199,7 @@ export type ModelMeasurementConditionInput = {
 
 export type Measurement = {
   __typename: "Measurement",
-  deviceId: string,
+  deviceID: string,
   timestamp: number,
   temperature?: number | null,
   humid?: number | null,
@@ -191,7 +207,7 @@ export type Measurement = {
 };
 
 export type UpdateMeasurementInput = {
-  deviceId: string,
+  deviceID: string,
   timestamp: number,
   temperature?: number | null,
   humid?: number | null,
@@ -199,7 +215,7 @@ export type UpdateMeasurementInput = {
 };
 
 export type DeleteMeasurementInput = {
-  deviceId: string,
+  deviceID: string,
   timestamp: number,
 };
 
@@ -227,6 +243,10 @@ export type ModelCertificateFilterInput = {
   deviceID?: ModelIDInput | null,
   certificateId?: ModelStringInput | null,
   certificateArn?: ModelStringInput | null,
+  certificatePem?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  publicKey?: ModelStringInput | null,
+  test?: ModelStringInput | null,
   and?: Array< ModelCertificateFilterInput | null > | null,
   or?: Array< ModelCertificateFilterInput | null > | null,
   not?: ModelCertificateFilterInput | null,
@@ -242,7 +262,7 @@ export type ModelIntKeyConditionInput = {
 };
 
 export type ModelMeasurementFilterInput = {
-  deviceId?: ModelIDInput | null,
+  deviceID?: ModelIDInput | null,
   timestamp?: ModelIntInput | null,
   temperature?: ModelFloatInput | null,
   humid?: ModelFloatInput | null,
@@ -299,6 +319,10 @@ export type CreateDeviceMutation = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -332,6 +356,10 @@ export type UpdateDeviceMutation = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -365,6 +393,10 @@ export type DeleteDeviceMutation = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -387,6 +419,10 @@ export type CreateCertificateMutation = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -420,6 +456,10 @@ export type UpdateCertificateMutation = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -453,6 +493,10 @@ export type DeleteCertificateMutation = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -482,7 +526,7 @@ export type CreateMeasurementMutationVariables = {
 export type CreateMeasurementMutation = {
   createMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,
@@ -498,7 +542,7 @@ export type UpdateMeasurementMutationVariables = {
 export type UpdateMeasurementMutation = {
   updateMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,
@@ -514,11 +558,83 @@ export type DeleteMeasurementMutationVariables = {
 export type DeleteMeasurementMutation = {
   deleteMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,
     pressure?: number | null,
+  } | null,
+};
+
+export type CreateCertificateIoTMutationVariables = {
+  deviceID: string,
+};
+
+export type CreateCertificateIoTMutation = {
+  createCertificateIoT?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteCertificateIoTMutationVariables = {
+  id: string,
+};
+
+export type DeleteCertificateIoTMutation = {
+  deleteCertificateIoT?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      temperature?: number | null,
+      humid?: number | null,
+      pressure?: number | null,
+      status?: string | null,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -544,6 +660,10 @@ export type GetDeviceQuery = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -594,6 +714,10 @@ export type GetCertificateQuery = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -630,6 +754,10 @@ export type ListCertificatesQuery = {
       deviceID: string,
       certificateId: string,
       certificateArn: string,
+      certificatePem?: string | null,
+      privateKey?: string | null,
+      publicKey?: string | null,
+      test?: string | null,
       device:  {
         __typename: "Device",
         id: string,
@@ -650,14 +778,14 @@ export type ListCertificatesQuery = {
 };
 
 export type GetMeasurementQueryVariables = {
-  deviceId: string,
+  deviceID: string,
   timestamp: number,
 };
 
 export type GetMeasurementQuery = {
   getMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,
@@ -666,7 +794,7 @@ export type GetMeasurementQuery = {
 };
 
 export type ListMeasurementsQueryVariables = {
-  deviceId?: string | null,
+  deviceID?: string | null,
   timestamp?: ModelIntKeyConditionInput | null,
   filter?: ModelMeasurementFilterInput | null,
   limit?: number | null,
@@ -679,7 +807,7 @@ export type ListMeasurementsQuery = {
     __typename: "ModelMeasurementConnection",
     items:  Array< {
       __typename: "Measurement",
-      deviceId: string,
+      deviceID: string,
       timestamp: number,
       temperature?: number | null,
       humid?: number | null,
@@ -707,6 +835,10 @@ export type OnCreateDeviceSubscription = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -735,6 +867,10 @@ export type OnUpdateDeviceSubscription = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -763,6 +899,10 @@ export type OnDeleteDeviceSubscription = {
         deviceID: string,
         certificateId: string,
         certificateArn: string,
+        certificatePem?: string | null,
+        privateKey?: string | null,
+        publicKey?: string | null,
+        test?: string | null,
         createdAt: string,
         updatedAt: string,
       } | null >,
@@ -780,6 +920,10 @@ export type OnCreateCertificateSubscription = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -808,6 +952,10 @@ export type OnUpdateCertificateSubscription = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -836,6 +984,10 @@ export type OnDeleteCertificateSubscription = {
     deviceID: string,
     certificateId: string,
     certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    test?: string | null,
     device:  {
       __typename: "Device",
       id: string,
@@ -860,7 +1012,7 @@ export type OnDeleteCertificateSubscription = {
 export type OnCreateMeasurementSubscription = {
   onCreateMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,
@@ -871,7 +1023,7 @@ export type OnCreateMeasurementSubscription = {
 export type OnUpdateMeasurementSubscription = {
   onUpdateMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,
@@ -882,7 +1034,7 @@ export type OnUpdateMeasurementSubscription = {
 export type OnDeleteMeasurementSubscription = {
   onDeleteMeasurement?:  {
     __typename: "Measurement",
-    deviceId: string,
+    deviceID: string,
     timestamp: number,
     temperature?: number | null,
     humid?: number | null,

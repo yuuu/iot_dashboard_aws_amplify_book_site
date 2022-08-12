@@ -21,6 +21,10 @@ export const createDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -50,6 +54,10 @@ export const updateDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -79,6 +87,10 @@ export const deleteDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -99,6 +111,10 @@ export const createCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -128,6 +144,10 @@ export const updateCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -157,6 +177,10 @@ export const deleteCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -182,7 +206,7 @@ export const createMeasurement = /* GraphQL */ `
     $condition: ModelMeasurementConditionInput
   ) {
     createMeasurement(input: $input, condition: $condition) {
-      deviceId
+      deviceID
       timestamp
       temperature
       humid
@@ -196,7 +220,7 @@ export const updateMeasurement = /* GraphQL */ `
     $condition: ModelMeasurementConditionInput
   ) {
     updateMeasurement(input: $input, condition: $condition) {
-      deviceId
+      deviceID
       timestamp
       temperature
       humid
@@ -210,11 +234,71 @@ export const deleteMeasurement = /* GraphQL */ `
     $condition: ModelMeasurementConditionInput
   ) {
     deleteMeasurement(input: $input, condition: $condition) {
-      deviceId
+      deviceID
       timestamp
       temperature
       humid
       pressure
+    }
+  }
+`;
+export const createCertificateIoT = /* GraphQL */ `
+  mutation CreateCertificateIoT($deviceID: ID!) {
+    createCertificateIoT(deviceID: $deviceID) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
+      device {
+        id
+        name
+        temperature
+        humid
+        pressure
+        status
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCertificateIoT = /* GraphQL */ `
+  mutation DeleteCertificateIoT($id: ID!) {
+    deleteCertificateIoT(id: $id) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
+      device {
+        id
+        name
+        temperature
+        humid
+        pressure
+        status
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
     }
   }
 `;

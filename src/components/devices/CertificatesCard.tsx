@@ -1,32 +1,42 @@
 import { useState } from "react";
-import { Certificate } from "../../API";
+import { Certificate, Device } from "../../API";
+import { useCreateCertificateIoT } from "../../hooks/useCertificates";
 import Card from "../Card";
 import DeleteButton from "./DeleteButton";
 import DeleteCertificateModal from "./DeleteCertificateModal";
 import NewButton from "./NewButton";
 
 type Props = {
+  device: Device;
   certificates: (Certificate | null)[] | undefined;
 };
 
-const CertificatesCard: React.FC<Props> = ({ certificates }) => {
+const CertificatesCard: React.FC<Props> = ({ device, certificates }) => {
   const [deleteModal, setDeleteModal] = useState<Certificate | null>(null);
   const onDestroy = (certificate: Certificate) => setDeleteModal(certificate);
-  const onCreate = () => {};
+
+  const createCertificateIoT = useCreateCertificateIoT(() => null);
+  const onCreate = () => {
+    createCertificateIoT(device.id);
+  };
+
   return (
     <Card className="sm:p-6 xl:p-8">
-      <div className="sm:flex md:w-1/2 mb-4">
+      <div className="sm:flex mb-4">
         <h3 className="text-xl font-bold text-gray-900 mb-4">証明書</h3>
         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
-          <NewButton onClick={() => null} />
+          <NewButton onClick={onCreate} />
         </div>
       </div>
-      <ul className="grid grid-cols-1 gap-4 md:w-1/2">
+      <ul className="grid grid-cols-1 gap-4">
         {certificates?.map(
           (certificate) =>
             certificate && (
-              <li className="flex items-center justify-between">
-                <span>{certificate.certificateId}</span>
+              <li
+                key={certificate.id}
+                className="flex items-center justify-between space-x-4"
+              >
+                <span className="truncate">{certificate.certificateId}</span>
                 <DeleteButton onClick={() => onDestroy(certificate)} />
               </li>
             )

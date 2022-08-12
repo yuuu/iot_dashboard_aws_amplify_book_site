@@ -4,7 +4,7 @@ input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONL
 
 type Device
   @model
-  @auth(rules: [ { allow: private } ])
+  @auth(rules: [ { allow: private, provider: userPools } ])
 {
   id: ID!
   name: String!
@@ -19,7 +19,7 @@ type Device
 type Certificate
   @model
   @auth(rules: [
-    { allow: private }
+    { allow: private, provider: userPools }
     { allow: private, provider: iam ,operations:[create, delete] } 
   ])
 {
@@ -27,16 +27,29 @@ type Certificate
   deviceID: ID! @index(name: "byDevice", sortKeyFields: ["certificateId"])
   certificateId: String!
   certificateArn: String!
+  certificatePem: String
+  privateKey: String
+  publicKey: String
   device: Device! @belongsTo(fields: ["deviceID"])
 }
 
 type Measurement
   @model(timestamps: null)
-  @auth(rules: [ { allow: private } ])
+  @auth(rules: [ { allow: private, provider: userPools } ])
 {
-  deviceId: ID! @primaryKey(sortKeyFields: ["timestamp"])
+  deviceID: ID! @primaryKey(sortKeyFields: ["timestamp"])
   timestamp: Int!
   temperature: Float
   humid: Float
   pressure: Float
+}
+
+type Mutation
+{
+  createCertificateIoT(deviceID: ID!): Certificate
+    @function(name: "createCertificateIoTCore-${env}")
+    @auth(rules: [ { allow: private, provider: userPools } ])
+  deleteCertificateIoT(id: ID!): Certificate
+    @function(name: "deleteCertificateIoTCore-${env}")
+    @auth(rules: [ { allow: private, provider: userPools } ])
 }

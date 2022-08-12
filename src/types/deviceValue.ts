@@ -1,6 +1,6 @@
 export type DeviceValue = {
   id: string;
-  deviceId: string;
+  deviceID: string;
   temperature: number;
   humid: number;
   pressure: number;

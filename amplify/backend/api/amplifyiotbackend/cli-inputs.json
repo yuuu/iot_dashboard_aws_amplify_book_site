@@ -9,6 +9,10 @@
       "cognitoUserPoolId": "authamplifyiotbackend73c41568"
     },
     "conflictResolution": {},
-    "additionalAuthTypes": []
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }

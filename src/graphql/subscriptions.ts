@@ -18,6 +18,10 @@ export const onCreateDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -44,6 +48,10 @@ export const onUpdateDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -70,6 +78,10 @@ export const onDeleteDevice = /* GraphQL */ `
           deviceID
           certificateId
           certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          test
           createdAt
           updatedAt
         }
@@ -87,6 +99,10 @@ export const onCreateCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -113,6 +129,10 @@ export const onUpdateCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -139,6 +159,10 @@ export const onDeleteCertificate = /* GraphQL */ `
       deviceID
       certificateId
       certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      test
       device {
         id
         name
@@ -161,7 +185,7 @@ export const onDeleteCertificate = /* GraphQL */ `
 export const onCreateMeasurement = /* GraphQL */ `
   subscription OnCreateMeasurement {
     onCreateMeasurement {
-      deviceId
+      deviceID
       timestamp
       temperature
       humid
@@ -172,7 +196,7 @@ export const onCreateMeasurement = /* GraphQL */ `
 export const onUpdateMeasurement = /* GraphQL */ `
   subscription OnUpdateMeasurement {
     onUpdateMeasurement {
-      deviceId
+      deviceID
       timestamp
       temperature
       humid
@@ -183,7 +207,7 @@ export const onUpdateMeasurement = /* GraphQL */ `
 export const onDeleteMeasurement = /* GraphQL */ `
   subscription OnDeleteMeasurement {
     onDeleteMeasurement {
-      deviceId
+      deviceID
       timestamp
       temperature
       humid
