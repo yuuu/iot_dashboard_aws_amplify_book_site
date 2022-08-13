@@ -89,15 +89,23 @@ export const useUpdateDevice = (
 };
 
 export const useDeleteDevice = (
-  id: string | undefined,
+  device: Device | null,
   onSuccess: () => void
 ) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(
     async () => {
+      await Promise.all(
+        device?.certificates?.items?.map((certificate) =>
+          API.graphql({
+            query: mutations.deleteCertificate,
+            variables: { input: { id: certificate?.id } },
+          })
+        ) ?? []
+      );
       const { data } = (await API.graphql({
         query: mutations.deleteDevice,
-        variables: { input: { id } },
+        variables: { input: { id: device?.id } },
       })) as GraphQLResult<DeleteDeviceMutation>;
       return data;
     },

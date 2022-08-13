@@ -26,7 +26,7 @@ const DeleteDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
       zIndex: 50,
     },
   };
-  const deleteDevice = useDeleteDevice(device?.id, onClose);
+  const deleteDevice = useDeleteDevice(device, onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
