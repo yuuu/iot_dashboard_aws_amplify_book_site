@@ -25,7 +25,6 @@ import DeleteButton from "../../src/components/devices/DeleteButton";
 import { Device } from "../../src/API";
 import { useRouter } from "next/router";
 import { useFetchMeasurements } from "../../src/hooks/useMeasurements";
-import NewButton from "../../src/components/devices/NewButton";
 import CertificatesCard from "../../src/components/devices/CertificatesCard";
 
 ChartJS.register(
@@ -140,6 +139,22 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
                 </h3>
                 <div className="flex items-center justify-between mb-4">
                   <Line options={options} data={data} />
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <div className="overflow-x-auto">
+          <div className="align-middle inline-block min-w-full">
+            <div className="mt-4 w-full grid gap-4">
+              <Card className="sm:p-6 xl:p-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  トピック
+                </h3>
+                <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
+                  <span>enviiewer/devices/{id}</span>
                 </div>
               </Card>
             </div>

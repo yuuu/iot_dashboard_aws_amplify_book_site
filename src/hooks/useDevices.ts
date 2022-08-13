@@ -98,7 +98,7 @@ export const useDeleteDevice = (
       await Promise.all(
         device?.certificates?.items?.map((certificate) =>
           API.graphql({
-            query: mutations.deleteCertificate,
+            query: mutations.deleteCertificateIoT,
             variables: { input: { id: certificate?.id } },
           })
         ) ?? []

@@ -14,33 +14,7 @@
     }
   },
   "Resources": {
-    "IoTPolicy": {
-      "Type": "AWS::IoT::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": "iot:*",
-              "Resource": "*"
-            }
-          ]
-        },
-        "PolicyName": {
-          "Fn::Join": [
-            "-",
-            [
-              "enviiewer",
-              {
-                "Ref": "env"
-              }
-            ]
-          ]
-        }
-      }
-    },
-    "TopicRuleDynamoDBv2": {
+    "UpsertDevice": {
       "Type": "AWS::IoT::TopicRule",
       "Properties": {
         "RuleName": {
@@ -50,12 +24,59 @@
               "enviiewer",
               {
                 "Ref": "env"
-              }
+              },
+              "device"
             ]
           ]
         },
         "TopicRulePayload": {
-          "Sql": "SELECT topic(2) AS deviceID, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/#'",
+          "Sql": "SELECT clientid() AS id, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/devices/#'",
+          "RuleDisabled": false,
+          "Actions": [
+            {
+              "DynamoDBv2": {
+                "PutItem": {
+                  "TableName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "Device",
+                        {
+                          "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+                        },
+                        {
+                          "Ref": "env"
+                        }
+                      ]
+                    ]
+                  }
+                },
+                "RoleArn": {
+                  "Fn::GetAtt": "IAMRole.Arn"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "InsertMesurement": {
+      "Type": "AWS::IoT::TopicRule",
+      "Properties": {
+        "RuleName": {
+          "Fn::Join": [
+            "_",
+            [
+              "enviiewer",
+              {
+                "Ref": "env"
+              },
+              "mesurement"
+            ]
+          ]
+        },
+        "TopicRulePayload": {
+          "Sql": "SELECT clientid() AS deviceID, timestamp() AS timestamp, ((timestamp() / 1000) + 300) AS ttl, temperature, humid, pressure FROM 'enviiewer/devices/#'",
           "RuleDisabled": false,
           "Actions": [
             {

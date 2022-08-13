@@ -41,7 +41,7 @@ const CertificatesCard: React.FC<Props> = ({ device, certificates }) => {
                 key={certificate.id}
                 className="flex items-center justify-between space-x-4"
               >
-                <span className="truncate">{certificate.certificateId}</span>
+                <span className="truncate">{certificate.id}</span>
                 <DeleteButton onClick={() => onDestroy(certificate)} />
               </li>
             )

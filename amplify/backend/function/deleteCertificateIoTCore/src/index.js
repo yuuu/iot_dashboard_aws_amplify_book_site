@@ -13,6 +13,7 @@ const {
   UpdateCertificateCommand,
   DeleteCertificateCommand,
   DetachPolicyCommand,
+  DeletePolicyCommand,
 } = require("@aws-sdk/client-iot");
 
 const env = process.env;
@@ -24,6 +25,14 @@ const detachPolicy = async (certificateArn, policyName) => {
     target: certificateArn,
   };
   const command = new DetachPolicyCommand(params);
+  return await client.send(command);
+};
+
+const deletePolicy = async (policyName) => {
+  const params = {
+    policyName,
+  };
+  const command = new DeletePolicyCommand(params);
   return await client.send(command);
 };
 
@@ -116,15 +125,16 @@ const deleteCertificate = async (id) => {
 exports.handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
 
-  const policyName = `enviiewer-${process.env.ENV}`;
-
   try {
     const {
       data: {
         getCertificate: { certificateId, certificateArn },
       },
     } = await getCertificate(event.arguments.id);
+
+    const policyName = `enviiewer-${process.env.ENV}-${certificateId}`;
     await detachPolicy(certificateArn, policyName);
+    await deletePolicy(policyName);
     await updateCertificateIoT(certificateId);
     await deleteCertificateIoT(certificateId);
     const { data } = await deleteCertificate(event.arguments.id);

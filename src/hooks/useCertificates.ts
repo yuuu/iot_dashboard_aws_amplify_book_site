@@ -52,7 +52,7 @@ export const useDeleteCertificateIoT = (
       return data;
     },
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         toast.success("証明書を削除しました");
         queryClient.invalidateQueries(["device"]);
         onSuccess();
