@@ -8,12 +8,9 @@ type Device
 {
   id: ID!
   name: String!
-  temperature: Float
-  humid: Float
-  pressure: Float
-  status: String
   pinned: String!
   certificates: [Certificate] @hasMany(indexName: "byDevice", fields: ["id"])
+  currentMeasurement: CurrentMeasurement @hasOne(fields: ["id"])
 }
 
 type Certificate
@@ -33,15 +30,26 @@ type Certificate
   device: Device! @belongsTo(fields: ["deviceID"])
 }
 
+type CurrentMeasurement
+  @model(timestamps: null)
+  @auth(rules: [ { allow: private, provider: userPools } ])
+{
+  deviceID: ID! @primaryKey
+  timestamp: Long!
+  temperature: Float!
+  humid: Float!
+  pressure: Float!
+}
+
 type Measurement
   @model(timestamps: null)
   @auth(rules: [ { allow: private, provider: userPools } ])
 {
   deviceID: ID! @primaryKey(sortKeyFields: ["timestamp"])
-  timestamp: Int!
-  temperature: Float
-  humid: Float
-  pressure: Float
+  timestamp: Long!
+  temperature: Float!
+  humid: Float!
+  pressure: Float!
 }
 
 type Mutation

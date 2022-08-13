@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import PinnedDeviceTableCard from "../src/components/dashboard/PinnedDeviceTableCard";
 import TemperatureChartCard from "../src/components/dashboard/TemperatureChartCard";
 import HumidChartCard from "../src/components/dashboard/HumidChartCard";
-import AtmosphericPressureChartCard from "../src/components/dashboard/AtmosphericPressureChartCard";
+import PressureChartCard from "../src/components/dashboard/PressureChartCard";
 import ClockCard from "../src/components/dashboard/ClockCard";
 import DeviceCountCard from "../src/components/dashboard/DeviceCountCard";
 import { useFetchDevices } from "../src/hooks/useDevices";
@@ -22,7 +22,7 @@ const Dashboard: NextPage = () => {
         </div>
         <TemperatureChartCard devices={devices} />
         <HumidChartCard devices={devices} />
-        <AtmosphericPressureChartCard devices={devices} />
+        <PressureChartCard devices={devices} />
       </div>
       <div className="mb-4 w-full grid grid-cols-1 xl:gap-4">
         <PinnedDeviceTableCard devices={devices} />

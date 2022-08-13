@@ -1,6 +1,7 @@
 import React from "react";
 import ReactLoading from "react-loading";
 import { Device } from "../../API";
+import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 import Card from "../Card";
 
 type Props = {
@@ -9,12 +10,15 @@ type Props = {
 };
 
 const DeviceCountCard: React.FC<Props> = ({ className, devices }) => {
+  const { isOnline } = useDeviceUtils();
   if (!devices)
     return (
       <Card className={className}>
         <ReactLoading type="bars" color="#6b7280" height="50px" width="50px" />
       </Card>
     );
+  const online = devices.filter((device) => isOnline(device)).length;
+  const offline = devices.length - online;
 
   return (
     <Card className={className}>
@@ -42,7 +46,7 @@ const DeviceCountCard: React.FC<Props> = ({ className, devices }) => {
           <div className="flex">
             <div className="flex space-x-4 items-center">
               <span className="text-2xl sm:text-4xl leading-none font-bold text-gray-900">
-                {devices.filter((device) => device?.status === "online").length}
+                {online}
               </span>
               <div className="text-xl font-bold">台</div>
             </div>
@@ -55,10 +59,7 @@ const DeviceCountCard: React.FC<Props> = ({ className, devices }) => {
           <div className="flex">
             <div className="flex space-x-4 items-center">
               <span className="text-2xl sm:text-4xl leading-none font-bold text-gray-900">
-                {
-                  devices.filter((device) => device?.status === "offline")
-                    .length
-                }
+                {offline}
               </span>
               <div className="text-xl font-bold">台</div>
             </div>

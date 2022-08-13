@@ -7,10 +7,6 @@ export const getDevice = /* GraphQL */ `
     getDevice(id: $id) {
       id
       name
-      temperature
-      humid
-      pressure
-      status
       pinned
       certificates {
         items {
@@ -25,6 +21,13 @@ export const getDevice = /* GraphQL */ `
           updatedAt
         }
         nextToken
+      }
+      currentMeasurement {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
       }
       createdAt
       updatedAt
@@ -41,13 +44,16 @@ export const listDevices = /* GraphQL */ `
       items {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt
@@ -69,13 +75,16 @@ export const getCertificate = /* GraphQL */ `
       device {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt
@@ -103,16 +112,49 @@ export const listCertificates = /* GraphQL */ `
         device {
           id
           name
-          temperature
-          humid
-          pressure
-          status
           pinned
           createdAt
           updatedAt
         }
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getCurrentMeasurement = /* GraphQL */ `
+  query GetCurrentMeasurement($deviceID: ID!) {
+    getCurrentMeasurement(deviceID: $deviceID) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const listCurrentMeasurements = /* GraphQL */ `
+  query ListCurrentMeasurements(
+    $deviceID: ID
+    $filter: ModelCurrentMeasurementFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listCurrentMeasurements(
+      deviceID: $deviceID
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
       }
       nextToken
     }

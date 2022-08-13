@@ -41,7 +41,7 @@ const EditDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
         </button>
       </div>
       <div className="p-6 space-y-6">
-        {device && <DeviceForm device={device} onSubmit={updateDevice} />}
+        {device && <DeviceForm device={device} onUpdate={updateDevice} />}
       </div>
     </ReactModal>
   );

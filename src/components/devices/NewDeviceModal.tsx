@@ -39,7 +39,7 @@ const NewDeviceModal: React.FC<Props> = ({ show, onClose }) => {
         </button>
       </div>
       <div className="p-6 space-y-6">
-        <DeviceForm onSubmit={createDevice} />
+        <DeviceForm onCreate={createDevice} />
       </div>
     </ReactModal>
   );

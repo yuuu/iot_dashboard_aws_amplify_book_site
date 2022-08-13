@@ -1,4 +1,5 @@
 import type { GetServerSidePropsContext, NextPage } from "next";
+import { useState } from "react";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import Card from "../../src/components/Card";
 import {
@@ -14,10 +15,8 @@ import {
 import { Line } from "react-chartjs-2";
 import BarGraph from "../../src/components/devices/BarGraph";
 import useLineChart from "../../src/hooks/useLineChart";
-import deviceValues from "../../src/data/deviceValues";
 import ReactLoading from "react-loading";
 import { useFetchDevice } from "../../src/hooks/useDevices";
-import { useState } from "react";
 import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
 import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import EditButton from "../../src/components/devices/EditButton";
@@ -26,6 +25,8 @@ import { Device } from "../../src/API";
 import { useRouter } from "next/router";
 import { useFetchMeasurements } from "../../src/hooks/useMeasurements";
 import CertificatesCard from "../../src/components/devices/CertificatesCard";
+import { useDeviceUtils } from "../../src/hooks/useDeviceUtils";
+import DeviceStatus from "../../src/components/DeviceStatus";
 
 ChartJS.register(
   CategoryScale,
@@ -46,17 +47,9 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
   const measurements = useFetchMeasurements(id);
   const [editModal, setEditModal] = useState<Device | null>(null);
   const [deleteModal, setDeleteModal] = useState<Device | null>(null);
-  const { options, data } = useLineChart(deviceValues);
+  const { options, data } = useLineChart(measurements ?? []);
   const router = useRouter();
-
-  console.log(measurements);
-
-  const onEdit = (device: Device) => setEditModal(device);
-  const onDestroy = (device: Device) => setDeleteModal(device);
-  const onDeleted = () => {
-    setDeleteModal(null);
-    router.push("/devices");
-  };
+  const { isOnline } = useDeviceUtils();
 
   if (!device) {
     return (
@@ -66,6 +59,15 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
     );
   }
 
+  const onEdit = (device: Device) => setEditModal(device);
+  const onDestroy = (device: Device) => setDeleteModal(device);
+  const onDeleted = () => {
+    setDeleteModal(null);
+    router.push("/devices");
+  };
+
+  const { name, currentMeasurement } = device;
+
   return (
     <>
       <div className="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
@@ -74,12 +76,15 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
             <Breadcrumbs
               pages={[
                 { name: "デバイス", link: "/devices" },
-                { name: device.name, link: "/devices/1" },
+                { name: name, link: `/devices/${id}` },
               ]}
             />
             <div className="flex justify-between mb-4">
-              <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
-                {device.name}
+              <h1 className="flex items-center space-x-4 ">
+                <span className="text-xl sm:text-2xl font-semibold text-gray-900">
+                  {name}
+                </span>
+                <DeviceStatus isOnline={isOnline(device)} />
               </h1>
               <div className="flex space-x-2">
                 <EditButton onClick={() => onEdit(device)} />
@@ -96,21 +101,21 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
               {[
                 {
                   name: "温度",
-                  value: device.temperature,
+                  value: currentMeasurement?.temperature,
                   unit: "℃",
                   max: 50,
                   min: -10,
                 },
                 {
                   name: "湿度",
-                  value: device.humid,
+                  value: currentMeasurement?.humid,
                   unit: "%",
                   max: 100,
                   min: 0,
                 },
                 {
                   name: "気圧",
-                  value: device.pressure,
+                  value: currentMeasurement?.pressure,
                   unit: "hPa",
                   max: 1100,
                   min: 870,

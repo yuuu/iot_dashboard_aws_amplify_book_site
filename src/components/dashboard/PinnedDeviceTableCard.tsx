@@ -5,12 +5,15 @@ import DeviceStatus from "../DeviceStatus";
 import Link from "next/link";
 import { Device } from "../../API";
 import ReactLoading from "react-loading";
+import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 
 type Props = {
   devices?: Device[];
 };
 
 const AcquisitionOverviewCard: React.FC<Props> = ({ devices }) => {
+  const { isOnline } = useDeviceUtils();
+
   if (!devices)
     return (
       <Card>
@@ -61,42 +64,45 @@ const AcquisitionOverviewCard: React.FC<Props> = ({ devices }) => {
           <tbody className="divide-y divide-gray-100">
             {devices
               .filter((d) => d.pinned === "pinned")
-              .map(({ id, name, temperature, humid, pressure, status }) => (
-                <tr key={id} className="text-gray-500">
-                  <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left text-sky-800">
-                    <Link href={`/devices/${id}`}>
-                      <a>{name}</a>
-                    </Link>
-                  </th>
-                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <DeviceStatus status={status} />
-                  </td>
-                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <BarGraphWithValue
-                      value={temperature}
-                      unit="℃"
-                      max={50}
-                      min={-10}
-                    />
-                  </td>
-                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <BarGraphWithValue
-                      value={humid}
-                      unit="%"
-                      max={100}
-                      min={0}
-                    />
-                  </td>
-                  <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                    <BarGraphWithValue
-                      value={pressure}
-                      unit="hPa"
-                      max={1100}
-                      min={870}
-                    />
-                  </td>
-                </tr>
-              ))}
+              .map((device) => {
+                const { id, name, currentMeasurement } = device;
+                return (
+                  <tr key={id} className="text-gray-500">
+                    <th className="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left text-sky-800">
+                      <Link href={`/devices/${id}`}>
+                        <a>{name}</a>
+                      </Link>
+                    </th>
+                    <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                      <DeviceStatus isOnline={isOnline(device)} />
+                    </td>
+                    <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                      <BarGraphWithValue
+                        value={currentMeasurement?.temperature}
+                        unit="℃"
+                        max={50}
+                        min={-10}
+                      />
+                    </td>
+                    <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                      <BarGraphWithValue
+                        value={currentMeasurement?.humid}
+                        unit="%"
+                        max={100}
+                        min={0}
+                      />
+                    </td>
+                    <td className="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                      <BarGraphWithValue
+                        value={currentMeasurement?.pressure}
+                        unit="hPa"
+                        max={1100}
+                        min={870}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

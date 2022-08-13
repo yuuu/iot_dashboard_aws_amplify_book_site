@@ -10,10 +10,6 @@ export const createDevice = /* GraphQL */ `
     createDevice(input: $input, condition: $condition) {
       id
       name
-      temperature
-      humid
-      pressure
-      status
       pinned
       certificates {
         items {
@@ -28,6 +24,13 @@ export const createDevice = /* GraphQL */ `
           updatedAt
         }
         nextToken
+      }
+      currentMeasurement {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
       }
       createdAt
       updatedAt
@@ -42,10 +45,6 @@ export const updateDevice = /* GraphQL */ `
     updateDevice(input: $input, condition: $condition) {
       id
       name
-      temperature
-      humid
-      pressure
-      status
       pinned
       certificates {
         items {
@@ -61,6 +60,13 @@ export const updateDevice = /* GraphQL */ `
         }
         nextToken
       }
+      currentMeasurement {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
+      }
       createdAt
       updatedAt
     }
@@ -74,10 +80,6 @@ export const deleteDevice = /* GraphQL */ `
     deleteDevice(input: $input, condition: $condition) {
       id
       name
-      temperature
-      humid
-      pressure
-      status
       pinned
       certificates {
         items {
@@ -92,6 +94,13 @@ export const deleteDevice = /* GraphQL */ `
           updatedAt
         }
         nextToken
+      }
+      currentMeasurement {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
       }
       createdAt
       updatedAt
@@ -114,13 +123,16 @@ export const createCertificate = /* GraphQL */ `
       device {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt
@@ -146,13 +158,16 @@ export const updateCertificate = /* GraphQL */ `
       device {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt
@@ -178,19 +193,64 @@ export const deleteCertificate = /* GraphQL */ `
       device {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createCurrentMeasurement = /* GraphQL */ `
+  mutation CreateCurrentMeasurement(
+    $input: CreateCurrentMeasurementInput!
+    $condition: ModelCurrentMeasurementConditionInput
+  ) {
+    createCurrentMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const updateCurrentMeasurement = /* GraphQL */ `
+  mutation UpdateCurrentMeasurement(
+    $input: UpdateCurrentMeasurementInput!
+    $condition: ModelCurrentMeasurementConditionInput
+  ) {
+    updateCurrentMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const deleteCurrentMeasurement = /* GraphQL */ `
+  mutation DeleteCurrentMeasurement(
+    $input: DeleteCurrentMeasurementInput!
+    $condition: ModelCurrentMeasurementConditionInput
+  ) {
+    deleteCurrentMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
     }
   }
 `;
@@ -249,13 +309,16 @@ export const createCertificateIoT = /* GraphQL */ `
       device {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt
@@ -278,13 +341,16 @@ export const deleteCertificateIoT = /* GraphQL */ `
       device {
         id
         name
-        temperature
-        humid
-        pressure
-        status
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt

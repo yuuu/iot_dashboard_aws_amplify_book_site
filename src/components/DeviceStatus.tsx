@@ -1,13 +1,13 @@
 import React from "react";
 
 type Props = {
-  status: string | null | undefined;
+  isOnline: boolean;
 };
 
-const DeviceStatus: React.FC<Props> = ({ status }) => {
+const DeviceStatus: React.FC<Props> = ({ isOnline }) => {
   return (
     <div className="flex items-center">
-      {status === "online" ? (
+      {isOnline ? (
         <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
       ) : (
         <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>

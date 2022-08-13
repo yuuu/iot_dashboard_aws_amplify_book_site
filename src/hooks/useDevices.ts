@@ -7,11 +7,12 @@ import {
   CreateDeviceMutation,
   UpdateDeviceMutation,
   DeleteDeviceMutation,
+  CreateDeviceInput,
+  UpdateDeviceInput,
 } from "../../src/API";
 import * as queries from "../../src/graphql/queries";
 import * as mutations from "../../src/graphql/mutations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { InputDevice } from "../../src/types/device";
 import { toast } from "react-toastify";
 import { Device } from "../../src/API";
 
@@ -39,7 +40,7 @@ export const useFetchDevice = (id: string): Device => {
 export const useCreateDevice = (onSuccess: () => void) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    async (input: InputDevice) => {
+    async (input: CreateDeviceInput) => {
       const { data } = (await API.graphql({
         query: mutations.createDevice,
         variables: { input },
@@ -66,10 +67,10 @@ export const useUpdateDevice = (
 ) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    async (input: InputDevice) => {
+    async (input: UpdateDeviceInput) => {
       const { data } = (await API.graphql({
         query: mutations.updateDevice,
-        variables: { input: { id, ...input } },
+        variables: { input },
       })) as GraphQLResult<UpdateDeviceMutation>;
       return data;
     },

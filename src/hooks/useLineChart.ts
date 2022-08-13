@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { DeviceValue } from "../types/deviceValue";
 import dayjs from "dayjs";
+import { Measurement } from "../API";
 
-const useLineChart = (deviceValues: DeviceValue[]) => {
+const useLineChart = (measurements: Measurement[]) => {
   const options = useCallback(
     () => ({
       responsive: true,
@@ -52,10 +52,10 @@ const useLineChart = (deviceValues: DeviceValue[]) => {
 
   const labels = useCallback(
     () =>
-      deviceValues.map((deviceValue) =>
-        dayjs(deviceValue.timestamp).format("MM/DD hh:mm")
+      measurements.map((measurement) =>
+        dayjs(measurement.timestamp * 1000).format("MM/DD hh:mm")
       ),
-    [deviceValues]
+    [measurements]
   );
 
   const data = useCallback(
@@ -64,28 +64,28 @@ const useLineChart = (deviceValues: DeviceValue[]) => {
       datasets: [
         {
           label: "温度",
-          data: deviceValues.map((deviceValue) => deviceValue.temperature),
+          data: measurements.map(({ temperature }) => temperature),
           borderColor: "#075985",
           backgroundColor: "#075985",
           yAxisID: "y",
         },
         {
           label: "湿度",
-          data: deviceValues.map((deviceValue) => deviceValue.humid),
+          data: measurements.map(({ humid }) => humid),
           borderColor: "#FACC15",
           backgroundColor: "#FACC15",
           yAxisID: "y1",
         },
         {
           label: "気圧",
-          data: deviceValues.map((deviceValue) => deviceValue.pressure),
+          data: measurements.map(({ pressure }) => pressure),
           borderColor: "#DB2777",
           backgroundColor: "#DB2777",
           yAxisID: "y2",
         },
       ],
     }),
-    [deviceValues]
+    [measurements]
   );
 
   return {

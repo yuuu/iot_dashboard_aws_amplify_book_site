@@ -14,7 +14,7 @@
     }
   },
   "Resources": {
-    "UpsertDevice": {
+    "UpsertCurrentMeasurement": {
       "Type": "AWS::IoT::TopicRule",
       "Properties": {
         "RuleName": {
@@ -25,12 +25,12 @@
               {
                 "Ref": "env"
               },
-              "device"
+              "current_measurement"
             ]
           ]
         },
         "TopicRulePayload": {
-          "Sql": "SELECT clientid() AS id, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/devices/#'",
+          "Sql": "SELECT clientid() AS deviceID, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/devices/#'",
           "RuleDisabled": false,
           "Actions": [
             {
@@ -40,7 +40,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "Device",
+                        "CurrentMeasurement",
                         {
                           "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
                         },
