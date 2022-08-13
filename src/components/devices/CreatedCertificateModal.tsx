@@ -1,8 +1,9 @@
 import React from "react";
 import ReactModal from "react-modal";
 import CloseModalIcon from "../icons/CloseModalIcon";
-import DangerIcon from "../icons/DangerIcon";
 import { Certificate } from "../../API";
+import InfomationIcon from "../icons/InfomationIcon";
+import fileDownload from "js-file-download";
 
 type Props = {
   show: boolean;
@@ -30,6 +31,14 @@ const DeleteCertificateModal: React.FC<Props> = ({
     },
   };
 
+  if (!certificate) {
+    return <></>;
+  }
+
+  const certificateFile = `certificate-${certificate.id}.pem`;
+  const publicKeyFile = `public-${certificate.id}.key`;
+  const privateKeyFile = `privare-${certificate.id}.key`;
+
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
       <div className="flex justify-end p-2">
@@ -42,9 +51,45 @@ const DeleteCertificateModal: React.FC<Props> = ({
         </button>
       </div>
       <div className="p-6 pt-0 text-center">
+        <InfomationIcon />
         <h3 className="text-xl font-normal text-gray-500 mt-5 mb-6">
           作成した証明書をダウンロードしてください。
         </h3>
+        <ul className="flex flex-col items-start mb-6 space-y-2 text-sky-800 underline cursor-pointer">
+          <li>
+            <a
+              onClick={() =>
+                fileDownload(certificate.certificatePem ?? "", certificateFile)
+              }
+            >
+              {certificateFile}
+            </a>
+          </li>
+          <li>
+            <a
+              onClick={() =>
+                fileDownload(certificate.publicKey ?? "", publicKeyFile)
+              }
+            >
+              {publicKeyFile}
+            </a>
+          </li>
+          <li>
+            <a
+              onClick={() =>
+                fileDownload(certificate.privateKey ?? "", privateKeyFile)
+              }
+            >
+              {privateKeyFile}
+            </a>
+          </li>
+        </ul>
+        <a
+          className="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-sky-600 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center cursor-pointer"
+          onClick={() => onClose()}
+        >
+          閉じる
+        </a>
       </div>
     </ReactModal>
   );

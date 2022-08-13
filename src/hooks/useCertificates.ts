@@ -3,12 +3,15 @@ import { GraphQLResult } from "@aws-amplify/api";
 import {
   CreateCertificateIoTMutation,
   DeleteCertificateIoTMutation,
+  Certificate,
 } from "../API";
 import * as mutations from "../graphql/mutations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-export const useCreateCertificateIoT = (onSuccess: () => void) => {
+export const useCreateCertificateIoT = (
+  onSuccess: (certificate: Certificate) => void
+) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(
     async (deviceID: string) => {
@@ -21,10 +24,11 @@ export const useCreateCertificateIoT = (onSuccess: () => void) => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries(["device"]);
-        toast.success(
-          `${data?.createCertificateIoT?.certificateId}を作成しました`
-        );
-        onSuccess();
+        const certificate = data?.createCertificateIoT as Certificate;
+        if (!certificate) return;
+
+        toast.success("証明書を作成しました");
+        onSuccess(certificate);
       },
       onError: () => {
         toast.error("証明書の作成に失敗しました");
@@ -49,9 +53,7 @@ export const useDeleteCertificateIoT = (
     },
     {
       onSuccess: (data) => {
-        toast.success(
-          `${data?.deleteCertificateIoT?.certificateId}を削除しました`
-        );
+        toast.success("証明書を削除しました");
         queryClient.invalidateQueries(["device"]);
         onSuccess();
       },

@@ -18,7 +18,9 @@ const CertificatesCard: React.FC<Props> = ({ device, certificates }) => {
     useState<Certificate | null>(null);
   const onDestroy = (certificate: Certificate) => setDeleteModal(certificate);
 
-  const createCertificateIoT = useCreateCertificateIoT(() => null);
+  const createCertificateIoT = useCreateCertificateIoT(
+    (certificate: Certificate) => setCreatedCertificate(certificate)
+  );
   const onCreate = () => {
     createCertificateIoT(device.id);
   };
