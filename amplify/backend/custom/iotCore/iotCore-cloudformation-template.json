@@ -30,7 +30,7 @@
           ]
         },
         "TopicRulePayload": {
-          "Sql": "SELECT clientid() AS deviceID, timestamp() AS timestamp, temperature, humid, pressure FROM 'enviiewer/devices/#'",
+          "Sql": "SELECT clientid() AS deviceID, timestamp, temperature, humid, pressure FROM 'enviiewer/devices/#'",
           "RuleDisabled": false,
           "Actions": [
             {
@@ -76,7 +76,7 @@
           ]
         },
         "TopicRulePayload": {
-          "Sql": "SELECT clientid() AS deviceID, timestamp() AS timestamp, ((timestamp() / 1000) + 300) AS ttl, temperature, humid, pressure FROM 'enviiewer/devices/#'",
+          "Sql": "SELECT clientid() AS deviceID, timestamp, temperature, humid, pressure, ((timestamp() / 1000) + 300) AS ttl FROM 'enviiewer/devices/#'",
           "RuleDisabled": false,
           "Actions": [
             {

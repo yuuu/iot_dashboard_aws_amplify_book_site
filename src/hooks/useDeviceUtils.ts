@@ -5,7 +5,7 @@ export const useDeviceUtils = () => ({
   isOnline: (device: Device): boolean => {
     const threshold = dayjs().subtract(5, "m").unix();
     const timestamp = device?.currentMeasurement?.timestamp;
-    return !!timestamp && timestamp >= threshold;
+    return !!timestamp && dayjs(timestamp).unix() >= threshold;
   },
   isComfortableTemperature: (device: Device): boolean => {
     const temperature = device?.currentMeasurement?.temperature;

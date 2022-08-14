@@ -8,12 +8,12 @@ type Props = {
 };
 
 const BarGraphWithValue: React.FC<Props> = ({ value, min, max, unit }) => {
-  const barVal = value ?? 0;
+  const barVal = Math.round(value ?? 0);
 
   return (
     <div className="flex items-center w-full">
       <div className="mr-2 text-xs font-medium w-full md:w-1/3">
-        {value}
+        {value && Math.round(value)}
         {unit}
       </div>
       <div className="relative w-full hidden md:block">

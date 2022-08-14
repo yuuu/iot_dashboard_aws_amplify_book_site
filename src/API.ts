@@ -90,7 +90,7 @@ export type Certificate = {
 export type CurrentMeasurement = {
   __typename: "CurrentMeasurement",
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
   temperature: number,
   humid: number,
   pressure: number,
@@ -160,32 +160,20 @@ export type DeleteCertificateInput = {
 
 export type CreateCurrentMeasurementInput = {
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
   temperature: number,
   humid: number,
   pressure: number,
 };
 
 export type ModelCurrentMeasurementConditionInput = {
-  timestamp?: ModelIntInput | null,
+  timestamp?: ModelStringInput | null,
   temperature?: ModelFloatInput | null,
   humid?: ModelFloatInput | null,
   pressure?: ModelFloatInput | null,
   and?: Array< ModelCurrentMeasurementConditionInput | null > | null,
   or?: Array< ModelCurrentMeasurementConditionInput | null > | null,
   not?: ModelCurrentMeasurementConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
 };
 
 export type ModelFloatInput = {
@@ -202,7 +190,7 @@ export type ModelFloatInput = {
 
 export type UpdateCurrentMeasurementInput = {
   deviceID: string,
-  timestamp?: number | null,
+  timestamp?: string | null,
   temperature?: number | null,
   humid?: number | null,
   pressure?: number | null,
@@ -214,7 +202,7 @@ export type DeleteCurrentMeasurementInput = {
 
 export type CreateMeasurementInput = {
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
   temperature: number,
   humid: number,
   pressure: number,
@@ -232,7 +220,7 @@ export type ModelMeasurementConditionInput = {
 export type Measurement = {
   __typename: "Measurement",
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
   temperature: number,
   humid: number,
   pressure: number,
@@ -240,7 +228,7 @@ export type Measurement = {
 
 export type UpdateMeasurementInput = {
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
   temperature?: number | null,
   humid?: number | null,
   pressure?: number | null,
@@ -248,7 +236,7 @@ export type UpdateMeasurementInput = {
 
 export type DeleteMeasurementInput = {
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
 };
 
 export type ModelDeviceFilterInput = {
@@ -281,7 +269,7 @@ export type ModelCertificateFilterInput = {
 
 export type ModelCurrentMeasurementFilterInput = {
   deviceID?: ModelIDInput | null,
-  timestamp?: ModelIntInput | null,
+  timestamp?: ModelStringInput | null,
   temperature?: ModelFloatInput | null,
   humid?: ModelFloatInput | null,
   pressure?: ModelFloatInput | null,
@@ -302,18 +290,19 @@ export type ModelCurrentMeasurementConnection = {
   nextToken?: string | null,
 };
 
-export type ModelIntKeyConditionInput = {
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
 };
 
 export type ModelMeasurementFilterInput = {
   deviceID?: ModelIDInput | null,
-  timestamp?: ModelIntInput | null,
+  timestamp?: ModelStringInput | null,
   temperature?: ModelFloatInput | null,
   humid?: ModelFloatInput | null,
   pressure?: ModelFloatInput | null,
@@ -358,7 +347,7 @@ export type CreateDeviceMutation = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -398,7 +387,7 @@ export type UpdateDeviceMutation = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -438,7 +427,7 @@ export type DeleteDeviceMutation = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -475,7 +464,7 @@ export type CreateCertificateMutation = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -515,7 +504,7 @@ export type UpdateCertificateMutation = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -555,7 +544,7 @@ export type DeleteCertificateMutation = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -577,7 +566,7 @@ export type CreateCurrentMeasurementMutation = {
   createCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -593,7 +582,7 @@ export type UpdateCurrentMeasurementMutation = {
   updateCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -609,7 +598,7 @@ export type DeleteCurrentMeasurementMutation = {
   deleteCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -625,7 +614,7 @@ export type CreateMeasurementMutation = {
   createMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -641,7 +630,7 @@ export type UpdateMeasurementMutation = {
   updateMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -657,7 +646,7 @@ export type DeleteMeasurementMutation = {
   deleteMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -690,7 +679,7 @@ export type CreateCertificateIoTMutation = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -729,7 +718,7 @@ export type DeleteCertificateIoTMutation = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -771,7 +760,7 @@ export type GetDeviceQuery = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -802,7 +791,7 @@ export type ListDevicesQuery = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -840,7 +829,7 @@ export type GetCertificateQuery = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -894,7 +883,7 @@ export type GetCurrentMeasurementQuery = {
   getCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -915,7 +904,7 @@ export type ListCurrentMeasurementsQuery = {
     items:  Array< {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -926,14 +915,14 @@ export type ListCurrentMeasurementsQuery = {
 
 export type GetMeasurementQueryVariables = {
   deviceID: string,
-  timestamp: number,
+  timestamp: string,
 };
 
 export type GetMeasurementQuery = {
   getMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -942,7 +931,7 @@ export type GetMeasurementQuery = {
 
 export type ListMeasurementsQueryVariables = {
   deviceID?: string | null,
-  timestamp?: ModelIntKeyConditionInput | null,
+  timestamp?: ModelStringKeyConditionInput | null,
   filter?: ModelMeasurementFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
@@ -955,7 +944,7 @@ export type ListMeasurementsQuery = {
     items:  Array< {
       __typename: "Measurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -989,7 +978,7 @@ export type OnCreateDeviceSubscription = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -1024,7 +1013,7 @@ export type OnUpdateDeviceSubscription = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -1059,7 +1048,7 @@ export type OnDeleteDeviceSubscription = {
     currentMeasurement?:  {
       __typename: "CurrentMeasurement",
       deviceID: string,
-      timestamp: number,
+      timestamp: string,
       temperature: number,
       humid: number,
       pressure: number,
@@ -1091,7 +1080,7 @@ export type OnCreateCertificateSubscription = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -1126,7 +1115,7 @@ export type OnUpdateCertificateSubscription = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -1161,7 +1150,7 @@ export type OnDeleteCertificateSubscription = {
       currentMeasurement?:  {
         __typename: "CurrentMeasurement",
         deviceID: string,
-        timestamp: number,
+        timestamp: string,
         temperature: number,
         humid: number,
         pressure: number,
@@ -1178,7 +1167,7 @@ export type OnCreateCurrentMeasurementSubscription = {
   onCreateCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -1189,7 +1178,7 @@ export type OnUpdateCurrentMeasurementSubscription = {
   onUpdateCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -1200,7 +1189,7 @@ export type OnDeleteCurrentMeasurementSubscription = {
   onDeleteCurrentMeasurement?:  {
     __typename: "CurrentMeasurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -1211,7 +1200,7 @@ export type OnCreateMeasurementSubscription = {
   onCreateMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -1222,7 +1211,7 @@ export type OnUpdateMeasurementSubscription = {
   onUpdateMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,
@@ -1233,7 +1222,7 @@ export type OnDeleteMeasurementSubscription = {
   onDeleteMeasurement?:  {
     __typename: "Measurement",
     deviceID: string,
-    timestamp: number,
+    timestamp: string,
     temperature: number,
     humid: number,
     pressure: number,

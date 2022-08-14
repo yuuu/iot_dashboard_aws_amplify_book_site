@@ -161,7 +161,7 @@ export const listCurrentMeasurements = /* GraphQL */ `
   }
 `;
 export const getMeasurement = /* GraphQL */ `
-  query GetMeasurement($deviceID: ID!, $timestamp: Int!) {
+  query GetMeasurement($deviceID: ID!, $timestamp: AWSDateTime!) {
     getMeasurement(deviceID: $deviceID, timestamp: $timestamp) {
       deviceID
       timestamp
@@ -174,7 +174,7 @@ export const getMeasurement = /* GraphQL */ `
 export const listMeasurements = /* GraphQL */ `
   query ListMeasurements(
     $deviceID: ID
-    $timestamp: ModelIntKeyConditionInput
+    $timestamp: ModelStringKeyConditionInput
     $filter: ModelMeasurementFilterInput
     $limit: Int
     $nextToken: String

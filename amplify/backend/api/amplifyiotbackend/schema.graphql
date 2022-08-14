@@ -35,7 +35,7 @@ type CurrentMeasurement
   @auth(rules: [ { allow: private, provider: userPools } ])
 {
   deviceID: ID! @primaryKey
-  timestamp: Long!
+  timestamp: AWSDateTime!
   temperature: Float!
   humid: Float!
   pressure: Float!
@@ -46,7 +46,7 @@ type Measurement
   @auth(rules: [ { allow: private, provider: userPools } ])
 {
   deviceID: ID! @primaryKey(sortKeyFields: ["timestamp"])
-  timestamp: Long!
+  timestamp: AWSDateTime!
   temperature: Float!
   humid: Float!
   pressure: Float!

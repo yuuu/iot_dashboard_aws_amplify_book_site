@@ -9,7 +9,7 @@ export const useFetchMeasurements = (deviceID: string) => {
     [`devices/${deviceID}/measurements`],
     async () => {
       const { data } = (await API.graphql({
-        query: queries.listDevices,
+        query: queries.listMeasurements,
         variables: {
           deviceID,
           sortDirection: "ASC",

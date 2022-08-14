@@ -53,7 +53,7 @@ const useLineChart = (measurements: Measurement[]) => {
   const labels = useCallback(
     () =>
       measurements.map((measurement) =>
-        dayjs(measurement.timestamp * 1000).format("MM/DD hh:mm")
+        dayjs(measurement.timestamp).format("MM/DD hh:mm")
       ),
     [measurements]
   );

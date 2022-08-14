@@ -5,7 +5,7 @@ export type CurrentMeasurement = {
   temperature: number;
   humid: number;
   pressure: number;
-  timestamp: number;
+  timestamp: string;
 };
 
 export type Device = {
@@ -35,7 +35,7 @@ const devices: Device[] = [
       temperature: 30,
       humid: 40,
       pressure: 1000,
-      timestamp: dayjs().unix(),
+      timestamp: dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSz"),
     },
   },
   {
@@ -47,7 +47,7 @@ const devices: Device[] = [
       temperature: 10,
       humid: 89,
       pressure: 950,
-      timestamp: dayjs().unix(),
+      timestamp: dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSz"),
     },
   },
   {
@@ -59,7 +59,7 @@ const devices: Device[] = [
       temperature: 23,
       humid: 67,
       pressure: 1013,
-      timestamp: dayjs().add(10, "m").unix(),
+      timestamp: dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSz"),
     },
   },
   {
@@ -71,7 +71,7 @@ const devices: Device[] = [
       temperature: 19,
       humid: 39,
       pressure: 1003,
-      timestamp: dayjs().add(10, "m").unix(),
+      timestamp: dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSz"),
     },
   },
 ];

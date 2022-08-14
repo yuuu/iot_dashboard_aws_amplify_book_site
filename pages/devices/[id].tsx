@@ -128,7 +128,7 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
                   <div className="flex space-x-4 items-center">
                     <div className="flex space-x-4 items-center">
                       <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        {value}
+                        {value && Math.round(value)}
                       </span>
                       <div className="text-xl font-bold">{unit}</div>
                     </div>
