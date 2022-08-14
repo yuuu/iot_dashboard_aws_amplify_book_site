@@ -1,6 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { CreateDeviceInput, Device, UpdateDeviceInput } from "../../API";
+import {
+  CreateDeviceInput,
+  UpdateDeviceInput,
+  Device,
+} from "../../data/devices";
 
 type Props = {
   device?: Device;

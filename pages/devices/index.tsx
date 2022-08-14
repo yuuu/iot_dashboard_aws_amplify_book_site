@@ -5,7 +5,7 @@ import NewDeviceModal from "../../src/components/devices/NewDeviceModal";
 import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
 import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import DeviceTable from "../../src/components/devices/DeviceTable";
-import { Device } from "../../src/API";
+import { Device } from "../../src/data/devices";
 import { useFetchDevices } from "../../src/hooks/useDevices";
 import NewButton from "../../src/components/devices/NewButton";
 

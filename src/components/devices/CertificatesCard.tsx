@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Certificate, Device } from "../../API";
+import { Device } from "../../data/devices";
+import { Certificate } from "../../data/certificates";
 import { useCreateCertificateIoT } from "../../hooks/useCertificates";
 import Card from "../Card";
 import CreatedCertificateModal from "./CreatedCertificateModal";

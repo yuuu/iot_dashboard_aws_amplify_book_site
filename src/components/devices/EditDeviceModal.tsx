@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import DeviceForm from "./DeviceForm";
 import CloseModalIcon from "../icons/CloseModalIcon";
-import { Device } from "../../API";
+import { Device } from "../../data/devices";
 import { useUpdateDevice } from "../../hooks/useDevices";
 
 type Props = {

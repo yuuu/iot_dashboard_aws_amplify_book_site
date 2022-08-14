@@ -1,4 +1,4 @@
-import { Device } from "../../src/API";
+import { Device } from "../data/devices";
 import dayjs from "dayjs";
 
 export const useDeviceUtils = () => ({

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactLoading from "react-loading";
-import { Device } from "../../API";
+import { Device } from "../../data/devices";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 import Card from "../Card";
 

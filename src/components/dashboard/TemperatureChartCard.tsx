@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../Card";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { Device } from "../../API";
+import { Device } from "../../data/devices";
 import ReactLoading from "react-loading";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 
