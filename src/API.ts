@@ -317,6 +317,11 @@ export type ModelMeasurementConnection = {
   nextToken?: string | null,
 };
 
+export type Endpoint = {
+  __typename: "Endpoint",
+  address: string,
+};
+
 export type CreateDeviceMutationVariables = {
   input: CreateDeviceInput,
   condition?: ModelDeviceConditionInput | null,
@@ -950,6 +955,13 @@ export type ListMeasurementsQuery = {
       pressure: number,
     } | null >,
     nextToken?: string | null,
+  } | null,
+};
+
+export type EndpointIoTQuery = {
+  endpointIoT?:  {
+    __typename: "Endpoint",
+    address: string,
   } | null,
 };
 

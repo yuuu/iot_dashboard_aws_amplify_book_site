@@ -199,3 +199,10 @@ export const listMeasurements = /* GraphQL */ `
     }
   }
 `;
+export const endpointIoT = /* GraphQL */ `
+  query EndpointIoT {
+    endpointIoT {
+      address
+    }
+  }
+`;

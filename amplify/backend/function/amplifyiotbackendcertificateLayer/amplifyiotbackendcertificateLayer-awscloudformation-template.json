@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersion1ff50d24": {
+    "LambdaLayerVersion2de36ece": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -30,9 +30,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/amplifyiotbackendcertificateLayer-LambdaLayerVersion1ff50d24-build.zip"
+          "S3Key": "amplify-builds/amplifyiotbackendcertificateLayer-LambdaLayerVersion2de36ece-build.zip"
         },
-        "Description": "Updated layer version 2022-08-13T10:53:40.093Z",
+        "Description": "Updated layer version 2022-08-14T02:35:23.860Z",
         "LayerName": {
           "Fn::Sub": [
             "amplifyiotbackendcertificateLayer-${env}",
@@ -47,11 +47,11 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivate1ff50d24": {
+    "LambdaLayerPermissionPrivate2de36ece": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:ap-northeast-1:333187377846:layer:amplifyiotbackendcertificateLayer-dev:6",
+        "LayerVersionArn": "arn:aws:lambda:ap-northeast-1:333187377846:layer:amplifyiotbackendcertificateLayer-dev:7",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -61,7 +61,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersion1ff50d24"
+        "Ref": "LambdaLayerVersion2de36ece"
       }
     }
   }

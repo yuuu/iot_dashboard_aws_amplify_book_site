@@ -52,6 +52,17 @@ type Measurement
   pressure: Float!
 }
 
+type Endpoint
+{
+  address: String!
+}
+
+type Query {
+  endpointIoT: Endpoint
+    @function(name: "endpointIoTCore-${env}")
+    @auth(rules: [ { allow: private, provider: userPools } ])
+}
+
 type Mutation
 {
   createCertificateIoT(deviceID: ID!): Certificate

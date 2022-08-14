@@ -55,6 +55,20 @@
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer",
       "build": true
+    },
+    "endpointIoTCore": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "amplifyiotbackendcertificateLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {

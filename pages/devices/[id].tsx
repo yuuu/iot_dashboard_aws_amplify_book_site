@@ -27,6 +27,7 @@ import { useFetchMeasurements } from "../../src/hooks/useMeasurements";
 import CertificatesCard from "../../src/components/devices/CertificatesCard";
 import { useDeviceUtils } from "../../src/hooks/useDeviceUtils";
 import DeviceStatus from "../../src/components/DeviceStatus";
+import { useEndpointIoT } from "../../src/hooks/useEndpointIoT";
 
 ChartJS.register(
   CategoryScale,
@@ -44,6 +45,7 @@ type Props = {
 
 const DeviceShow: NextPage<Props> = ({ id }) => {
   const device = useFetchDevice(id);
+  const endpoint = useEndpointIoT();
   const measurements = useFetchMeasurements(id);
   const [editModal, setEditModal] = useState<Device | null>(null);
   const [deleteModal, setDeleteModal] = useState<Device | null>(null);
@@ -156,9 +158,15 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
             <div className="mt-4 w-full grid gap-4">
               <Card className="sm:p-6 xl:p-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  エンドポイント
+                </h3>
+                <div className="flex items-center space-x-2 sm:space-x-3 ml-auto mb-8">
+                  <span>{endpoint?.address}</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
                   トピック
                 </h3>
-                <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
+                <div className="flex items-center space-x-2 sm:space-x-3 ml-auto mb-8">
                   <span>enviiewer/devices/{id}</span>
                 </div>
               </Card>
