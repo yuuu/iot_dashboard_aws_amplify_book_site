@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { Device } from "../data/devices";
 import { API } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api";
 import { useQuery } from "@tanstack/react-query";
@@ -14,7 +15,6 @@ import {
 import * as queries from "../../src/graphql/queries";
 import * as mutations from "../../src/graphql/mutations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Device } from "../../src/API";
 
 export const useFetchDevices = (): Device[] => {
   const { data: devices } = useQuery(["devices"], async () => {
