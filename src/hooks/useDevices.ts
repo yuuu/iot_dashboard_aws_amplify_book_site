@@ -22,10 +22,7 @@ export const useCreateDevice = (onSuccess: () => void) => {
   };
 };
 
-export const useUpdateDevice = (
-  id: string | undefined,
-  onSuccess: () => void
-) => {
+export const useUpdateDevice = (onSuccess: () => void) => {
   return (input: UpdateDeviceInput) => {
     console.log(input);
     toast.success(`${input.name}を更新しました`);

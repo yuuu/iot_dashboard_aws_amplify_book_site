@@ -36,3 +36,4 @@ yarn-error.log*
 
 aws-exports.js
 amplify_backup
+amplify/team-provider-info.json
