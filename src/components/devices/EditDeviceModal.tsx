@@ -26,7 +26,7 @@ const EditDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
       zIndex: 50,
     },
   };
-  const updateDevice = useUpdateDevice(device?.id, onClose);
+  const updateDevice = useUpdateDevice(onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>
