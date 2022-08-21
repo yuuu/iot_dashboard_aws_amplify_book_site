@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import dayjs from "dayjs";
-import { Measurement } from "../data/measurements";
+import Measurement from "../types/measurement";
 
 const useLineChart = (measurements: Measurement[]) => {
   const options = useCallback(

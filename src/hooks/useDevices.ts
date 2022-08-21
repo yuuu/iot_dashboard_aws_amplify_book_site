@@ -1,9 +1,8 @@
 import { toast } from "react-toastify";
-import devices, {
-  CreateDeviceInput,
-  UpdateDeviceInput,
-  Device,
-} from "../data/devices";
+import devices from "../data/devices";
+import Device from "../types/device";
+import CreateDeviceInput from "../types/createDeviceInput";
+import UpdateDeviceInput from "../types/updateDeviceInput";
 
 export const useFetchDevices = (): Device[] => {
   return devices as Device[];

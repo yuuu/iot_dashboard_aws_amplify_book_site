@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import CloseModalIcon from "../icons/CloseModalIcon";
 import DangerIcon from "../icons/DangerIcon";
-import { Device } from "../../data/devices";
+import Device from "../../types/device";
 import { useDeleteDevice } from "../../hooks/useDevices";
 
 type Props = {

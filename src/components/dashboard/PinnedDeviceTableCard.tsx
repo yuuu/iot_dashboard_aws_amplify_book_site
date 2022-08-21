@@ -3,7 +3,7 @@ import BarGraphWithValue from "../BarGraphWithValue";
 import Card from "../Card";
 import DeviceStatus from "../DeviceStatus";
 import Link from "next/link";
-import { Device } from "../../data/devices";
+import Device from "../../types/device";
 import ReactLoading from "react-loading";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 
