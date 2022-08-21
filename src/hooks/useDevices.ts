@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { Device } from "../data/devices";
+import Device from "../types/device";
 import { API } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api";
 import { useQuery } from "@tanstack/react-query";

@@ -1,32 +1,5 @@
 import dayjs from "dayjs";
-import { Certificate } from "./certificates";
-
-export type CurrentMeasurement = {
-  deviceID: string;
-  temperature: number;
-  humid: number;
-  pressure: number;
-  timestamp: string;
-};
-
-export type Device = {
-  id: string;
-  name: string;
-  pinned: "pinned" | "notPinned";
-  currentMeasurement?: CurrentMeasurement;
-  certificates?: { items: Certificate[] };
-};
-
-export type CreateDeviceInput = {
-  name: string;
-  pinned: "pinned" | "notPinned";
-};
-
-export type UpdateDeviceInput = {
-  id: string;
-  name: string;
-  pinned: "pinned" | "notPinned";
-};
+import Device from "../types/device";
 
 const devices: Device[] = [
   {

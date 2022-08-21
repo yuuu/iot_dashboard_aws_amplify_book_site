@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
-import certificates, { Certificate } from "../data/certificates";
+import certificates from "../data/certificates";
+import Certificate from "../types/certificate";
 
 export const useCreateCertificateIoT = (
   onSuccess: (certificate: Certificate) => void

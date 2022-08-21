@@ -1,8 +1,6 @@
-export type Endpoint = {
-  address: string;
-};
+import Endpoint from "../types/endpoint";
 
-const endpoint = {
+const endpoint: Endpoint = {
   address: "",
 };
 

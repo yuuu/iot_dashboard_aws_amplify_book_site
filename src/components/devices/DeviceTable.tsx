@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Device } from "../../data/devices";
+import Device from "../../types/device";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 import BarGraphWithValue from "../BarGraphWithValue";
 import DeviceStatus from "../DeviceStatus";

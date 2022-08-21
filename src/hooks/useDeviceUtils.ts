@@ -1,5 +1,5 @@
-import { Device } from "../data/devices";
 import dayjs from "dayjs";
+import Device from "../types/device";
 
 export const useDeviceUtils = () => ({
   isOnline: (device: Device): boolean => {

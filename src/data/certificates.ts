@@ -1,12 +1,4 @@
-export type Certificate = {
-  id: string;
-  certificateArn: string;
-  certificateId: string;
-  certificatePem: string;
-  publicKey: string;
-  privateKey: string;
-  deviceID: string;
-};
+import Certificate from "../types/certificate";
 
 const certificates: Certificate[] = [
   {

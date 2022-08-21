@@ -1,14 +1,6 @@
 import dayjs from "dayjs";
 import { faker } from "@faker-js/faker";
-
-export type Measurement = {
-  id: string;
-  deviceID: string;
-  temperature: number;
-  humid: number;
-  pressure: number;
-  timestamp: string;
-};
+import Measurement from "../types/measurement";
 
 const timestamps = [...Array(5).keys()]
   .map((n) => dayjs().subtract(n, "minute").format("YYYY-MM-DDTHH:mm:ss.SSSz"))

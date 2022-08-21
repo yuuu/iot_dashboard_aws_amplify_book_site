@@ -3,7 +3,7 @@ import Card from "../Card";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import ReactLoading from "react-loading";
-import { Device } from "../../data/devices";
+import Device from "../../types/device";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
