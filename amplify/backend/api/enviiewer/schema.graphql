@@ -9,3 +9,14 @@ type Device
   name: String!
   pinned: String!
 }
+
+type Endpoint
+{
+  address: String!
+}
+
+type Query {
+  endpointIoT: Endpoint
+    @function(name: "endpointIoTCore-${env}")
+    @auth(rules: [ { allow: private, provider: userPools } ])
+}

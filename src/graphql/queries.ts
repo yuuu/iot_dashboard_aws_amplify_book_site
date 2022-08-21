@@ -31,3 +31,10 @@ export const listDevices = /* GraphQL */ `
     }
   }
 `;
+export const endpointIoT = /* GraphQL */ `
+  query EndpointIoT {
+    endpointIoT {
+      address
+    }
+  }
+`;

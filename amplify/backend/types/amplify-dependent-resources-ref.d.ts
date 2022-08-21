@@ -16,4 +16,15 @@ export type AmplifyDependentResourcesAttributes = {
       GraphQLAPIEndpointOutput: "string";
     };
   };
+  function: {
+    enviiewerenviiewerLayer: {
+      Arn: "string";
+    };
+    endpointIoTCore: {
+      Name: "string";
+      Arn: "string";
+      Region: "string";
+      LambdaExecutionRole: "string";
+    };
+  };
 };
