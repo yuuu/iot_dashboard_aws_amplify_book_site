@@ -13,7 +13,7 @@ export type Device = {
   id: string;
   name: string;
   pinned: "pinned" | "notPinned";
-  currentMeasurement: CurrentMeasurement;
+  currentMeasurement?: CurrentMeasurement;
   certificates?: { items: Certificate[] };
 };
 
