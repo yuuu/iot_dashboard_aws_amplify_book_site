@@ -26,5 +26,17 @@ export type AmplifyDependentResourcesAttributes = {
       Region: "string";
       LambdaExecutionRole: "string";
     };
+    createCertificateIoTCore: {
+      Name: "string";
+      Arn: "string";
+      Region: "string";
+      LambdaExecutionRole: "string";
+    };
+    deleteCertificateIoTCore: {
+      Name: "string";
+      Arn: "string";
+      Region: "string";
+      LambdaExecutionRole: "string";
+    };
   };
 };

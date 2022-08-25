@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "api": {
+      "enviiewer": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "enviiewerenviiewerLayer",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ]
+}

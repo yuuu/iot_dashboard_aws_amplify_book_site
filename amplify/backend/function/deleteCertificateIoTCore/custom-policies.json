@@ -1,0 +1,11 @@
+[
+  {
+    "Action": [
+      "iot:DeleteCertificate",
+      "iot:UpdateCertificate",
+      "iot:DetachPolicy",
+      "iot:DeletePolicy"
+    ],
+    "Resource": ["*"]
+  }
+]
