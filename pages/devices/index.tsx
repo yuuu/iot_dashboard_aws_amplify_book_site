@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import NewDeviceModal from "../../src/components/devices/NewDeviceModal";
 import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
-import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import DeviceTable from "../../src/components/devices/DeviceTable";
 import Device from "../../src/types/device";
 import { useFetchDevices } from "../../src/hooks/useDevices";
@@ -14,7 +13,6 @@ const DeviceIndex: NextPage = () => {
 
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState<Device | null>(null);
-  const [deleteModal, setDeleteModal] = useState<Device | null>(null);
   const [filteredDevices, setFilteredDevices] = useState<
     Device[] | undefined
   >();
@@ -22,7 +20,6 @@ const DeviceIndex: NextPage = () => {
   useEffect(() => setFilteredDevices(devices), [devices]);
 
   const onEdit = (device: Device) => setEditModal(device);
-  const onDestroy = (device: Device) => setDeleteModal(device);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilteredDevices(
       devices?.filter((device) => device.name.match(e.target.value))
@@ -67,11 +64,7 @@ const DeviceIndex: NextPage = () => {
         <div className="overflow-x-auto">
           <div className="align-middle inline-block min-w-full">
             <div className="shadow overflow-hidden">
-              <DeviceTable
-                devices={filteredDevices}
-                onEdit={onEdit}
-                onDestroy={onDestroy}
-              />
+              <DeviceTable devices={filteredDevices} onEdit={onEdit} />
             </div>
           </div>
         </div>
@@ -83,11 +76,6 @@ const DeviceIndex: NextPage = () => {
         onClose={() => setEditModal(null)}
       />
       <NewDeviceModal show={newModal} onClose={() => setNewModal(false)} />
-      <DeleteDeviceModal
-        show={!!deleteModal}
-        device={deleteModal}
-        onClose={() => setDeleteModal(null)}
-      />
     </>
   );
 };
