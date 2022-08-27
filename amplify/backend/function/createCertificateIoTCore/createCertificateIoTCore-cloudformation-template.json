@@ -16,17 +16,17 @@
     "s3Key": {
       "Type": "String"
     },
-    "apiamplifyiotbackendGraphQLAPIIdOutput": {
+    "apienviiewerGraphQLAPIIdOutput": {
       "Type": "String",
-      "Default": "apiamplifyiotbackendGraphQLAPIIdOutput"
+      "Default": "apienviiewerGraphQLAPIIdOutput"
     },
-    "apiamplifyiotbackendGraphQLAPIEndpointOutput": {
+    "apienviiewerGraphQLAPIEndpointOutput": {
       "Type": "String",
-      "Default": "apiamplifyiotbackendGraphQLAPIEndpointOutput"
+      "Default": "apienviiewerGraphQLAPIEndpointOutput"
     },
-    "functionamplifyiotbackendcertificateLayerArn": {
+    "functionenviiewerenviiewerLayerArn": {
       "Type": "String",
-      "Default": "functionamplifyiotbackendcertificateLayerArn"
+      "Default": "functionenviiewerenviiewerLayerArn"
     }
   },
   "Conditions": {
@@ -82,11 +82,11 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "API_AMPLIFYIOTBACKEND_GRAPHQLAPIIDOUTPUT": {
-              "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+            "API_ENVIIEWER_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apienviiewerGraphQLAPIIdOutput"
             },
-            "API_AMPLIFYIOTBACKEND_GRAPHQLAPIENDPOINTOUTPUT": {
-              "Ref": "apiamplifyiotbackendGraphQLAPIEndpointOutput"
+            "API_ENVIIEWER_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apienviiewerGraphQLAPIEndpointOutput"
             }
           }
         },
@@ -99,7 +99,7 @@
         "Runtime": "nodejs14.x",
         "Layers": [
           {
-            "Ref": "functionamplifyiotbackendcertificateLayerArn"
+            "Ref": "functionenviiewerenviiewerLayerArn"
           }
         ],
         "Timeout": 25
@@ -111,12 +111,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "amplifyiotbackendLambdaRole1d2e7929",
+            "enviiewerLambdaRole8a23d4df",
             {
               "Fn::Join": [
                 "",
                 [
-                  "amplifyiotbackendLambdaRole1d2e7929",
+                  "enviiewerLambdaRole8a23d4df",
                   "-",
                   {
                     "Ref": "env"
@@ -187,34 +187,6 @@
         }
       }
     },
-    "CustomLambdaExecutionPolicy": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "custom-lambda-execution-policy",
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": [
-                "iot:CreateKeysAndCertificate",
-                "iot:CreatePolicy",
-                "iot:AttachPolicy"
-              ],
-              "Resource": [
-                "*"
-              ],
-              "Effect": "Allow"
-            }
-          ]
-        },
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ]
-      },
-      "DependsOn": "LambdaExecutionRole"
-    },
     "AmplifyResourcesPolicy": {
       "DependsOn": [
         "LambdaExecutionRole"
@@ -250,7 +222,7 @@
                       },
                       ":apis/",
                       {
-                        "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+                        "Ref": "apienviiewerGraphQLAPIIdOutput"
                       },
                       "/types/Mutation/*"
                     ]
@@ -261,6 +233,34 @@
           ]
         }
       }
+    },
+    "CustomLambdaExecutionPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "custom-lambda-execution-policy",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "iot:CreateKeysAndCertificate",
+                "iot:CreatePolicy",
+                "iot:AttachPolicy"
+              ],
+              "Resource": [
+                "*"
+              ],
+              "Effect": "Allow"
+            }
+          ]
+        },
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ]
+      },
+      "DependsOn": "LambdaExecutionRole"
     }
   },
   "Outputs": {

@@ -1,8 +1,8 @@
 import "../styles/globals.css";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-import "@aws-amplify/ui-react/styles.css";
 import "react-toastify/dist/ReactToastify.css";
+
 import Head from "next/head";
 import { useState } from "react";
 import type { AppProps } from "next/app";
@@ -10,15 +10,18 @@ import Navbar from "../src/components/layouts/Navbar";
 import Sidebar from "../src/components/layouts/Sidebar";
 import CopyRight from "../src/components/layouts/CopyRight";
 import Footer from "../src/components/layouts/Footer";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
+
+import "@aws-amplify/ui-react/styles.css";
+import awsconfig from "../src/aws-exports";
 import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import awsconfig from "../src/aws-exports";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ReactLoading from "react-loading";
-import { ToastContainer } from "react-toastify";
 
 Amplify.configure(awsconfig);
+
 const queryClient = new QueryClient();
 
 const App = (props: AppProps) => {

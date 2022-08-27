@@ -62,67 +62,6 @@ export const listDevices = /* GraphQL */ `
     }
   }
 `;
-export const getCertificate = /* GraphQL */ `
-  query GetCertificate($id: ID!) {
-    getCertificate(id: $id) {
-      id
-      deviceID
-      certificateId
-      certificateArn
-      certificatePem
-      privateKey
-      publicKey
-      device {
-        id
-        name
-        pinned
-        certificates {
-          nextToken
-        }
-        currentMeasurement {
-          deviceID
-          timestamp
-          temperature
-          humid
-          pressure
-        }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listCertificates = /* GraphQL */ `
-  query ListCertificates(
-    $filter: ModelCertificateFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCertificates(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        deviceID
-        certificateId
-        certificateArn
-        certificatePem
-        privateKey
-        publicKey
-        device {
-          id
-          name
-          pinned
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getCurrentMeasurement = /* GraphQL */ `
   query GetCurrentMeasurement($deviceID: ID!) {
     getCurrentMeasurement(deviceID: $deviceID) {
@@ -194,6 +133,67 @@ export const listMeasurements = /* GraphQL */ `
         temperature
         humid
         pressure
+      }
+      nextToken
+    }
+  }
+`;
+export const getCertificate = /* GraphQL */ `
+  query GetCertificate($id: ID!) {
+    getCertificate(id: $id) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      device {
+        id
+        name
+        pinned
+        certificates {
+          nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listCertificates = /* GraphQL */ `
+  query ListCertificates(
+    $filter: ModelCertificateFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCertificates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        deviceID
+        certificateId
+        certificateArn
+        certificatePem
+        privateKey
+        publicKey
+        device {
+          id
+          name
+          pinned
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
       }
       nextToken
     }

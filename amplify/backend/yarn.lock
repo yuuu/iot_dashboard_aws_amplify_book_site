@@ -16,7 +16,7 @@
     ora "^4.0.3"
     uuid "^8.3.2"
 
-"@aws-amplify/cli-extensibility-helper@^2.3.0":
+"@aws-amplify/cli-extensibility-helper@^2.0.0":
   version "2.3.33"
   resolved "https://registry.yarnpkg.com/@aws-amplify/cli-extensibility-helper/-/cli-extensibility-helper-2.3.33.tgz#a4dc09eb434be908789a052e1572b3367490709f"
   integrity sha512-dK/1/Q9wbdsOP5et49w+HTjuONMtTUnIZyijqCMH0zxWzfFi0mJ9afVd1BI8unQDcS8cjzARZMhDr/3uX5/ptw==
@@ -34,11 +34,11 @@
     amplify-cli-core "2.12.0"
 
 "@aws-amplify/graphql-transformer-core@^0.17.9":
-  version "0.17.9"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/graphql-transformer-core/-/graphql-transformer-core-0.17.9.tgz#92a1c56bddb0aa3bf0a7d3299b1d10bd18322b1c"
-  integrity sha512-c1ssCQg5tBk2/lisSdZy+Z7+PBJ1BLzZj7wAsdE93GgTQkLteDhlvVbBGHLCZ/v1vRnDgm00ytfr57aP9uZ1KA==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/graphql-transformer-core/-/graphql-transformer-core-0.17.11.tgz#70243c53647382359852a7de8dba22133e5cb2f4"
+  integrity sha512-ErjsrZ9ZhZeLfFS9bqAQBxpIwF/p85KBc3iVvlEWj9WedEZrWWO0aQHSZuYjJ5ENl5yUCz0roamXeqdt6K3qsg==
   dependencies:
-    "@aws-amplify/graphql-transformer-interfaces" "1.14.6"
+    "@aws-amplify/graphql-transformer-interfaces" "1.14.7"
     "@aws-cdk/aws-applicationautoscaling" "~1.124.0"
     "@aws-cdk/aws-appsync" "~1.124.0"
     "@aws-cdk/aws-certificatemanager" "~1.124.0"
@@ -73,10 +73,10 @@
     ts-dedent "^2.0.0"
     vm2 "^3.9.8"
 
-"@aws-amplify/graphql-transformer-interfaces@1.14.6", "@aws-amplify/graphql-transformer-interfaces@^1.14.6":
-  version "1.14.6"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/graphql-transformer-interfaces/-/graphql-transformer-interfaces-1.14.6.tgz#1721feb585b20db4b4ac8e8c27bb219bbeee9f35"
-  integrity sha512-OVWB81IxjpC9E1TLSirOEeHM/33gaJjOnswlL5cBH32L9ShxeDJeMVd7D3egYdd1nt48HGmHyQyVqYxx3xhACg==
+"@aws-amplify/graphql-transformer-interfaces@1.14.7", "@aws-amplify/graphql-transformer-interfaces@^1.14.6":
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/graphql-transformer-interfaces/-/graphql-transformer-interfaces-1.14.7.tgz#20dbe66f30378433087afe83ec684f096f300bc2"
+  integrity sha512-UCpkRoYbt+GeZVnLSpasH96QZ0AOiZ59eXJWatMoRANMFbREytCP4xN/AyBV3MLEuWidAFpOXVB9e9TfLST5rQ==
   dependencies:
     "@aws-cdk/aws-appsync" "~1.124.0"
     "@aws-cdk/aws-cloudwatch" "~1.124.0"
@@ -673,9 +673,9 @@
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
 "@types/node@^16.9.2":
-  version "16.11.47"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.47.tgz#efa9e3e0f72e7aa6a138055dace7437a83d9f91c"
-  integrity sha512-fpP+jk2zJ4VW66+wAMFoBJlx1bxmBKx4DUFf68UHgdGCOuyUTDlLWqsaNPJh7xhNDykyJ9eIzAygilP/4WoN8g==
+  version "16.11.56"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.56.tgz#dcbb617669481e158e0f1c6204d1c768cd675901"
+  integrity sha512-aFcUkv7EddxxOa/9f74DINReQ/celqH8DiB3fRYgVDM2Xm5QJL8sl80QKuAnGvwAsMn+H3IFA6WCrQh1CY7m1A==
 
 acorn-walk@^8.1.1, acorn-walk@^8.2.0:
   version "8.2.0"
@@ -973,9 +973,9 @@ concat-map@0.0.1:
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
 constructs@^3.3.125, constructs@^3.3.69:
-  version "3.4.62"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.62.tgz#82b7c94530409277088536f5902a10824cb00518"
-  integrity sha512-giliscl9Xuz3eAr575eFUAJ+wtCH27UZvsNL6B0/CuY0bHs3U44oUHw4Smdtd9i71YL3HGumP2qtElINJvmMZw==
+  version "3.4.79"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.79.tgz#a906b7339836be068979801e6162e37eee9ca45e"
+  integrity sha512-j2LmKMooc4Vbd68h5stHvTFboMjfGZZgebq8ha6d8Ux7pPe92wADeOPZOMTi3vmKg8F4F//vdu+7v2VYs8lzdw==
 
 core-util-is@~1.0.0:
   version "1.0.3"

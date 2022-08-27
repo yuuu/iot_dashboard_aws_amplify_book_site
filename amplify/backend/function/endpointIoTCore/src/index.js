@@ -1,6 +1,6 @@
 /* Amplify Params - DO NOT EDIT
-	ENV
-	REGION
+        ENV
+        REGION
 Amplify Params - DO NOT EDIT */
 
 const { IoTClient, DescribeEndpointCommand } = require("@aws-sdk/client-iot");

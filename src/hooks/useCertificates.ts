@@ -1,13 +1,13 @@
+import { toast } from "react-toastify";
+import Certificate from "../types/certificate";
 import { API } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api";
 import {
   CreateCertificateIoTMutation,
   DeleteCertificateIoTMutation,
-  Certificate,
 } from "../API";
 import * as mutations from "../graphql/mutations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 
 export const useCreateCertificateIoT = (
   onSuccess: (certificate: Certificate) => void
@@ -15,10 +15,12 @@ export const useCreateCertificateIoT = (
   const queryClient = useQueryClient();
   const mutation = useMutation(
     async (deviceID: string) => {
+      console.log(deviceID);
       const { data } = (await API.graphql({
         query: mutations.createCertificateIoT,
         variables: { deviceID },
       })) as GraphQLResult<CreateCertificateIoTMutation>;
+      console.log(data);
       return data;
     },
     {

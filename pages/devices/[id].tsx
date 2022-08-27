@@ -21,7 +21,7 @@ import EditDeviceModal from "../../src/components/devices/EditDeviceModal";
 import DeleteDeviceModal from "../../src/components/devices/DeleteDeviceModal";
 import EditButton from "../../src/components/devices/EditButton";
 import DeleteButton from "../../src/components/devices/DeleteButton";
-import { Device } from "../../src/API";
+import Device from "../../src/types/device";
 import { useRouter } from "next/router";
 import { useFetchMeasurements } from "../../src/hooks/useMeasurements";
 import CertificatesCard from "../../src/components/devices/CertificatesCard";

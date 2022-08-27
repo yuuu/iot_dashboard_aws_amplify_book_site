@@ -98,6 +98,72 @@ export const onDeleteDevice = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCurrentMeasurement = /* GraphQL */ `
+  subscription OnCreateCurrentMeasurement {
+    onCreateCurrentMeasurement {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const onUpdateCurrentMeasurement = /* GraphQL */ `
+  subscription OnUpdateCurrentMeasurement {
+    onUpdateCurrentMeasurement {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const onDeleteCurrentMeasurement = /* GraphQL */ `
+  subscription OnDeleteCurrentMeasurement {
+    onDeleteCurrentMeasurement {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const onCreateMeasurement = /* GraphQL */ `
+  subscription OnCreateMeasurement {
+    onCreateMeasurement {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const onUpdateMeasurement = /* GraphQL */ `
+  subscription OnUpdateMeasurement {
+    onUpdateMeasurement {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const onDeleteMeasurement = /* GraphQL */ `
+  subscription OnDeleteMeasurement {
+    onDeleteMeasurement {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
 export const onCreateCertificate = /* GraphQL */ `
   subscription OnCreateCertificate {
     onCreateCertificate {
@@ -191,72 +257,6 @@ export const onDeleteCertificate = /* GraphQL */ `
       }
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreateCurrentMeasurement = /* GraphQL */ `
-  subscription OnCreateCurrentMeasurement {
-    onCreateCurrentMeasurement {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const onUpdateCurrentMeasurement = /* GraphQL */ `
-  subscription OnUpdateCurrentMeasurement {
-    onUpdateCurrentMeasurement {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const onDeleteCurrentMeasurement = /* GraphQL */ `
-  subscription OnDeleteCurrentMeasurement {
-    onDeleteCurrentMeasurement {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const onCreateMeasurement = /* GraphQL */ `
-  subscription OnCreateMeasurement {
-    onCreateMeasurement {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const onUpdateMeasurement = /* GraphQL */ `
-  subscription OnUpdateMeasurement {
-    onUpdateMeasurement {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const onDeleteMeasurement = /* GraphQL */ `
-  subscription OnDeleteMeasurement {
-    onDeleteMeasurement {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
     }
   }
 `;

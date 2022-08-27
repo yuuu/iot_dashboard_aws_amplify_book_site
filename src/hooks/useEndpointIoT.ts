@@ -1,7 +1,8 @@
+import Endpoint from "../types/endpoint";
 import { API } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api";
 import { useQuery } from "@tanstack/react-query";
-import { EndpointIoTQuery, Endpoint } from "../API";
+import { EndpointIoTQuery } from "../API";
 import * as queries from "../../src/graphql/queries";
 
 export const useEndpointIoT = (): Endpoint => {
@@ -9,7 +10,6 @@ export const useEndpointIoT = (): Endpoint => {
     const { data } = (await API.graphql({
       query: queries.endpointIoT,
     })) as GraphQLResult<EndpointIoTQuery>;
-    console.log(data);
     return data?.endpointIoT;
   });
   return endpoint as Endpoint;

@@ -1,6 +1,5 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 type Device
   @model
@@ -11,23 +10,6 @@ type Device
   pinned: String!
   certificates: [Certificate] @hasMany(indexName: "byDevice", fields: ["id"])
   currentMeasurement: CurrentMeasurement @hasOne(fields: ["id"])
-}
-
-type Certificate
-  @model
-  @auth(rules: [
-    { allow: private, provider: userPools }
-    { allow: private, provider: iam ,operations:[create, delete] } 
-  ])
-{
-  id: ID!
-  deviceID: ID! @index(name: "byDevice", sortKeyFields: ["certificateId"])
-  certificateId: String!
-  certificateArn: String!
-  certificatePem: String
-  privateKey: String
-  publicKey: String
-  device: Device! @belongsTo(fields: ["deviceID"])
 }
 
 type CurrentMeasurement
@@ -50,6 +32,23 @@ type Measurement
   temperature: Float!
   humid: Float!
   pressure: Float!
+}
+
+type Certificate
+  @model
+  @auth(rules: [
+    { allow: private, provider: userPools }
+    { allow: private, provider: iam ,operations:[create, delete] }
+  ])
+{
+  id: ID!
+  deviceID: ID! @index(name: "byDevice", sortKeyFields: ["certificateId"])
+  certificateId: String!
+  certificateArn: String!
+  certificatePem: String
+  privateKey: String
+  publicKey: String
+  device: Device! @belongsTo(fields: ["deviceID"])
 }
 
 type Endpoint

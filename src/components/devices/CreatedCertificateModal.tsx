@@ -1,7 +1,7 @@
 import React from "react";
 import ReactModal from "react-modal";
 import CloseModalIcon from "../icons/CloseModalIcon";
-import { Certificate } from "../../API";
+import Certificate from "../../types/certificate";
 import InfomationIcon from "../icons/InfomationIcon";
 import fileDownload from "js-file-download";
 

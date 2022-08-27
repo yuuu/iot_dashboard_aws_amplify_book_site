@@ -1,19 +1,19 @@
 {
-  "lambdaLayers": [
-    {
-      "type": "ProjectLayer",
-      "resourceName": "amplifyiotbackendcertificateLayer",
-      "env": "dev",
-      "version": "Always choose latest version",
-      "isLatestVersionSelected": true
-    }
-  ],
   "permissions": {
     "api": {
-      "amplifyiotbackend": [
+      "enviiewer": [
         "Query",
         "Mutation"
       ]
     }
-  }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "enviiewerenviiewerLayer",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ]
 }

@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+import Device from "../types/device";
 import { API } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api";
 import { useQuery } from "@tanstack/react-query";
@@ -13,8 +15,6 @@ import {
 import * as queries from "../../src/graphql/queries";
 import * as mutations from "../../src/graphql/mutations";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import { Device } from "../../src/API";
 
 export const useFetchDevices = (): Device[] => {
   const { data: devices } = useQuery(["devices"], async () => {
@@ -61,10 +61,7 @@ export const useCreateDevice = (onSuccess: () => void) => {
   return mutation.mutate;
 };
 
-export const useUpdateDevice = (
-  id: string | undefined,
-  onSuccess: () => void
-) => {
+export const useUpdateDevice = (onSuccess: () => void) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(
     async (input: UpdateDeviceInput) => {
@@ -96,14 +93,6 @@ export const useDeleteDevice = (
   const queryClient = useQueryClient();
   const mutation = useMutation(
     async () => {
-      await Promise.all(
-        device?.certificates?.items?.map((certificate) =>
-          API.graphql({
-            query: mutations.deleteCertificateIoT,
-            variables: { input: { id: certificate?.id } },
-          })
-        ) ?? []
-      );
       const { data } = (await API.graphql({
         query: mutations.deleteDevice,
         variables: { input: { id: device?.id } },

@@ -107,6 +107,90 @@ export const deleteDevice = /* GraphQL */ `
     }
   }
 `;
+export const createCurrentMeasurement = /* GraphQL */ `
+  mutation CreateCurrentMeasurement(
+    $input: CreateCurrentMeasurementInput!
+    $condition: ModelCurrentMeasurementConditionInput
+  ) {
+    createCurrentMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const updateCurrentMeasurement = /* GraphQL */ `
+  mutation UpdateCurrentMeasurement(
+    $input: UpdateCurrentMeasurementInput!
+    $condition: ModelCurrentMeasurementConditionInput
+  ) {
+    updateCurrentMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const deleteCurrentMeasurement = /* GraphQL */ `
+  mutation DeleteCurrentMeasurement(
+    $input: DeleteCurrentMeasurementInput!
+    $condition: ModelCurrentMeasurementConditionInput
+  ) {
+    deleteCurrentMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const createMeasurement = /* GraphQL */ `
+  mutation CreateMeasurement(
+    $input: CreateMeasurementInput!
+    $condition: ModelMeasurementConditionInput
+  ) {
+    createMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const updateMeasurement = /* GraphQL */ `
+  mutation UpdateMeasurement(
+    $input: UpdateMeasurementInput!
+    $condition: ModelMeasurementConditionInput
+  ) {
+    updateMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const deleteMeasurement = /* GraphQL */ `
+  mutation DeleteMeasurement(
+    $input: DeleteMeasurementInput!
+    $condition: ModelMeasurementConditionInput
+  ) {
+    deleteMeasurement(input: $input, condition: $condition) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
 export const createCertificate = /* GraphQL */ `
   mutation CreateCertificate(
     $input: CreateCertificateInput!
@@ -209,90 +293,6 @@ export const deleteCertificate = /* GraphQL */ `
       }
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createCurrentMeasurement = /* GraphQL */ `
-  mutation CreateCurrentMeasurement(
-    $input: CreateCurrentMeasurementInput!
-    $condition: ModelCurrentMeasurementConditionInput
-  ) {
-    createCurrentMeasurement(input: $input, condition: $condition) {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const updateCurrentMeasurement = /* GraphQL */ `
-  mutation UpdateCurrentMeasurement(
-    $input: UpdateCurrentMeasurementInput!
-    $condition: ModelCurrentMeasurementConditionInput
-  ) {
-    updateCurrentMeasurement(input: $input, condition: $condition) {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const deleteCurrentMeasurement = /* GraphQL */ `
-  mutation DeleteCurrentMeasurement(
-    $input: DeleteCurrentMeasurementInput!
-    $condition: ModelCurrentMeasurementConditionInput
-  ) {
-    deleteCurrentMeasurement(input: $input, condition: $condition) {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const createMeasurement = /* GraphQL */ `
-  mutation CreateMeasurement(
-    $input: CreateMeasurementInput!
-    $condition: ModelMeasurementConditionInput
-  ) {
-    createMeasurement(input: $input, condition: $condition) {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const updateMeasurement = /* GraphQL */ `
-  mutation UpdateMeasurement(
-    $input: UpdateMeasurementInput!
-    $condition: ModelMeasurementConditionInput
-  ) {
-    updateMeasurement(input: $input, condition: $condition) {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
-    }
-  }
-`;
-export const deleteMeasurement = /* GraphQL */ `
-  mutation DeleteMeasurement(
-    $input: DeleteMeasurementInput!
-    $condition: ModelMeasurementConditionInput
-  ) {
-    deleteMeasurement(input: $input, condition: $condition) {
-      deviceID
-      timestamp
-      temperature
-      humid
-      pressure
     }
   }
 `;

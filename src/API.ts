@@ -106,58 +106,6 @@ export type DeleteDeviceInput = {
   id: string,
 };
 
-export type CreateCertificateInput = {
-  id?: string | null,
-  deviceID: string,
-  certificateId: string,
-  certificateArn: string,
-  certificatePem?: string | null,
-  privateKey?: string | null,
-  publicKey?: string | null,
-};
-
-export type ModelCertificateConditionInput = {
-  deviceID?: ModelIDInput | null,
-  certificateId?: ModelStringInput | null,
-  certificateArn?: ModelStringInput | null,
-  certificatePem?: ModelStringInput | null,
-  privateKey?: ModelStringInput | null,
-  publicKey?: ModelStringInput | null,
-  and?: Array< ModelCertificateConditionInput | null > | null,
-  or?: Array< ModelCertificateConditionInput | null > | null,
-  not?: ModelCertificateConditionInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type UpdateCertificateInput = {
-  id: string,
-  deviceID?: string | null,
-  certificateId?: string | null,
-  certificateArn?: string | null,
-  certificatePem?: string | null,
-  privateKey?: string | null,
-  publicKey?: string | null,
-};
-
-export type DeleteCertificateInput = {
-  id: string,
-};
-
 export type CreateCurrentMeasurementInput = {
   deviceID: string,
   timestamp: string,
@@ -239,6 +187,58 @@ export type DeleteMeasurementInput = {
   timestamp: string,
 };
 
+export type CreateCertificateInput = {
+  id?: string | null,
+  deviceID: string,
+  certificateId: string,
+  certificateArn: string,
+  certificatePem?: string | null,
+  privateKey?: string | null,
+  publicKey?: string | null,
+};
+
+export type ModelCertificateConditionInput = {
+  deviceID?: ModelIDInput | null,
+  certificateId?: ModelStringInput | null,
+  certificateArn?: ModelStringInput | null,
+  certificatePem?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  publicKey?: ModelStringInput | null,
+  and?: Array< ModelCertificateConditionInput | null > | null,
+  or?: Array< ModelCertificateConditionInput | null > | null,
+  not?: ModelCertificateConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type UpdateCertificateInput = {
+  id: string,
+  deviceID?: string | null,
+  certificateId?: string | null,
+  certificateArn?: string | null,
+  certificatePem?: string | null,
+  privateKey?: string | null,
+  publicKey?: string | null,
+};
+
+export type DeleteCertificateInput = {
+  id: string,
+};
+
 export type ModelDeviceFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
@@ -252,19 +252,6 @@ export type ModelDeviceConnection = {
   __typename: "ModelDeviceConnection",
   items:  Array<Device | null >,
   nextToken?: string | null,
-};
-
-export type ModelCertificateFilterInput = {
-  id?: ModelIDInput | null,
-  deviceID?: ModelIDInput | null,
-  certificateId?: ModelStringInput | null,
-  certificateArn?: ModelStringInput | null,
-  certificatePem?: ModelStringInput | null,
-  privateKey?: ModelStringInput | null,
-  publicKey?: ModelStringInput | null,
-  and?: Array< ModelCertificateFilterInput | null > | null,
-  or?: Array< ModelCertificateFilterInput | null > | null,
-  not?: ModelCertificateFilterInput | null,
 };
 
 export type ModelCurrentMeasurementFilterInput = {
@@ -315,6 +302,19 @@ export type ModelMeasurementConnection = {
   __typename: "ModelMeasurementConnection",
   items:  Array<Measurement | null >,
   nextToken?: string | null,
+};
+
+export type ModelCertificateFilterInput = {
+  id?: ModelIDInput | null,
+  deviceID?: ModelIDInput | null,
+  certificateId?: ModelStringInput | null,
+  certificateArn?: ModelStringInput | null,
+  certificatePem?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  publicKey?: ModelStringInput | null,
+  and?: Array< ModelCertificateFilterInput | null > | null,
+  or?: Array< ModelCertificateFilterInput | null > | null,
+  not?: ModelCertificateFilterInput | null,
 };
 
 export type Endpoint = {
@@ -442,6 +442,102 @@ export type DeleteDeviceMutation = {
   } | null,
 };
 
+export type CreateCurrentMeasurementMutationVariables = {
+  input: CreateCurrentMeasurementInput,
+  condition?: ModelCurrentMeasurementConditionInput | null,
+};
+
+export type CreateCurrentMeasurementMutation = {
+  createCurrentMeasurement?:  {
+    __typename: "CurrentMeasurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type UpdateCurrentMeasurementMutationVariables = {
+  input: UpdateCurrentMeasurementInput,
+  condition?: ModelCurrentMeasurementConditionInput | null,
+};
+
+export type UpdateCurrentMeasurementMutation = {
+  updateCurrentMeasurement?:  {
+    __typename: "CurrentMeasurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type DeleteCurrentMeasurementMutationVariables = {
+  input: DeleteCurrentMeasurementInput,
+  condition?: ModelCurrentMeasurementConditionInput | null,
+};
+
+export type DeleteCurrentMeasurementMutation = {
+  deleteCurrentMeasurement?:  {
+    __typename: "CurrentMeasurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type CreateMeasurementMutationVariables = {
+  input: CreateMeasurementInput,
+  condition?: ModelMeasurementConditionInput | null,
+};
+
+export type CreateMeasurementMutation = {
+  createMeasurement?:  {
+    __typename: "Measurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type UpdateMeasurementMutationVariables = {
+  input: UpdateMeasurementInput,
+  condition?: ModelMeasurementConditionInput | null,
+};
+
+export type UpdateMeasurementMutation = {
+  updateMeasurement?:  {
+    __typename: "Measurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type DeleteMeasurementMutationVariables = {
+  input: DeleteMeasurementInput,
+  condition?: ModelMeasurementConditionInput | null,
+};
+
+export type DeleteMeasurementMutation = {
+  deleteMeasurement?:  {
+    __typename: "Measurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
 export type CreateCertificateMutationVariables = {
   input: CreateCertificateInput,
   condition?: ModelCertificateConditionInput | null,
@@ -559,102 +655,6 @@ export type DeleteCertificateMutation = {
     },
     createdAt: string,
     updatedAt: string,
-  } | null,
-};
-
-export type CreateCurrentMeasurementMutationVariables = {
-  input: CreateCurrentMeasurementInput,
-  condition?: ModelCurrentMeasurementConditionInput | null,
-};
-
-export type CreateCurrentMeasurementMutation = {
-  createCurrentMeasurement?:  {
-    __typename: "CurrentMeasurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type UpdateCurrentMeasurementMutationVariables = {
-  input: UpdateCurrentMeasurementInput,
-  condition?: ModelCurrentMeasurementConditionInput | null,
-};
-
-export type UpdateCurrentMeasurementMutation = {
-  updateCurrentMeasurement?:  {
-    __typename: "CurrentMeasurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type DeleteCurrentMeasurementMutationVariables = {
-  input: DeleteCurrentMeasurementInput,
-  condition?: ModelCurrentMeasurementConditionInput | null,
-};
-
-export type DeleteCurrentMeasurementMutation = {
-  deleteCurrentMeasurement?:  {
-    __typename: "CurrentMeasurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type CreateMeasurementMutationVariables = {
-  input: CreateMeasurementInput,
-  condition?: ModelMeasurementConditionInput | null,
-};
-
-export type CreateMeasurementMutation = {
-  createMeasurement?:  {
-    __typename: "Measurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type UpdateMeasurementMutationVariables = {
-  input: UpdateMeasurementInput,
-  condition?: ModelMeasurementConditionInput | null,
-};
-
-export type UpdateMeasurementMutation = {
-  updateMeasurement?:  {
-    __typename: "Measurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type DeleteMeasurementMutationVariables = {
-  input: DeleteMeasurementInput,
-  condition?: ModelMeasurementConditionInput | null,
-};
-
-export type DeleteMeasurementMutation = {
-  deleteMeasurement?:  {
-    __typename: "Measurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
   } | null,
 };
 
@@ -808,78 +808,6 @@ export type ListDevicesQuery = {
   } | null,
 };
 
-export type GetCertificateQueryVariables = {
-  id: string,
-};
-
-export type GetCertificateQuery = {
-  getCertificate?:  {
-    __typename: "Certificate",
-    id: string,
-    deviceID: string,
-    certificateId: string,
-    certificateArn: string,
-    certificatePem?: string | null,
-    privateKey?: string | null,
-    publicKey?: string | null,
-    device:  {
-      __typename: "Device",
-      id: string,
-      name: string,
-      pinned: string,
-      certificates?:  {
-        __typename: "ModelCertificateConnection",
-        nextToken?: string | null,
-      } | null,
-      currentMeasurement?:  {
-        __typename: "CurrentMeasurement",
-        deviceID: string,
-        timestamp: string,
-        temperature: number,
-        humid: number,
-        pressure: number,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListCertificatesQueryVariables = {
-  filter?: ModelCertificateFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListCertificatesQuery = {
-  listCertificates?:  {
-    __typename: "ModelCertificateConnection",
-    items:  Array< {
-      __typename: "Certificate",
-      id: string,
-      deviceID: string,
-      certificateId: string,
-      certificateArn: string,
-      certificatePem?: string | null,
-      privateKey?: string | null,
-      publicKey?: string | null,
-      device:  {
-        __typename: "Device",
-        id: string,
-        name: string,
-        pinned: string,
-        createdAt: string,
-        updatedAt: string,
-      },
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetCurrentMeasurementQueryVariables = {
   deviceID: string,
 };
@@ -953,6 +881,78 @@ export type ListMeasurementsQuery = {
       temperature: number,
       humid: number,
       pressure: number,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetCertificateQueryVariables = {
+  id: string,
+};
+
+export type GetCertificateQuery = {
+  getCertificate?:  {
+    __typename: "Certificate",
+    id: string,
+    deviceID: string,
+    certificateId: string,
+    certificateArn: string,
+    certificatePem?: string | null,
+    privateKey?: string | null,
+    publicKey?: string | null,
+    device:  {
+      __typename: "Device",
+      id: string,
+      name: string,
+      pinned: string,
+      certificates?:  {
+        __typename: "ModelCertificateConnection",
+        nextToken?: string | null,
+      } | null,
+      currentMeasurement?:  {
+        __typename: "CurrentMeasurement",
+        deviceID: string,
+        timestamp: string,
+        temperature: number,
+        humid: number,
+        pressure: number,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListCertificatesQueryVariables = {
+  filter?: ModelCertificateFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCertificatesQuery = {
+  listCertificates?:  {
+    __typename: "ModelCertificateConnection",
+    items:  Array< {
+      __typename: "Certificate",
+      id: string,
+      deviceID: string,
+      certificateId: string,
+      certificateArn: string,
+      certificatePem?: string | null,
+      privateKey?: string | null,
+      publicKey?: string | null,
+      device:  {
+        __typename: "Device",
+        id: string,
+        name: string,
+        pinned: string,
+        createdAt: string,
+        updatedAt: string,
+      },
+      createdAt: string,
+      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1070,6 +1070,72 @@ export type OnDeleteDeviceSubscription = {
   } | null,
 };
 
+export type OnCreateCurrentMeasurementSubscription = {
+  onCreateCurrentMeasurement?:  {
+    __typename: "CurrentMeasurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type OnUpdateCurrentMeasurementSubscription = {
+  onUpdateCurrentMeasurement?:  {
+    __typename: "CurrentMeasurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type OnDeleteCurrentMeasurementSubscription = {
+  onDeleteCurrentMeasurement?:  {
+    __typename: "CurrentMeasurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type OnCreateMeasurementSubscription = {
+  onCreateMeasurement?:  {
+    __typename: "Measurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type OnUpdateMeasurementSubscription = {
+  onUpdateMeasurement?:  {
+    __typename: "Measurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
+export type OnDeleteMeasurementSubscription = {
+  onDeleteMeasurement?:  {
+    __typename: "Measurement",
+    deviceID: string,
+    timestamp: string,
+    temperature: number,
+    humid: number,
+    pressure: number,
+  } | null,
+};
+
 export type OnCreateCertificateSubscription = {
   onCreateCertificate?:  {
     __typename: "Certificate",
@@ -1172,71 +1238,5 @@ export type OnDeleteCertificateSubscription = {
     },
     createdAt: string,
     updatedAt: string,
-  } | null,
-};
-
-export type OnCreateCurrentMeasurementSubscription = {
-  onCreateCurrentMeasurement?:  {
-    __typename: "CurrentMeasurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type OnUpdateCurrentMeasurementSubscription = {
-  onUpdateCurrentMeasurement?:  {
-    __typename: "CurrentMeasurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type OnDeleteCurrentMeasurementSubscription = {
-  onDeleteCurrentMeasurement?:  {
-    __typename: "CurrentMeasurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type OnCreateMeasurementSubscription = {
-  onCreateMeasurement?:  {
-    __typename: "Measurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type OnUpdateMeasurementSubscription = {
-  onUpdateMeasurement?:  {
-    __typename: "Measurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
-  } | null,
-};
-
-export type OnDeleteMeasurementSubscription = {
-  onDeleteMeasurement?:  {
-    __typename: "Measurement",
-    deviceID: string,
-    timestamp: string,
-    temperature: number,
-    humid: number,
-    pressure: number,
   } | null,
 };

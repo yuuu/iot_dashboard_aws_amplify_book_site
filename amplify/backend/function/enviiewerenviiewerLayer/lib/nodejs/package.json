@@ -3,11 +3,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@aws-sdk/client-iot": "^3.144.0",
+    "@aws-sdk/client-iot": "^3.154.0",
     "aws-appsync": "^4.1.7",
-    "graphql": "^15.7.0",
+    "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
-    "node-fetch": "^2.6.0"
-  },
-  "devDependencies": {}
+    "node-fetch": "^2.6.7"
+  }
 }

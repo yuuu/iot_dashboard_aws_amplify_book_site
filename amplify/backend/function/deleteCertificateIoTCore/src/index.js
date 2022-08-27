@@ -1,6 +1,6 @@
 /* Amplify Params - DO NOT EDIT
-	API_AMPLIFYIOTBACKEND_GRAPHQLAPIENDPOINTOUTPUT
-	API_AMPLIFYIOTBACKEND_GRAPHQLAPIIDOUTPUT
+	API_ENVIIEWER_GRAPHQLAPIENDPOINTOUTPUT
+	API_ENVIIEWER_GRAPHQLAPIIDOUTPUT
 	ENV
 	REGION
 Amplify Params - DO NOT EDIT */
@@ -68,7 +68,7 @@ const getCertificate = async (id) => {
     },
   };
   const graphqlClient = new AWSAppSyncClient({
-    url: env.API_AMPLIFYIOTBACKEND_GRAPHQLAPIENDPOINTOUTPUT,
+    url: env.API_ENVIIEWER_GRAPHQLAPIENDPOINTOUTPUT,
     region: env.REGION,
     auth: graphql_auth,
     disableOffline: true,
@@ -103,7 +103,7 @@ const deleteCertificate = async (id) => {
     },
   };
   const graphqlClient = new AWSAppSyncClient({
-    url: env.API_AMPLIFYIOTBACKEND_GRAPHQLAPIENDPOINTOUTPUT,
+    url: env.API_ENVIIEWER_GRAPHQLAPIENDPOINTOUTPUT,
     region: env.REGION,
     auth: graphql_auth,
     disableOffline: true,

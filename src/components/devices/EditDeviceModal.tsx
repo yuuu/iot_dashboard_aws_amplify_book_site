@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import DeviceForm from "./DeviceForm";
 import CloseModalIcon from "../icons/CloseModalIcon";
-import { Device } from "../../API";
+import Device from "../../types/device";
 import { useUpdateDevice } from "../../hooks/useDevices";
 
 type Props = {
@@ -26,7 +26,7 @@ const EditDeviceModal: React.FC<Props> = ({ show, device, onClose }) => {
       zIndex: 50,
     },
   };
-  const updateDevice = useUpdateDevice(device?.id, onClose);
+  const updateDevice = useUpdateDevice(onClose);
 
   return (
     <ReactModal isOpen={show} style={modalStyle} ariaHideApp={false}>

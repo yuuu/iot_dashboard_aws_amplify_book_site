@@ -1,3 +1,0 @@
-{
-  "adminRoleNames": ["arn:aws:sts::${account}:assumed-role"]
-}

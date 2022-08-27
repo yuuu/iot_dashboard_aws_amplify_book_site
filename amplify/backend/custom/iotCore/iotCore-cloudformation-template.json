@@ -4,13 +4,13 @@
     "env": {
       "Type": "String"
     },
-    "apiamplifyiotbackendGraphQLAPIIdOutput": {
+    "apienviiewerGraphQLAPIIdOutput": {
       "Type": "String",
-      "Description": "Input parameter describing GraphQLAPIIdOutput attribute for api/amplifyiotbackend resource"
+      "Description": "Input parameter describing GraphQLAPIIdOutput attribute for api/enviiewer resource"
     },
-    "apiamplifyiotbackendGraphQLAPIEndpointOutput": {
+    "apienviiewerGraphQLAPIEndpointOutput": {
       "Type": "String",
-      "Description": "Input parameter describing GraphQLAPIEndpointOutput attribute for api/amplifyiotbackend resource"
+      "Description": "Input parameter describing GraphQLAPIEndpointOutput attribute for api/enviiewer resource"
     }
   },
   "Resources": {
@@ -42,7 +42,7 @@
                       [
                         "CurrentMeasurement",
                         {
-                          "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+                          "Ref": "apienviiewerGraphQLAPIIdOutput"
                         },
                         {
                           "Ref": "env"
@@ -88,7 +88,7 @@
                       [
                         "Measurement",
                         {
-                          "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+                          "Ref": "apienviiewerGraphQLAPIIdOutput"
                         },
                         {
                           "Ref": "env"
@@ -115,7 +115,7 @@
             [
               "enviiewer",
               {
-                "Ref": "apiamplifyiotbackendGraphQLAPIIdOutput"
+                "Ref": "apienviiewerGraphQLAPIIdOutput"
               },
               {
                 "Ref": "env"
@@ -145,5 +145,6 @@
       }
     }
   },
+  "Outputs": {},
   "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"9.1.0\",\"stackType\":\"custom-customCloudformation\",\"metadata\":{}}"
 }

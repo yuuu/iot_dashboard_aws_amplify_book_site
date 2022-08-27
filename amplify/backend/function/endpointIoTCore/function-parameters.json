@@ -1,9 +1,8 @@
 {
-  "permissions": {},
   "lambdaLayers": [
     {
       "type": "ProjectLayer",
-      "resourceName": "amplifyiotbackendcertificateLayer",
+      "resourceName": "enviiewerenviiewerLayer",
       "env": "dev",
       "version": "Always choose latest version",
       "isLatestVersionSelected": true

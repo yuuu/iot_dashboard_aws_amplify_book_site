@@ -1,78 +1,6 @@
 {
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "type": "cicd",
-      "lastPushTimeStamp": "2022-08-01T21:18:02.438Z"
-    }
-  },
-  "function": {
-    "createCertificateIoTCore": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "amplifyiotbackendcertificateLayer",
-          "attributes": [
-            "Arn"
-          ]
-        },
-        {
-          "category": "api",
-          "resourceName": "amplifyiotbackend",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ]
-        }
-      ]
-    },
-    "deleteCertificateIoTCore": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "amplifyiotbackendcertificateLayer",
-          "attributes": [
-            "Arn"
-          ]
-        },
-        {
-          "category": "api",
-          "resourceName": "amplifyiotbackend",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ]
-        }
-      ]
-    },
-    "amplifyiotbackendcertificateLayer": {
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true
-    },
-    "endpointIoTCore": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "amplifyiotbackendcertificateLayer",
-          "attributes": [
-            "Arn"
-          ]
-        }
-      ]
-    }
-  },
   "auth": {
-    "amplifyiotbackend73c41568": {
+    "enviiewer90e6fb0f": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -99,14 +27,21 @@
       }
     }
   },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2022-08-20T10:40:12.731Z"
+    }
+  },
   "api": {
-    "amplifyiotbackend": {
+    "enviiewer": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "amplifyiotbackend73c41568",
+          "resourceName": "enviiewer90e6fb0f",
           "attributes": [
             "UserPoolId"
           ]
@@ -117,7 +52,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authamplifyiotbackend73c41568"
+              "userPoolId": "authenviiewer90e6fb0f"
             }
           },
           "additionalAuthenticationProviders": [
@@ -129,6 +64,71 @@
       }
     }
   },
+  "function": {
+    "enviiewerenviiewerLayer": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    },
+    "endpointIoTCore": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "enviiewerenviiewerLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "createCertificateIoTCore": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "enviiewer",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "enviiewerenviiewerLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "deleteCertificateIoTCore": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "enviiewer",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "enviiewerenviiewerLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
   "custom": {
     "iotCore": {
       "service": "customCloudformation",
@@ -136,7 +136,7 @@
       "dependsOn": [
         {
           "category": "api",
-          "resourceName": "amplifyiotbackend",
+          "resourceName": "enviiewer",
           "attributes": [
             "GraphQLAPIIdOutput",
             "GraphQLAPIEndpointOutput"
