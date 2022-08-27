@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AWS Amplifyで作るIoTバックエンド
 
-## Getting Started
+本リポジトリは技術書典13で頒布した技術書「AWs Amplifyで作るIoTバックエンド」のサンプルWebアプリケーション＆サポートページです。
 
-First, run the development server:
+![カバー](https://user-images.githubusercontent.com/8074640/102677313-322c1c80-41e5-11eb-8057-c4d901f6175a.png)
+![構成図](https://user-images.githubusercontent.com/8074640/103084839-5774bc80-4623-11eb-987b-d06b35961f15.png)
 
-```bash
-npm run dev
-# or
-yarn dev
+## 利用方法
+
+ブランチを `base` に切り替えて、本書に沿って作業を進めてください。
+起動確認する際は以下コマンドで起動ください。
+
+```sh
+$ yarn install
+$ yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+コマンドを実行したあと、ブラウザで [http://localhost:3000](http://localhost:3000) を開くとサンプルWebアプリケーションが表示されます。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 利用パッケージ
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+サンプルWebアプリケーションは以下のようなパッケージ、フレームワークを利用して実装しています。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [AWS Amplify](https://docs.amplify.aws/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Next.js](https://nextjs.org/)
+- [Windster - Tailwind CSS Dashboard](https://github.com/themesberg/tailwind-dashboard-windster)
+- [React Query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)
+- [React Hook Form](https://react-hook-form.com/jp/)
+- [react-chartjs-2](https://react-chartjs-2.js.org/)
+- [React-Toastify](https://github.com/fkhadra/react-toastify)
+- [Day.js](https://day.js.org/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- 等...
 
-## Learn More
+## 正誤表
 
-To learn more about Next.js, take a look at the following resources:
+書籍の誤植が見つかった場合、こちらに追記予定です。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 指摘・質問がある場合
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[本リポジトリのIssues](https://github.com/yuuu/iot_dashboard_aws_amplify_book_site/issues)に書き込みをお願いいたします。
