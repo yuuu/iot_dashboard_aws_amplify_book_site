@@ -4,17 +4,15 @@ import Device from "../../types/device";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 import BarGraphWithValue from "../BarGraphWithValue";
 import DeviceStatus from "../DeviceStatus";
-import DeleteIcon from "../icons/DeleteIcon";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 
 type Props = {
   devices: Device[] | undefined;
   onEdit: (device: Device) => void;
-  onDestroy: (device: Device) => void;
 };
 
-const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
+const BarGraph: React.FC<Props> = ({ devices, onEdit }) => {
   const { isOnline } = useDeviceUtils();
 
   return (
@@ -95,7 +93,6 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit, onDestroy }) => {
               </td>
               <td className="p-4 whitespace-nowrap space-x-2 text-right">
                 <EditButton onClick={() => onEdit(device)} />
-                <DeleteButton onClick={() => onDestroy(device)} />
               </td>
             </tr>
           );
