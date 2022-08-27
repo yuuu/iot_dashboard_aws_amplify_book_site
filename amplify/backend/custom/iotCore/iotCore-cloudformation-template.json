@@ -1,0 +1,150 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "apienviiewerGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIIdOutput attribute for api/enviiewer resource"
+    },
+    "apienviiewerGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Description": "Input parameter describing GraphQLAPIEndpointOutput attribute for api/enviiewer resource"
+    }
+  },
+  "Resources": {
+    "UpsertCurrentMeasurement": {
+      "Type": "AWS::IoT::TopicRule",
+      "Properties": {
+        "RuleName": {
+          "Fn::Join": [
+            "_",
+            [
+              "enviiewer",
+              {
+                "Ref": "env"
+              },
+              "current_measurement"
+            ]
+          ]
+        },
+        "TopicRulePayload": {
+          "Sql": "SELECT clientid() AS deviceID, timestamp, temperature, humid, pressure FROM 'enviiewer/devices/#'",
+          "RuleDisabled": false,
+          "Actions": [
+            {
+              "DynamoDBv2": {
+                "PutItem": {
+                  "TableName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "CurrentMeasurement",
+                        {
+                          "Ref": "apienviiewerGraphQLAPIIdOutput"
+                        },
+                        {
+                          "Ref": "env"
+                        }
+                      ]
+                    ]
+                  }
+                },
+                "RoleArn": {
+                  "Fn::GetAtt": "IAMRole.Arn"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "InsertMesurement": {
+      "Type": "AWS::IoT::TopicRule",
+      "Properties": {
+        "RuleName": {
+          "Fn::Join": [
+            "_",
+            [
+              "enviiewer",
+              {
+                "Ref": "env"
+              },
+              "mesurement"
+            ]
+          ]
+        },
+        "TopicRulePayload": {
+          "Sql": "SELECT clientid() AS deviceID, timestamp, temperature, humid, pressure, ((timestamp() / 1000) + (24 * 60 * 60)) AS ttl FROM 'enviiewer/devices/#'",
+          "RuleDisabled": false,
+          "Actions": [
+            {
+              "DynamoDBv2": {
+                "PutItem": {
+                  "TableName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "Measurement",
+                        {
+                          "Ref": "apienviiewerGraphQLAPIIdOutput"
+                        },
+                        {
+                          "Ref": "env"
+                        }
+                      ]
+                    ]
+                  }
+                },
+                "RoleArn": {
+                  "Fn::GetAtt": "IAMRole.Arn"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "IAMRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::Join": [
+            "-",
+            [
+              "enviiewer",
+              {
+                "Ref": "apienviiewerGraphQLAPIIdOutput"
+              },
+              {
+                "Ref": "env"
+              }
+            ]
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "iot.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+        ]
+      }
+    }
+  },
+  "Outputs": {},
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"9.1.0\",\"stackType\":\"custom-customCloudformation\",\"metadata\":{}}"
+}

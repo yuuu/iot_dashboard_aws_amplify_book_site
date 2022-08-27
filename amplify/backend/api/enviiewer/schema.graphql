@@ -9,6 +9,29 @@ type Device
   name: String!
   pinned: String!
   certificates: [Certificate] @hasMany(indexName: "byDevice", fields: ["id"])
+  currentMeasurement: CurrentMeasurement @hasOne(fields: ["id"])
+}
+
+type CurrentMeasurement
+  @model(timestamps: null)
+  @auth(rules: [ { allow: private, provider: userPools } ])
+{
+  deviceID: ID! @primaryKey
+  timestamp: AWSDateTime!
+  temperature: Float!
+  humid: Float!
+  pressure: Float!
+}
+
+type Measurement
+  @model(timestamps: null)
+  @auth(rules: [ { allow: private, provider: userPools } ])
+{
+  deviceID: ID! @primaryKey(sortKeyFields: ["timestamp"])
+  timestamp: AWSDateTime!
+  temperature: Float!
+  humid: Float!
+  pressure: Float!
 }
 
 type Certificate
