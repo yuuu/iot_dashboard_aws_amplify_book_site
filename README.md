@@ -2,8 +2,9 @@
 
 本リポジトリは技術書典13で頒布した技術書「AWs Amplifyで作るIoTバックエンド」のサンプルWebアプリケーション＆サポートページです。
 
-![カバー](https://user-images.githubusercontent.com/8074640/102677313-322c1c80-41e5-11eb-8057-c4d901f6175a.png)
-![構成図](https://user-images.githubusercontent.com/8074640/103084839-5774bc80-4623-11eb-987b-d06b35961f15.png)
+![カバー](https://user-images.githubusercontent.com/8074640/187302938-1d19dd6a-10fc-4d8f-b2be-99630e4ce75b.png)
+![ダッシュボード](https://user-images.githubusercontent.com/8074640/187302960-030ef24f-2df7-419b-8aac-c7a44828e7a4.png)
+![構成図](https://user-images.githubusercontent.com/8074640/187302984-fc290b6f-e0e6-4732-827e-fc09d8d5f594.png)
 
 ## 利用方法
 
