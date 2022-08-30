@@ -31,11 +31,11 @@ const Navbar: React.FC<Props> = ({
             <div className="hidden lg:flex items-center">
               <div className="-mb-1">
                 <GitHubButton
-                  href="https://github.com/yuuu/amplify-iot-backend"
+                  href="https://github.com/yuuu/iot_dashboard_aws_amplify_book_site"
                   data-icon="octicon-star"
                   data-size="large"
                   data-show-count={true}
-                  aria-label="Star yuuu/amplify-iot-backend on GitHub"
+                  aria-label="Star yuuu/iot_dashboard_aws_amplify_book_site on GitHub"
                 >
                   Star
                 </GitHubButton>
