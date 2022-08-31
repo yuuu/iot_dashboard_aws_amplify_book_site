@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "enviiewer",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authenviiewerf9add888",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

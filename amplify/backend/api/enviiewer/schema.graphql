@@ -1,0 +1,8 @@
+type Device
+  @model
+  @auth(rules: [ { allow: private, provider: userPools } ])
+{
+  id: ID!
+  name: String!
+  pinned: String!
+}
