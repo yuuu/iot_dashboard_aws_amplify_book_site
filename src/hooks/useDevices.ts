@@ -8,6 +8,8 @@ import {
   GetDeviceQuery,
   CreateDeviceMutation,
   CreateDeviceInput,
+  UpdateDeviceInput,
+  UpdateDeviceMutation,
   DeleteDeviceMutation,
 } from "../../src/API";
 import * as queries from "../../src/graphql/queries";
