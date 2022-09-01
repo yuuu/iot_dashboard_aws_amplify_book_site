@@ -1,0 +1,10 @@
+[
+  {
+    "Action": [
+      "iot:DescribeEndpoint"
+    ],
+    "Resource": [
+      "*"
+    ]
+  }
+]
