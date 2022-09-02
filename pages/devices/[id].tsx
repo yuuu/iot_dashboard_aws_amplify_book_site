@@ -61,8 +61,6 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
     );
   }
 
-  const onEdit = (device: Device) => setEditModal(device);
-  const onDestroy = (device: Device) => setDeleteModal(device);
   const onDeleted = () => {
     setDeleteModal(null);
     router.push("/devices");
@@ -89,8 +87,8 @@ const DeviceShow: NextPage<Props> = ({ id }) => {
                 <DeviceStatus isOnline={isOnline(device)} />
               </h1>
               <div className="flex space-x-2">
-                <EditButton onClick={() => onEdit(device)} />
-                <DeleteButton onClick={() => onDestroy(device)} />
+                <EditButton onClick={() => setEditModal(device)} />
+                <DeleteButton onClick={() => setDeleteModal(device)} />
               </div>
             </div>
           </div>
