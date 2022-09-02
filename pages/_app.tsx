@@ -61,7 +61,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Navbar
             sidebarClosed={sidebarClosed}
             onSidebarToggle={onSidebarToggle}
-            onSignOut={() => signOut && signOut()}
+            onSignOut={signOut}
           />
           <div className="flex overflow-hidden bg-white pt-16">
             <Sidebar closed={sidebarClosed} onClick={onSidebarToggle} />
