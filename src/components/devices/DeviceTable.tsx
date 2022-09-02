@@ -7,7 +7,7 @@ import DeviceStatus from "../DeviceStatus";
 import EditButton from "./EditButton";
 
 type Props = {
-  devices: Device[] | undefined;
+  devices: Device[];
   onEdit: (device: Device) => void;
 };
 
@@ -52,7 +52,7 @@ const BarGraph: React.FC<Props> = ({ devices, onEdit }) => {
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
-        {devices?.map((device) => {
+        {devices.map((device) => {
           const { id, name, currentMeasurement } = device;
           return (
             <tr key={id} className="hover:bg-gray-100">
