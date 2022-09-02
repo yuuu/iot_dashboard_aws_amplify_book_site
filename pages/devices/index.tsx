@@ -13,7 +13,7 @@ const DeviceIndex: NextPage = () => {
 
   const [newModal, setNewModal] = useState(false);
   const [editModal, setEditModal] = useState<Device | null>(null);
-  const [filteredDevices, setFilteredDevices] = useState<Device[]>();
+  const [filteredDevices, setFilteredDevices] = useState<Device[]>([]);
 
   useEffect(() => setFilteredDevices(devices), [devices]);
 
