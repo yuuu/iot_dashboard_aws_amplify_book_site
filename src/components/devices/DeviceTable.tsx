@@ -4,7 +4,6 @@ import Device from "../../types/device";
 import { useDeviceUtils } from "../../hooks/useDeviceUtils";
 import BarGraphWithValue from "../BarGraphWithValue";
 import DeviceStatus from "../DeviceStatus";
-import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 
 type Props = {
