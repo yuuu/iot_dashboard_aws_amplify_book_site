@@ -5,6 +5,24 @@ type Device
   id: ID!
   name: String!
   pinned: String!
+  certificates: [Certificate] @hasMany(indexName: "byDevice", fields: ["id"])
+}
+
+type Certificate
+  @model
+  @auth(rules: [
+    { allow: private, provider: userPools }
+    { allow: private, provider: iam ,operations:[create, delete] }
+  ])
+{
+  id: ID!
+  deviceID: ID! @index(name: "byDevice", sortKeyFields: ["certificateId"])
+  certificateId: String!
+  certificateArn: String!
+  certificatePem: String
+  privateKey: String
+  publicKey: String
+  device: Device! @belongsTo(fields: ["deviceID"])
 }
 
 type Endpoint
@@ -15,5 +33,14 @@ type Endpoint
 type Query {
   endpointIoT: Endpoint
     @function(name: "endpointIoTCore-${env}")
+    @auth(rules: [ { allow: private, provider: userPools } ])
+}
+
+type Mutation {
+  createCertificateIoT(deviceID: ID!): Certificate
+    @function(name: "createCertificateIoTCore-${env}")
+    @auth(rules: [ { allow: private, provider: userPools } ])
+  deleteCertificateIoT(id: ID!): Certificate
+    @function(name: "deleteCertificateIoTCore-${env}")
     @auth(rules: [ { allow: private, provider: userPools } ])
 }

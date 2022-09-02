@@ -76,6 +76,50 @@
           ]
         }
       ]
+    },
+    "createCertificateIoTCore": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "enviiewer",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "enviiewerenviiewerLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "deleteCertificateIoTCore": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "enviiewer",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "enviiewerenviiewerLayer",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     }
   }
 }

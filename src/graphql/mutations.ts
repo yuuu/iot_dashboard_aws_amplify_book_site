@@ -11,6 +11,20 @@ export const createDevice = /* GraphQL */ `
       id
       name
       pinned
+      certificates {
+        items {
+          id
+          deviceID
+          certificateId
+          certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -25,6 +39,20 @@ export const updateDevice = /* GraphQL */ `
       id
       name
       pinned
+      certificates {
+        items {
+          id
+          deviceID
+          certificateId
+          certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -39,6 +67,154 @@ export const deleteDevice = /* GraphQL */ `
       id
       name
       pinned
+      certificates {
+        items {
+          id
+          deviceID
+          certificateId
+          certificateArn
+          certificatePem
+          privateKey
+          publicKey
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createCertificate = /* GraphQL */ `
+  mutation CreateCertificate(
+    $input: CreateCertificateInput!
+    $condition: ModelCertificateConditionInput
+  ) {
+    createCertificate(input: $input, condition: $condition) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      device {
+        id
+        name
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateCertificate = /* GraphQL */ `
+  mutation UpdateCertificate(
+    $input: UpdateCertificateInput!
+    $condition: ModelCertificateConditionInput
+  ) {
+    updateCertificate(input: $input, condition: $condition) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      device {
+        id
+        name
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCertificate = /* GraphQL */ `
+  mutation DeleteCertificate(
+    $input: DeleteCertificateInput!
+    $condition: ModelCertificateConditionInput
+  ) {
+    deleteCertificate(input: $input, condition: $condition) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      device {
+        id
+        name
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createCertificateIoT = /* GraphQL */ `
+  mutation CreateCertificateIoT($deviceID: ID!) {
+    createCertificateIoT(deviceID: $deviceID) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      device {
+        id
+        name
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCertificateIoT = /* GraphQL */ `
+  mutation DeleteCertificateIoT($id: ID!) {
+    deleteCertificateIoT(id: $id) {
+      id
+      deviceID
+      certificateId
+      certificateArn
+      certificatePem
+      privateKey
+      publicKey
+      device {
+        id
+        name
+        pinned
+        certificates {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
