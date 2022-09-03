@@ -3,10 +3,10 @@
   "serviceConfiguration": {
     "apiName": "enviiewer",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/Users/yuhei/amplify-iot-backend/amplify/backend/api/enviiewer/schema.graphql",
+    "gqlSchemaPath": "/Users/yuhei/ghq/github.com/yuuu/iot_dashboard_aws_amplify_book_site/amplify/backend/api/enviiewer/schema.graphql",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authenviiewer90e6fb0f"
+      "cognitoUserPoolId": "authenviiewerf9add888"
     },
     "additionalAuthTypes": [
       {

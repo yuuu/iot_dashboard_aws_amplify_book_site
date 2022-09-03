@@ -1,7 +1,4 @@
 {
-  "providers": [
-    "awscloudformation"
-  ],
   "projectName": "enviiewer",
   "version": "3.1",
   "frontend": "javascript",
@@ -9,9 +6,12 @@
     "framework": "react",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": ".next",
+      "DistributionDir": "out",
       "BuildCommand": "yarn build",
       "StartCommand": "yarn start"
     }
-  }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
 }

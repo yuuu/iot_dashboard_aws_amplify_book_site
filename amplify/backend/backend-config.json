@@ -1,6 +1,6 @@
 {
   "auth": {
-    "enviiewer90e6fb0f": {
+    "enviiewerf9add888": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -27,13 +27,6 @@
       }
     }
   },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "type": "cicd",
-      "lastPushTimeStamp": "2022-08-20T10:40:12.731Z"
-    }
-  },
   "api": {
     "enviiewer": {
       "service": "AppSync",
@@ -41,7 +34,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "enviiewer90e6fb0f",
+          "resourceName": "enviiewerf9add888",
           "attributes": [
             "UserPoolId"
           ]
@@ -52,7 +45,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authenviiewer90e6fb0f"
+              "userPoolId": "authenviiewerf9add888"
             }
           },
           "additionalAuthenticationProviders": [

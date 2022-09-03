@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   auth: {
-    enviiewer90e6fb0f: {
+    enviiewerf9add888: {
       IdentityPoolId: "string";
       IdentityPoolName: "string";
       UserPoolId: "string";

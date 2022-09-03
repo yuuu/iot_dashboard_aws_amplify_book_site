@@ -118,6 +118,7 @@ exports.handler = async (event, context) => {
     const policyName = `enviiewer-${process.env.ENV}-${certificateId}`;
     const accountID = context.invokedFunctionArn.split(":")[4];
     const deviceID = event.arguments.deviceID;
+
     await createPolicy(policyName, accountID, deviceID);
     await attachPolicy(certificateArn, policyName);
     const { data } = await createCertificate({

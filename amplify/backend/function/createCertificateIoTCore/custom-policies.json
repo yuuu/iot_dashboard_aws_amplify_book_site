@@ -1,9 +1,7 @@
 [
   {
     "Action": [
-      "iot:CreateKeysAndCertificate",
-      "iot:CreatePolicy",
-      "iot:AttachPolicy"
+      "iot:CreateKeysAndCertificate", "iot:CreatePolicy", "iot:AttachPolicy"
     ],
     "Resource": ["*"]
   }

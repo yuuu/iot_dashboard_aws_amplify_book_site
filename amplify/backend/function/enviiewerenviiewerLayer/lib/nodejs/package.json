@@ -3,7 +3,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@aws-sdk/client-iot": "^3.154.0",
+    "@aws-sdk/client-iot": "^3.163.0",
     "aws-appsync": "^4.1.7",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",

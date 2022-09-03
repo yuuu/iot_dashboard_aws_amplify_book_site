@@ -973,9 +973,9 @@ concat-map@0.0.1:
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
 constructs@^3.3.125, constructs@^3.3.69:
-  version "3.4.79"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.79.tgz#a906b7339836be068979801e6162e37eee9ca45e"
-  integrity sha512-j2LmKMooc4Vbd68h5stHvTFboMjfGZZgebq8ha6d8Ux7pPe92wADeOPZOMTi3vmKg8F4F//vdu+7v2VYs8lzdw==
+  version "3.4.87"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.4.87.tgz#3cdeacd6da925aadc3618dc44859a351645ee397"
+  integrity sha512-9q3lNeo37SzW+O37ArM6fSo2muVEaTqgYoFM5QNf7aslGwZ2qaJm4fZWzfMqsqrHDrWlXXhLcy6D0b2vIZ4u7g==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -2135,9 +2135,9 @@ typescript-json-schema@~0.52.0:
     yargs "^17.1.1"
 
 typescript@^4.2.4:
-  version "4.7.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
-  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
+  integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
 
 typescript@~4.4.4:
   version "4.4.4"
@@ -2182,9 +2182,9 @@ v8-compile-cache-lib@^3.0.1:
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
 
 vm2@^3.9.8:
-  version "3.9.10"
-  resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.9.10.tgz#c66543096b5c44c8861a6465805c23c7cc996a44"
-  integrity sha512-AuECTSvwu2OHLAZYhG716YzwodKCIJxB6u1zG7PgSQwIgAlEaoXH52bxdcvT8GkGjnYK7r7yWDW0m0sOsPuBjQ==
+  version "3.9.11"
+  resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.9.11.tgz#a880f510a606481719ec3f9803b940c5805a06fe"
+  integrity sha512-PFG8iJRSjvvBdisowQ7iVF580DXb1uCIiGaXgm7tynMR1uTBlv7UJlB1zdv5KJ+Tmq1f0Upnj3fayoEOPpCBKg==
   dependencies:
     acorn "^8.7.0"
     acorn-walk "^8.2.0"

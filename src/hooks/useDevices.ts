@@ -4,13 +4,13 @@ import { API } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api";
 import { useQuery } from "@tanstack/react-query";
 import {
-  GetDeviceQuery,
   ListDevicesQuery,
+  GetDeviceQuery,
   CreateDeviceMutation,
-  UpdateDeviceMutation,
-  DeleteDeviceMutation,
   CreateDeviceInput,
   UpdateDeviceInput,
+  UpdateDeviceMutation,
+  DeleteDeviceMutation,
 } from "../../src/API";
 import * as queries from "../../src/graphql/queries";
 import * as mutations from "../../src/graphql/mutations";

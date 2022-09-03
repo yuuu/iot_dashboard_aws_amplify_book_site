@@ -102,6 +102,7 @@ const deleteCertificate = async (id) => {
       sessionToken: env.AWS_SESSION_TOKEN,
     },
   };
+
   const graphqlClient = new AWSAppSyncClient({
     url: env.API_ENVIIEWER_GRAPHQLAPIENDPOINTOUTPUT,
     region: env.REGION,
@@ -138,7 +139,6 @@ exports.handler = async (event) => {
     await updateCertificateIoT(certificateId);
     await deleteCertificateIoT(certificateId);
     const { data } = await deleteCertificate(event.arguments.id);
-
     return data.deleteCertificate;
   } catch (error) {
     console.log(error.message);

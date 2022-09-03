@@ -15,12 +15,10 @@ export const useCreateCertificateIoT = (
   const queryClient = useQueryClient();
   const mutation = useMutation(
     async (deviceID: string) => {
-      console.log(deviceID);
       const { data } = (await API.graphql({
         query: mutations.createCertificateIoT,
         variables: { deviceID },
       })) as GraphQLResult<CreateCertificateIoTMutation>;
-      console.log(data);
       return data;
     },
     {

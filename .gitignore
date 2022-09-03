@@ -38,6 +38,8 @@ aws-exports.js
 amplify_backup
 amplify/team-provider-info.json
 
+.vscode
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -58,5 +60,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-.vscode
