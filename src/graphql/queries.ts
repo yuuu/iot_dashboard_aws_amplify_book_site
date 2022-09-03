@@ -22,6 +22,13 @@ export const getDevice = /* GraphQL */ `
         }
         nextToken
       }
+      currentMeasurement {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
+      }
       createdAt
       updatedAt
     }
@@ -41,8 +48,91 @@ export const listDevices = /* GraphQL */ `
         certificates {
           nextToken
         }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
+        }
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getCurrentMeasurement = /* GraphQL */ `
+  query GetCurrentMeasurement($deviceID: ID!) {
+    getCurrentMeasurement(deviceID: $deviceID) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const listCurrentMeasurements = /* GraphQL */ `
+  query ListCurrentMeasurements(
+    $deviceID: ID
+    $filter: ModelCurrentMeasurementFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listCurrentMeasurements(
+      deviceID: $deviceID
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
+      }
+      nextToken
+    }
+  }
+`;
+export const getMeasurement = /* GraphQL */ `
+  query GetMeasurement($deviceID: ID!, $timestamp: AWSDateTime!) {
+    getMeasurement(deviceID: $deviceID, timestamp: $timestamp) {
+      deviceID
+      timestamp
+      temperature
+      humid
+      pressure
+    }
+  }
+`;
+export const listMeasurements = /* GraphQL */ `
+  query ListMeasurements(
+    $deviceID: ID
+    $timestamp: ModelStringKeyConditionInput
+    $filter: ModelMeasurementFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listMeasurements(
+      deviceID: $deviceID
+      timestamp: $timestamp
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        deviceID
+        timestamp
+        temperature
+        humid
+        pressure
       }
       nextToken
     }
@@ -64,6 +154,13 @@ export const getCertificate = /* GraphQL */ `
         pinned
         certificates {
           nextToken
+        }
+        currentMeasurement {
+          deviceID
+          timestamp
+          temperature
+          humid
+          pressure
         }
         createdAt
         updatedAt

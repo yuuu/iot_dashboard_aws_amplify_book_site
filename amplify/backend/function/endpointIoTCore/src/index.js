@@ -5,7 +5,7 @@ const client = new IoTClient({ region: env.REGION });
 
 const describeEndpoint = async () => {
   const params = {
-    type: "iot:Data-ATS",
+    endpointType: "iot:Data-ATS",
   };
   const command = new DescribeEndpointCommand(params);
   return await client.send(command);
