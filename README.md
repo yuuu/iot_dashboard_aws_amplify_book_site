@@ -37,7 +37,11 @@ $ yarn dev
 
 ## 正誤表
 
-書籍の誤植が見つかった場合、こちらに追記予定です。
+本書に下表の通り誤りがありました。お詫びして訂正いたします。
+
+| ページ | 箇所 | 誤 | 正 |
+| ---- | ---- | ---- | ---- |
+| P.98 | 5〜6行目および図6.3内 | mockmock official/EnviiewerSample | mockmock official/env-sensor-sample |
 
 ## 指摘・質問がある場合
 
