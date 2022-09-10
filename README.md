@@ -41,6 +41,7 @@ $ yarn dev
 
 | ページ | 箇所 | 誤 | 正 |
 | ---- | ---- | ---- | ---- |
+| P.54 |リスト4.1内 | npm install graphql@^15.7.0 graphql-tag@^2.12.6 node-fetch@^2.6.0 | npm install graphql@^15.7.0 graphql-tag@^2.12.6 node-fetch@^2.6.0 redux@^4.2.0 |
 | P.98 | 5〜6行目および図6.3内 | mockmock official/EnviiewerSample | mockmock official/env-sensor-sample |
 
 ## 指摘・質問がある場合
